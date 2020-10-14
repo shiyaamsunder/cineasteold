@@ -1,0 +1,22 @@
+.NavItems{
+    display: flex;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    height: 100%;
+    width: 250px;    
+}
+
+
+
+@media (max-width: 780px){
+    .NavItems{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 20vh;
+    }
+    
+    
+}

@@ -1,0 +1,19 @@
+.NavSignOut{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 93%;
+}
+
+@media (max-width: 780px){
+    .NavSignOut{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width:150%;
+        height: 100%;
+    
+    }
+}
+

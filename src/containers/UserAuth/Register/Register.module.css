@@ -1,0 +1,131 @@
+.Register{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background: linear-gradient(to right, #5A189A, #9D4EDD, #7B2CBF);
+    flex-direction: column;
+    
+}
+
+a{
+    text-decoration: none;
+    outline: none;
+}
+
+
+
+.Register h1{
+    font-family: 'Sansita Swashed', cursive;
+    font-size: 2.5rem;
+    color: white;
+    margin: 15px;
+    
+}
+
+.RegisterContainer{
+    display: flex;
+    width: 300px;
+    background-color: rgba(53, 53, 53, 0.808);
+    padding: 1rem;
+    border-radius: 5px;
+    flex-direction: column;
+    height: fit-content;
+    justify-content: space-around;
+    color: white;
+}
+
+.RegisterContainer h2{
+    margin: 0;
+    margin-bottom: 0.5rem;
+}
+
+.RegisterContainer h4{
+    font-weight: 500;
+    margin: 0.3rem 0rem  ;
+}
+
+
+.RegisterContainer form input{
+    line-height:0.8rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding:0.3rem  ;
+    width: 95%;
+    margin: 0;
+    margin-bottom: 5px;
+    outline: none;
+    transition: all 0.4s ease;
+    font-family: 'Inter', 'sans-serif';
+    background-color: rgba(29, 29, 29, 0.418);
+    color:white;
+    
+}
+
+.RegisterContainer form input:focus{
+    border:1px solid #571ef3;
+    box-shadow: 0 0 5px #9c6aff;
+}
+
+.RegisterButton{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.SignUp{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    color: white;
+    
+}
+
+.SignUp a{
+    margin: 0;
+}
+
+.SignUp p {
+    margin: 5px 0;
+}
+
+.OtherSignIn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Google{
+    width: 7.2rem;
+    height: 2.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #5a5a5a;
+    box-shadow: 0px 2.5px 5px 0px rgba(0, 0, 0, 0.2),  0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    border: 1px;
+    font-size: 1rem;
+    transition:all 0.8s ease;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Inter', 'sans-serif';
+}
+
+.Google img{
+    width: 24px;
+    transition: transform 0.4s ease;
+}
+
+.Google:hover{
+    box-shadow: 0px 2.5px 8px 0px rgba(0, 0, 0, 0.637);
+}
+
+
