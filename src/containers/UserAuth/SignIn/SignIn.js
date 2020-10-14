@@ -14,6 +14,10 @@ const SignIn = (props) => {
     const { login, googleSignUp, emailError, passwordError } = useAuth()
     const history = useHistory()
 
+    const redirect = () => {
+        return history.push("/")
+    }
+
     async function handleSubmit(e) {
         e.preventDefault()
 
@@ -21,8 +25,7 @@ const SignIn = (props) => {
         try {
             setError('')
             setLoading(true)
-            await login(email, password)
-            history.push("/")
+            await login(email, password, redirect)
         } catch {
 
         }
@@ -43,6 +46,7 @@ const SignIn = (props) => {
         }
 
     }
+
 
 
     return (

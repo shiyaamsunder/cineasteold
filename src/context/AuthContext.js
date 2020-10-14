@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth, provider } from '../firebase'
-import { useHistory } from 'react-router-dom'
+
 
 export const AuthContext = createContext()
 
@@ -23,10 +23,11 @@ export const AuthProvider = ({ children }) => {
         setPasswordError('')
         setEmailError('')
     }
-    const signUp = (email, password) => {
-        setName('')
+    const signUp = (email, password, redirect) => {
         clearErrors()
-        auth.createUserWithEmailAndPassword(email, password)
+        auth.createUserWithEmailAndPassword(email, password).then(u => {
+            redirect()
+        })
             .catch(err => {
                 switch (err.code) {
                     case 'auth/weak-password':
@@ -43,19 +44,25 @@ export const AuthProvider = ({ children }) => {
             })
 
     }
-    console.log(passwordError)
 
-    async function login(email, password) {
+    async function login(email, password, redirect) {
         clearErrors()
-        return auth.signInWithEmailAndPassword(email, password).catch(err => {
+        return auth.signInWithEmailAndPassword(email, password).then(u => {
+            redirect()
+        }).catch(err => {
             switch (err.code) {
                 case 'auth/invaild-email':
+                    setEmailError('Invalid-email')
+                    break;
                 case 'auth/user-not-found':
+                    setEmailError('User not found')
+                    break;
                 case 'auth/user-disabled':
-                    setEmailError(err.message)
+                    setEmailError('User disabled')
+
                     break
                 case 'auth/wrong-password':
-                    setPasswordError(err.message)
+                    setPasswordError('Invalid Password')
                     break
                 default:
                     break

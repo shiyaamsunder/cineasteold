@@ -14,7 +14,9 @@ const Register = () => {
     const { signUp, name, setName, googleSignUp, setUserName, passwordError, emailError } = useAuth()
     const history = useHistory()
 
-
+    const redirect = () => {
+        return history.push("/")
+    }
     async function handleSubmit(e) {
         e.preventDefault()
         if (password !== confirmPassword) {
@@ -23,8 +25,8 @@ const Register = () => {
 
         setError('')
         setLoading(true)
-        await signUp(email, password)
-        history.push("/")
+        await signUp(email, password, redirect)
+
         await setUserName(name)
         setLoading(false)
     }
