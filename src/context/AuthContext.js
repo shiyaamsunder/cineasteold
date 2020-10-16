@@ -12,8 +12,7 @@ export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
     const [name, setName] = useState('')
-    const [watchList, setWatchList] = useState([])
-    const [isWatchList, setIsWatchList] = useState(false)
+
     const [onhomepage, setOnHomePage] = useState(true)
     const [emailError, setEmailError] = useState()
     const [passwordError, setPasswordError] = useState('')
@@ -48,6 +47,7 @@ export const AuthProvider = ({ children }) => {
     async function login(email, password, redirect) {
         clearErrors()
         return auth.signInWithEmailAndPassword(email, password).then(u => {
+            console.log(u)
             redirect()
         }).catch(err => {
             switch (err.code) {
@@ -93,27 +93,6 @@ export const AuthProvider = ({ children }) => {
         return auth.signOut()
     }
 
-    const addToWatchList = (id, title, url, rating) => {
-
-        setWatchList([...watchList, {
-            id: id,
-            title: title,
-            url: url,
-            rating: rating
-        }])
-
-
-
-    }
-
-    const removeFromWatchList = (id) => {
-        const newWatchList = watchList.filter(movie => {
-            return movie.id !== id
-        })
-        setWatchList(newWatchList)
-    }
-
-
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
@@ -135,11 +114,8 @@ export const AuthProvider = ({ children }) => {
         setUserName,
         name,
         setName,
-        addToWatchList,
-        watchList,
-        removeFromWatchList,
-        isWatchList,
-        setIsWatchList,
+        // addToWatchList,
+        // removeFromWatchList,
         passwordError,
         emailError,
         onhomepage, setOnHomePage

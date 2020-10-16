@@ -9,6 +9,7 @@
     "axios": "^0.20.0",
     "cra-template": "1.0.3",
     "firebase": "^7.22.1",
+    "firebase-admin": "^9.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",
