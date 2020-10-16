@@ -27,7 +27,8 @@ img{
     background: -webkit-linear-gradient(to left, #414345, #232526); 
     background: linear-gradient(to left, #414345, #232526); 
     min-height: 100vh;
-    padding: 0 1rem;
+    padding-top: 1.5rem;
+    padding-left: 2rem; 
     margin: auto;
     display: flex;
     flex-direction: column;
