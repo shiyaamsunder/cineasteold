@@ -14,6 +14,8 @@ import Layout from './components/Layout/Layout';
 import MainContent from './containers/MainContent/MainContent'
 import SignIn from './containers/UserAuth/SignIn/SignIn'
 import Register from './containers/UserAuth/Register/Register'
+import { MovListProvider } from './context/MovListContext';
+import FullMovie from './containers/MovieComponents/FullMovie/FullMovie';
 
 
 function App() {
@@ -22,26 +24,32 @@ function App() {
 
   return (
     <AuthProvider>
-      <Router>
-        <div className="App">
+      <MovListProvider>
 
-          <Layout>
 
-            <Route path='/' exact>
-              <Header />
-              <MainContent />
-            </Route >
-            <Switch>
-              <Route path="/signin" component={SignIn} />
-              <Route path="/register" component={Register} />
-              <Route path="/my-watchlist">
+        <Router>
+          <div className="App">
+            <Layout>
+              <Route path='/' exact>
                 <Header />
-                <WatchList />
-              </Route>
-            </Switch>
-          </Layout>
-        </div>
-      </Router>
+                <MainContent />
+              </Route >
+              <Switch>
+                <Route path="/movies/:movieId" >
+                  <Header />
+                  <FullMovie />
+                </Route>
+                <Route path="/signin" component={SignIn} />
+                <Route path="/register" component={Register} />
+                <Route path="/my-watchlist">
+                  <Header />
+                  <WatchList />
+                </Route>
+              </Switch>
+            </Layout>
+          </div>
+        </Router>
+      </MovListProvider>
     </AuthProvider>
 
 
