@@ -19,31 +19,32 @@ const Register = () => {
     }
     async function handleSubmit(e) {
         e.preventDefault()
+
         if (password !== confirmPassword) {
             return setError("Passwords don't match!!")
         }
 
-        setError('')
-        setLoading(true)
-        await signUp(email, password, redirect)
-
-        await setUserName(name)
-        setLoading(false)
-    }
-
-    async function handleGoogleSignUp() {
         try {
-            setError('')
             setLoading(true)
-            await googleSignUp()
-            history.push("/")
+            setError('')
+            await signUp(email, password, redirect, name)
 
+            await setUserName(name)
         } catch {
-            setError('Failed to register')
-
+            console.log('Failed to register')
         }
         setLoading(false)
     }
+
+    async function handleGoogleSignUp(e) {
+        e.preventDefault()
+        setError('')
+        setLoading(true)
+        await googleSignUp()
+        setLoading(false)
+        history.push("/")
+    }
+
     return (
 
         <div className={classes.Register}>

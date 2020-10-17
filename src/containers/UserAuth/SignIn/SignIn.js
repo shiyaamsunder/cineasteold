@@ -6,7 +6,7 @@ import AlertMessage from '../../../components/UI/AlertMessage/AlertMessage'
 import { useAuth } from '../../../context/AuthContext'
 
 
-const SignIn = (props) => {
+const SignIn = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -20,18 +20,17 @@ const SignIn = (props) => {
 
     async function handleSubmit(e) {
         e.preventDefault()
-
-
+        console.log(`Loading: ${loading}`)
         try {
             setError('')
             setLoading(true)
             await login(email, password, redirect)
+            setLoading(false)
         } catch {
-
+            console.log(error)
         }
 
-        setLoading(false)
-
+        console.log(`Loading: ${loading}`)
     }
 
     async function handleGoogleSignIn(e) {
@@ -44,9 +43,8 @@ const SignIn = (props) => {
         } catch {
             setError("Trouble logging in")
         }
-
+        setLoading(false)
     }
-
 
 
     return (
