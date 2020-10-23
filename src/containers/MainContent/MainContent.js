@@ -5,6 +5,7 @@ import requests from '../../requests'
 import MovieCards from '../MovieComponents/MovieCards/MovieCards';
 
 
+
 function MainContent() {
     return (
         <main className={classes.MainContent}>
@@ -17,11 +18,15 @@ function MainContent() {
                 <h1>Trending Movies</h1>
                 <MovieCards
                     title='original_name'
-                    fetchUrl={requests.fetchTrending} />
+                    fetchUrl={requests.fetchTrending}
+                    onHomepage={true} />
                 <h1>Top Rated Movies</h1>
                 <MovieCards
                     title='original_name'
-                    fetchUrl={requests.fetchToprated} />
+                    fetchUrl={requests.fetchToprated}
+                    onHomepage={true} />
+
+
             </div>
 
         </main>

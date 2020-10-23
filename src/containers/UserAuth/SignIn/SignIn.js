@@ -20,9 +20,11 @@ const SignIn = () => {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        console.log(`Loading: ${loading}`)
         try {
             setError('')
+            if (email || password === '') {
+                setError("Enter email and password")
+            }
             setLoading(true)
             await login(email, password, redirect)
             setLoading(false)

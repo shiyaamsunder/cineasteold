@@ -1,0 +1,28 @@
+.Toastify__toast{
+    border-radius: 5px;
+}
+.Toastify__toast--success {
+    background: rgba(0, 0,0 ,0.7);
+    backdrop-filter: blur(4px);
+    font-family: 'Inter', 'sans-serif';
+}
+
+.Toastify__progress-bar{
+    background-color: #5546b9;
+}
+
+.Toastify__toast--error {
+    background: rgba(251, 40, 40, 0.445);
+    backdrop-filter: blur(9px);
+    font-family: 'Inter', 'sans-serif';
+
+}
+
+@media only screen and (max-width : 480px){
+
+    .Toastify__toast{
+        width: 50%;
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+    }
+}

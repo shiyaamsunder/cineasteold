@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { auth, provider } from '../firebase'
+import { auth, db, provider } from '../firebase'
 
 
 export const AuthContext = createContext()
@@ -12,7 +12,6 @@ export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
     const [name, setName] = useState('')
-
     const [onhomepage, setOnHomePage] = useState(true)
     const [emailError, setEmailError] = useState()
     const [passwordError, setPasswordError] = useState('')
@@ -22,9 +21,13 @@ export const AuthProvider = ({ children }) => {
         setPasswordError('')
         setEmailError('')
     }
-    const signUp = (email, password, redirect) => {
+    const signUp = (email, password, redirect, name) => {
         clearErrors()
         auth.createUserWithEmailAndPassword(email, password).then(u => {
+            db.collection('users').doc(name).set({
+                name: name,
+                bucket: []
+            })
             redirect()
         })
             .catch(err => {
@@ -47,7 +50,6 @@ export const AuthProvider = ({ children }) => {
     async function login(email, password, redirect) {
         clearErrors()
         return auth.signInWithEmailAndPassword(email, password).then(u => {
-            console.log(u)
             redirect()
         }).catch(err => {
             switch (err.code) {
@@ -70,7 +72,8 @@ export const AuthProvider = ({ children }) => {
         })
     }
 
-    function googleSignUp() {
+    async function googleSignUp() {
+
         return auth.signInWithPopup(provider)
     }
 
@@ -81,6 +84,8 @@ export const AuthProvider = ({ children }) => {
                 user.updateProfile({
                     displayName: name
                 })
+
+
             } else {
                 console.log('No User')
             }
@@ -98,10 +103,10 @@ export const AuthProvider = ({ children }) => {
             setCurrentUser(user)
             setLoading(false)
         })
+
         return unsubscribe
 
     }, [])
-
 
 
     const value = {
@@ -114,8 +119,6 @@ export const AuthProvider = ({ children }) => {
         setUserName,
         name,
         setName,
-        // addToWatchList,
-        // removeFromWatchList,
         passwordError,
         emailError,
         onhomepage, setOnHomePage

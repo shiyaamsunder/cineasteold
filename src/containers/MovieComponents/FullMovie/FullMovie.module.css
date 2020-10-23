@@ -2,11 +2,12 @@
     display: grid;
     place-items: center;
     min-height: 100vh;
-    background: linear-gradient(to right, #5A189A, #9D4EDD, #7B2CBF)
-    
+    background: linear-gradient(to right, #5A189A, #9D4EDD, #7B2CBF);
+   
 }
 
 .MovieDetails{
+    
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
@@ -26,6 +27,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     
 }
 
@@ -44,9 +46,11 @@
     right: 1rem;
 }
 
-.AddtoWatchlist > button {
-    margin: 0;
+.AddtoWatchlist{
+    margin-left: auto;
 }
+
+
 
 
 @media (max-width: 768px){

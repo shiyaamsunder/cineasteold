@@ -2,7 +2,7 @@
     height: 100vh;
 }
 .Welcome{
-    height: 70vh;
+    height: 40vh;
     background: linear-gradient(to right, #5A189A, #9D4EDD, #7B2CBF);
     display: flex;
     align-items: center;

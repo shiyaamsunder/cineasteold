@@ -16,6 +16,7 @@ import SignIn from './containers/UserAuth/SignIn/SignIn'
 import Register from './containers/UserAuth/Register/Register'
 import { MovListProvider } from './context/MovListContext';
 import FullMovie from './containers/MovieComponents/FullMovie/FullMovie';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
                 </Route>
               </Switch>
             </Layout>
+            <ToastContainer />
           </div>
         </Router>
       </MovListProvider>

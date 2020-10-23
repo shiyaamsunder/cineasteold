@@ -28,7 +28,6 @@ const Register = () => {
             setLoading(true)
             setError('')
             await signUp(email, password, redirect, name)
-
             await setUserName(name)
         } catch {
             console.log('Failed to register')
