@@ -47,7 +47,7 @@ const Header = () => {
 
                 <div className={classes.NavLogo}>
                     <Link to="/">
-                        <h1>MovList</h1>
+                        <h1>Cineaste</h1>
                     </Link>
                 </div>
 

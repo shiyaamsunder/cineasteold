@@ -11,7 +11,7 @@ function MainContent() {
         <main className={classes.MainContent}>
 
             <div className={classes.Welcome}>
-                <h1>Welcome to MovList</h1>
+                <h1>Welcome to Cineaste</h1>
             </div>
 
             <div className={classes.Trending}>
