@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom"
 
 const Search = ({ changeColor }) => {
     const { query, setQuery, setSearchResults } = useMovList()
+
     const API_KEY = process.env.REACT_APP_TMDB_API_KEY
     const url = `
     https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
@@ -33,7 +34,7 @@ const Search = ({ changeColor }) => {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder='Search for any movie'>
+                placeholder={`'Avengers'`}>
             </input>
             <IconButton>
                 <SearchIcon style={{ color: '#7B6CD9' }} />

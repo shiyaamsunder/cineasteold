@@ -45,10 +45,9 @@
 
 
 @media (max-width: 780px){
-    .NavRight{
+    .Items{
         display: none;
     }
-
     .Burger{
         display: block;
         z-index: 300;

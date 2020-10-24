@@ -37,7 +37,6 @@ const Header = () => {
         return () => window.removeEventListener('scroll', changeHeaderBG)
     }, [headerBg])
 
-
     return (
         <>
             <header id="head"
@@ -53,8 +52,14 @@ const Header = () => {
                 </div>
 
                 <div className={classes.NavRight}>
-                    <Search changeColor={headerBg} />
-                    <NavItems changeBg={headerBg} />
+                    <div className={headerBg ? classes.Search + ' ' + classes.Sactive : classes.Search}>
+                        <Search changeColor={headerBg} />
+                    </div>
+                    <div className={classes.Items}>
+
+                        <NavItems changeBg={headerBg} />
+                    </div>
+
                 </div>
 
                 <div className={classes.Burger}>
