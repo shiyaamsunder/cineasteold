@@ -39,9 +39,8 @@ const Register = () => {
         e.preventDefault()
         setError('')
         setLoading(true)
-        await googleSignUp()
+        await googleSignUp(redirect)
         setLoading(false)
-        history.push("/")
     }
 
     return (

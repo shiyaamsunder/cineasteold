@@ -11,7 +11,7 @@ const SignIn = () => {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-    const { login, googleSignUp, emailError, passwordError } = useAuth()
+    const { login, googleSignUp, emailError, passwordError, } = useAuth()
     const history = useHistory()
 
     const redirect = () => {
@@ -40,8 +40,7 @@ const SignIn = () => {
         try {
             setError('')
             setLoading(true)
-            await googleSignUp()
-            history.push("/")
+            await googleSignUp(redirect)
         } catch {
             setError("Trouble logging in")
         }

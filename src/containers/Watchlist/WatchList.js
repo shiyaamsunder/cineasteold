@@ -1,23 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import MovieCard from '../MovieComponents/MovieCard/MovieCard';
 import classes from './WatchList.module.css'
 import { useMovList } from '../../context/MovListContext'
-import { useAuth } from '../../context/AuthContext';
-import { db } from '../../firebase';
+
 
 const WatchList = () => {
 
-    const { watchList, setWatchList } = useMovList()
-    const { currentUser } = useAuth()
-
-
-    useEffect(() => {
-        console.log(currentUser)
-        if (currentUser !== null) {
-            db.collection('users').doc(currentUser.displayName).onSnapshot(snapshot => setWatchList(snapshot.data().bucket))
-        }
-    }, [setWatchList, currentUser])
-
+    const { watchList } = useMovList()
 
 
     return (

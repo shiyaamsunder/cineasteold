@@ -44,7 +44,7 @@ const FullMovie = () => {
 
     const AddHandleClick = (id, title, url, rating) => {
         if (currentUser) {
-            !addedToWatchList ? RemoveFromWatchList(id) :
+            addedToWatchList ? RemoveFromWatchList(id) :
                 AddtoWatchlist(id, title, url, rating)
 
         } else {
@@ -66,7 +66,7 @@ const FullMovie = () => {
         db.collection('users').doc(currentUser.displayName).update({
             bucket: watchList.filter(movie => movie.id !== id)
         })
-
+        setAddedToWatchList(!addedToWatchList)
         toast.error("Removed from watchlist", {
             position: "bottom-left",
             autoClose: 5000,
@@ -76,7 +76,6 @@ const FullMovie = () => {
             draggable: true,
             progress: undefined,
         })
-        setAddedToWatchList(!addedToWatchList)
     }
 
     const handleClose = () => {
@@ -92,7 +91,7 @@ const FullMovie = () => {
                 rating: rating,
             })
         })
-
+        setAddedToWatchList(!addedToWatchList)
         toast.success("Added to watchlist", {
             position: "bottom-left",
             autoClose: 5000,
@@ -105,9 +104,19 @@ const FullMovie = () => {
     }
 
     useEffect(() => {
-        if (watchList.filter(item => item.id === movie.id)[0]?.id === movie.id) {
-            setAddedToWatchList(addedToWatchList => !addedToWatchList)
+
+        if (watchList) {
+
+
+            if ((watchList.filter(item => item.id === movie.id)).length === 1) {
+                setAddedToWatchList(true)
+            } else {
+                setAddedToWatchList(false)
+            }
         }
+
+
+
     }, [watchList, movie.id])
 
     return (
@@ -146,7 +155,7 @@ const FullMovie = () => {
                                         movie.original_title,
                                         movie.poster_path,
                                         movie.vote_average)
-                                }>{!addedToWatchList ? 'Remove' : 'Add'}</Button>
+                                }>{addedToWatchList ? 'Remove' : 'Add'}</Button>
 
                         </div>
 

@@ -72,9 +72,21 @@ export const AuthProvider = ({ children }) => {
         })
     }
 
-    async function googleSignUp() {
+    const googleSignUp = async (redirect) => {
+        const snapshot = await db.collection('users').get()
+        const docIds = snapshot.docs.map(doc => doc.id)
 
-        return auth.signInWithPopup(provider)
+        auth.signInWithPopup(provider).then(u => {
+            if (docIds.filter(id => (u.user.displayName === id)).length < 1) {
+                db.collection('users').doc(u.user.displayName).set({
+                    name: u.user.displayName,
+                    bucket: []
+                })
+            }
+
+            redirect()
+        })
+
     }
 
     function setUserName(name) {
@@ -107,6 +119,7 @@ export const AuthProvider = ({ children }) => {
         return unsubscribe
 
     }, [])
+
 
 
     const value = {
