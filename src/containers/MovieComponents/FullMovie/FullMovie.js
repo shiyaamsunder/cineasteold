@@ -42,7 +42,7 @@ const FullMovie = () => {
     const imgUrl = movie && `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     const backdrop = movie && `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
 
-    const AddHandleClick = (id, title, url, rating) => {
+    const handleClick = (id, title, url, rating) => {
         if (currentUser) {
             addedToWatchList ? RemoveFromWatchList(id) :
                 AddtoWatchlist(id, title, url, rating)
@@ -79,7 +79,8 @@ const FullMovie = () => {
     }
 
     const handleClose = () => {
-        history.push("/")
+        history.goBack()
+
     }
 
     const AddtoWatchlist = (id, title, url, rating) => {
@@ -120,49 +121,49 @@ const FullMovie = () => {
     }, [watchList, movie.id])
 
     return (
-        <>
-
-            <div className={classes.FullMovie} style={{
-                backgroundImage: ` url(${movie.poster_path && backdrop})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundAttachment: 'fixed'
-
-            }}>
-
-                <div className={classes.MovieDetails}>
-                    <div className={classes.Close}>
-                        <IconButton onClick={handleClose}>
-                            <CloseIcon style={{ color: 'white', fontSize: '2rem' }} />
-                        </IconButton>
-                    </div>
 
 
-                    <div className={classes.MovieDetails_Left}>
-                        {movie.poster_path ? <img src={imgUrl} alt="" /> : <h1>Loading</h1>}
+        <div className={classes.FullMovie} style={{
+            backgroundImage: ` url(${movie.poster_path && backdrop})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundAttachment: 'fixed'
 
-                    </div>
-                    <div className={classes.MovieDetails_Right}>
-                        <h1>{movie.original_title}</h1>
-                        <p> {movie.overview}</p>
+        }}>
 
-                        <div className={classes.AddtoWatchlist}>
-                            <Button
-                                buttonStyle="Btn--primary--solid" buttonSize="Btn--medium"
-                                onClick={() =>
-                                    AddHandleClick(
-                                        movie.id,
-                                        movie.original_title,
-                                        movie.poster_path,
-                                        movie.vote_average)
-                                }>{addedToWatchList ? 'Remove' : 'Add'}</Button>
+            <div className={classes.MovieDetails}>
+                <div className={classes.Close}>
+                    <IconButton onClick={handleClose}>
+                        <CloseIcon style={{ color: 'white', fontSize: '2rem' }} />
+                    </IconButton>
+                </div>
 
-                        </div>
+
+                <div className={classes.MovieDetails_Left}>
+                    {movie.poster_path ? <img src={imgUrl} alt="" /> : <h1>Loading</h1>}
+                </div>
+                <div className={classes.MovieDetails_Right}>
+                    <h1>{movie.original_title}</h1>
+                    <p> {movie.overview}</p>
+                    <p>Rating: {movie.vote_average}</p>
+
+                    <div className={classes.AddtoWatchlist}>
+                        <Button
+                            buttonStyle="Btn--primary--solid" buttonSize="Btn--medium"
+                            onClick={() =>
+                                handleClick(
+                                    movie.id,
+                                    movie.original_title,
+                                    movie.poster_path,
+                                    movie.vote_average)
+                            }>{addedToWatchList ? 'Remove' : 'Add'}</Button>
 
                     </div>
 
                 </div>
-            </div></>
+
+            </div>
+        </div>
     )
 }
 

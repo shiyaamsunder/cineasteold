@@ -15,6 +15,8 @@ export const MovListProvider = ({ children }) => {
     const [isWatchList, setIsWatchList] = useState(false)
     const [movies, setMovies] = useState([])
     const { currentUser } = useAuth()
+    const [query, setQuery] = useState('')
+    const [searchResults, setSearchResults] = useState([])
 
 
     const fetchMovies = async (fetchUrl) => {
@@ -37,7 +39,9 @@ export const MovListProvider = ({ children }) => {
         setIsWatchList,
         movies,
         setMovies,
-        fetchMovies
+        fetchMovies,
+        query, setQuery,
+        searchResults, setSearchResults
     }
     return (
         <MovListContext.Provider value={value}>

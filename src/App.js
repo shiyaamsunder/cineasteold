@@ -17,6 +17,7 @@ import Register from './containers/UserAuth/Register/Register'
 import { MovListProvider } from './context/MovListContext';
 import FullMovie from './containers/MovieComponents/FullMovie/FullMovie';
 import { ToastContainer } from 'react-toastify';
+import SearchComponent from './containers/SearchComponent/SearchComponent';
 
 
 function App() {
@@ -45,6 +46,10 @@ function App() {
                 <Route path="/my-watchlist">
                   <Header />
                   <WatchList />
+                </Route>
+                <Route path="/search">
+                  <Header />
+                  <SearchComponent />
                 </Route>
               </Switch>
             </Layout>
