@@ -144,7 +144,8 @@ const FullMovie = () => {
                 </div>
                 <div className={classes.MovieDetails_Right}>
                     <h1>{movie.original_title}</h1>
-                    <p> {movie.overview}</p>
+                    <h3>Released: {movie.release_date}</h3>
+                    <p>{movie.overview}</p>
                     <p>Rating: {movie.vote_average}</p>
 
                     <div className={classes.AddtoWatchlist}>

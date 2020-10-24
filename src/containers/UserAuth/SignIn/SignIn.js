@@ -22,9 +22,7 @@ const SignIn = () => {
         e.preventDefault()
         try {
             setError('')
-            if (email || password === '') {
-                setError("Enter email and password")
-            }
+
             setLoading(true)
             await login(email, password, redirect)
             setLoading(false)

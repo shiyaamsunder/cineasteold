@@ -19,7 +19,7 @@ const Header = () => {
 
 
     const changeHeaderBG = () => {
-        if (window.scrollY >= 50) {
+        if (window.scrollY >= 40) {
             setHeaderBg(true)
         } else {
             setHeaderBg(false)
