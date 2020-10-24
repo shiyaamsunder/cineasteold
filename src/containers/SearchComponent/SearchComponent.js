@@ -1,13 +1,11 @@
 import React from 'react'
-import { useEffect } from 'react'
 import { useMovList } from '../../context/MovListContext'
 import MovieCard from '../MovieComponents/MovieCard/MovieCard'
-import MovieCards from '../MovieComponents/MovieCards/MovieCards'
 import classes from './SearchComponent.module.css'
 
 const SearchComponent = () => {
 
-    const { query, searchResults } = useMovList()
+    const { searchResults } = useMovList()
 
 
 
