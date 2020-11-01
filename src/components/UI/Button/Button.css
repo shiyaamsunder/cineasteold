@@ -1,88 +1,83 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 .Button {
-    --primary: #5546b9;
-    --warning: #f2974d ;
-    --danger:  #f2604d ;
-    --success: #93ff81;
-    --white: #fdfdfd;
-    --dark: #181717;
-    font-weight: 400;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    transition: transform 0.3s ease;
-    margin:0 1rem;
+  --warning: #f2974d;
+  --danger: #f2604d;
+  --success: #93ff81;
+  --white: #fdfdfd;
+  --dark: #181717;
+  font-weight: 400;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  transition: transform 0.3s ease;
+  margin: 0 1rem;
 }
 
-.Button:hover{
-    transform: translateY(-3px);
+.Button:hover {
+  transform: translateY(-3px);
 }
 
-.Button:disabled{
-    background: gray;
-    transform: translate(0px);
-    cursor: not-allowed;
+.Button:disabled {
+  background: gray;
+  transform: translate(0px);
+  cursor: not-allowed;
 }
 
-.Btn--medium{
-    padding: 7px 15px;
-    font-size: 16px;
-
+.Btn--medium {
+  padding: 7px 15px;
+  font-size: 16px;
 }
 
-.Btn--large{ 
-
-    padding: 10px 20px;
-    font-size: 20px;
+.Btn--large {
+  padding: 10px 20px;
+  font-size: 20px;
 }
 
-.Btn--primary--solid{
-    background-color: var(--primary);
-    color: var(--white);
-    border: none;
-} 
-
-.Btn--warning--solid{
-    background-color: var(--warning);
-    color: var(--white);
-    border: none;
-} 
-
-.Btn--danger--solid{
-    background-color: var(--danger);
-    color: var(--white);
-    border: none;
-} 
-
-.Btn--success--solid{
-    background-color: var(--success);
-    color: var(--white);
-    border: none;
-} 
-
-.Btn--primary--outline{
-    background: transparent;
-    color: var(--primary);
-    border: 2px solid var(--primary);
+.Btn--primary--solid {
+  background-color: var(--primaryColor);
+  color: var(--white);
+  border: none;
 }
 
-.Btn--warning--outline{
-    background: transparent;
-    color: var(--warning);
-    border: 2px solid var(--warning);
+.Btn--warning--solid {
+  background-color: var(--warning);
+  color: var(--white);
+  border: none;
 }
 
-.Btn--danger--outline{
-    background: transparent;
-    color: var(--danger);
-    border: 2px solid var(--danger);
+.Btn--danger--solid {
+  background-color: var(--danger);
+  color: var(--white);
+  border: none;
 }
 
-.Btn--success--outline{
-    background: transparent;
-    color: var(--success);
-    border: 2px solid var(--success);
+.Btn--success--solid {
+  background-color: var(--success);
+  color: var(--white);
+  border: none;
+}
+
+.Btn--primary--outline {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primaryColor);
+}
+
+.Btn--warning--outline {
+  background: transparent;
+  color: var(--warning);
+  border: 2px solid var(--warning);
+}
+
+.Btn--danger--outline {
+  background: transparent;
+  color: var(--danger);
+  border: 2px solid var(--danger);
+}
+
+.Btn--success--outline {
+  background: transparent;
+  color: var(--success);
+  border: 2px solid var(--success);
 }

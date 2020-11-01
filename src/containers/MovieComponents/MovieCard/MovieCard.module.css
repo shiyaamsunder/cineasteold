@@ -1,77 +1,65 @@
-.MovieContainer{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 3rem;
-    min-height: 315px;
-    max-width: 200px;
-    margin-right: 0.5rem;
-    margin-left: 0.5rem;
-    
-    
+.MovieContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  min-height: 315px;
+  max-width: 200px;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 
-
-.MovieCard{
-    height: 250px;
-    width: 180px;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2),  0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-size: cover;
-    background-position: center center;
-    min-height: 280px;
-    transition: 0.5s;
-    transform: scale(0.9);
+.MovieCard {
+  height: 250px;
+  width: 180px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-size: cover;
+  background-position: center center;
+  min-height: 280px;
+  transition: 0.5s;
+  transform: scale(0.9);
 }
 
-.MovieCard:hover{
-    transform: scale(1);
+.MovieCard:hover {
+  transform: scale(1);
 }
 
-.MovieCardBottom{
-    display: flex;
-    
-
+.MovieCardBottom {
+  display: flex;
 }
 
-.MovieInfo h4{
-    font-size: 1rem;
-    display: inline-block;
-    margin: 0;
-    color: rgb(228, 228, 228);
-    
+.MovieInfo h4 {
+  font-size: 1rem;
+  display: inline-block;
+  margin: 0;
+  color: rgb(228, 228, 228);
 }
 
-.MovieInfo{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding:0 12px;
-    width: 160px;
-    min-height: 120px;
-    /* border: 1px solid white; */
-    
+.MovieInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 12px;
+  width: 160px;
+  min-height: 120px;
+  /* border: 1px solid white; */
 }
 
-
-.MovieInfo p{
-    margin: 0;
-    color: #8072da;
-
+.MovieInfo p {
+  margin: 0;
+  color: var(--primaryColor);
 }
 
-.MovieInfo button{
-    margin: 0.5rem 0;
-    width: 50px;
-    margin-left: auto;
-
-   
+.MovieInfo button {
+  margin: 0.5rem 0;
+  width: 50px;
+  margin-left: auto;
 }
 
-.AddToWatchList{
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.AddToWatchList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
