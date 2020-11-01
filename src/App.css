@@ -1,44 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&family=Sansita+Swashed:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&family=Sansita+Swashed:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
-.App{
-    font-family: 'Inter', sans-serif;
+.App {
+  font-family: "Inter", sans-serif;
 }
 
-a{
-    color: white
+a {
+  color: white;
 }
-
-
-/* 
-https://coolors.co/000000-14213d-fca311-e5e5e5-ffffff
-
-https://coolors.co/16697a-489fb5-82c0cc-ede7e3-ffa62b
-
-https://coolors.co/011627-f71735-41ead4-fdfffc-ff9f1c
-
-https://coolors.co/222222-ffffff-4b4e6d-84dcc6-95a3b3
-
-https://coolors.co/022b3a-1f7a8c-bfdbf7-e1e5f2-ffffff
-
-https://coolors.co/10002b-240046-3c096c-5a189a-7b2cbf-9d4edd-c77dff-e0aaff
-
-https://coolors.co/e2cfea-a06cd5-6247aa-102b3f-062726
-
-https://coolors.co/000000-ffffff-cdcdcd-673ab7-522e93
-
-https://coolors.co/0c0032-190061-240090-3500d3-282828
-
-https://coolors.co/191126-cfb2ff-b17fff-6728cc-5c00f2
-
-https://coolors.co/2d2a32-6f2add-8c52ea-c3a7ef-f7f4fc
-
-https://coolors.co/9977ff-bb99ff-ffffff-ff99bb-ff7799
-
-https://coolors.co/2d2a32-6f2add-8c52ea-c3a7ef-f7f4fc
-
-https://coolors.co/4b0082-b57edc-d6cadd-f8f4ff-242124
-
-https://coolors.co/4b0082-b57edc-d6cadd-f8f4ff-242124
-
-*/

@@ -73,6 +73,12 @@
     height: 100%;
   }
 
+  .MovieDetails_Right {
+    margin: 0;
+    width: 80%;
+    padding-bottom: 2rem;
+  }
+
   .Close {
     top: 4rem;
     right: 0.5rem;
