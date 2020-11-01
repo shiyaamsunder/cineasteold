@@ -1,6 +1,13 @@
+:root {
+  --primaryColor: #9147ff;
+  --primaryBg: #0e0e10;
+  --secondaryBg: #1d1d1f;
+  --headerColor: #18181b;
+  --bgAccent: #464648;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
 }

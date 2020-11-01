@@ -37,7 +37,7 @@ const Search = ({ changeColor }) => {
                 placeholder={`'Avengers'`}>
             </input>
             <IconButton>
-                <SearchIcon style={{ color: '#7B6CD9' }} />
+                <SearchIcon style={{ color: 'var(--primaryColor)' }} />
             </IconButton>
         </form>
     )

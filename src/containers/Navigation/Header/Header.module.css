@@ -1,55 +1,54 @@
-.Header{
-    display: flex;
-    height: 50px;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transition: all 0.6s ease;
-    color: white;
-    z-index: 100;
-    
+.Header {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 0.6s ease;
+  color: white;
+  z-index: 100;
 }
 
-.active{
-    background-color: rgba(22, 22, 22, 0.7);
-    backdrop-filter: blur(5px);
-    color: white;
-    
+.active {
+  background-color: var(--headerColor);
+  color: white;
 }
 
-
-.Header  h1{
-    margin-left: 0.8rem;
-    font-family: 'Sansita Swashed', cursive;
+.Header h1 {
+  margin-left: 0.8rem;
+  font-family: "Sansita Swashed", cursive;
+  transition: color 0.3s ease-in-out;
 }
 
-.NavLogo{
-    display: flex;
-    flex: 1;
+.Header h1:hover {
+  color: var(--primaryColor);
 }
 
-.NavRight{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width:70%
-    
+.NavLogo {
+  display: flex;
+  flex: 1;
 }
 
-.Burger{
+.NavRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 70%;
+}
+
+.Burger {
+  display: none;
+}
+
+@media (max-width: 780px) {
+  .Items {
     display: none;
-}
-
-
-@media (max-width: 780px){
-    .Items{
-        display: none;
-    }
-    .Burger{
-        display: block;
-        z-index: 300;
-    }
+  }
+  .Burger {
+    display: block;
+    z-index: 300;
+  }
 }

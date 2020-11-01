@@ -81,7 +81,7 @@ const SignIn = () => {
 
                 <Link to='/register'>
 
-                    <Button buttonStyle="Btn--warning--outline">Click here to Register</Button>
+                    <Button buttonStyle="Btn--primary--outline">Click here to Register</Button>
                 </Link>
 
             </div>
