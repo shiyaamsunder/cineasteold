@@ -107,7 +107,7 @@ const Register = () => {
 
             <div className={classes.SignUp}>
                 <p>Already have an account?</p>
-                <Link to="/signin"> <Button buttonStyle="Btn--warning--outline">Go Back to Login</Button></Link>
+                <Link to="/signin"> <Button buttonStyle="Btn--primary--outline">Go Back to Login</Button></Link>
 
             </div>
 
