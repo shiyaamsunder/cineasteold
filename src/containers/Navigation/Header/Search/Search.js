@@ -36,7 +36,7 @@ const Search = ({ changeColor }) => {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={`'Avengers'`}>
             </input>
-            <IconButton>
+            <IconButton onClick={handleSubmit}>
                 <SearchIcon style={{ color: 'var(--primaryColor)' }} />
             </IconButton>
         </form>
