@@ -1,22 +1,20 @@
-.NavItem{
-    list-style-type: none;
-    
-    
+.NavItem {
+  list-style-type: none;
 }
 
 .NavItem {
-    text-decoration: none;
-    color: white;
-    font-size: 1rem;
-    transition: 0.2s ease-in
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  transition: 0.2s ease-in;
 }
-.NavItem:hover{
-    color:#7B6CD9
-
+.NavItem:hover {
+  color: var(--primaryColor);
 }
 
-@media (max-width: 780px){
-    .NavItem, .NavItem a{
-        margin: 0;
-    }
+@media (max-width: 780px) {
+  .NavItem,
+  .NavItem a {
+    margin: 0;
+  }
 }
