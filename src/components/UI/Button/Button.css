@@ -1,21 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 .Button {
-  --warning: #f2974d;
-  --danger: #f2604d;
-  --success: #93ff81;
   --white: #fdfdfd;
-  --dark: #181717;
   font-weight: 400;
   border-radius: 4px;
   cursor: pointer;
   font-family: "Inter", sans-serif;
   transition: transform 0.3s ease;
   margin: 0 1rem;
-}
-
-.Button:hover {
-  transform: translateY(-3px);
 }
 
 .Button:disabled {
@@ -37,47 +29,25 @@
 .Btn--primary--solid {
   background-color: var(--primaryColor);
   color: var(--white);
-  border: none;
+  border: 2px solid var(--primaryColor);
+  transition: all 0.2s ease;
 }
 
-.Btn--warning--solid {
-  background-color: var(--warning);
-  color: var(--white);
-  border: none;
-}
-
-.Btn--danger--solid {
-  background-color: var(--danger);
-  color: var(--white);
-  border: none;
-}
-
-.Btn--success--solid {
-  background-color: var(--success);
-  color: var(--white);
-  border: none;
+.Btn--primary--solid:hover {
+  background: transparent;
+  color: var(--primaryColor);
+  border: 2px solid var(--primaryColor);
 }
 
 .Btn--primary--outline {
   background: transparent;
-  color: var(--primary);
+  color: var(--primaryColor);
   border: 2px solid var(--primaryColor);
+  transition: all 0.2s ease;
 }
 
-.Btn--warning--outline {
-  background: transparent;
-  color: var(--warning);
-  border: 2px solid var(--warning);
-}
-
-.Btn--danger--outline {
-  background: transparent;
-  color: var(--danger);
-  border: 2px solid var(--danger);
-}
-
-.Btn--success--outline {
-  background: transparent;
-  color: var(--success);
-  border: 2px solid var(--success);
+.Btn--primary--outline:hover {
+  background-color: var(--primaryColor);
+  color: var(--white);
+  border: 2px solid var(--primaryColor);
 }
