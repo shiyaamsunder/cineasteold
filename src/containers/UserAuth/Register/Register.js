@@ -47,7 +47,7 @@ const Register = () => {
 
         <div className={classes.Register}>
             <Link to="/">
-                <h1>MovList</h1>
+                <h1>Cineaste</h1>
             </Link>
 
             <div className={classes.RegisterContainer}>

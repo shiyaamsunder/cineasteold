@@ -48,7 +48,7 @@ const SignIn = () => {
 
     return (
         <div className={classes.SignIn}>
-            <Link to="/"><h1>MovList</h1></Link>
+            <Link to="/"><h1>Cineaste</h1></Link>
 
             <div className={classes.SignInContainer}>
                 <h2>Sign In</h2>
