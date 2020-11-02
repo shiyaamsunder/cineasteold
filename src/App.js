@@ -52,6 +52,7 @@ function App() {
                 <Route path="/search">
                   <Header />
                   <SearchComponent />
+                  <Footer/>
                 </Route>
               </Switch>
             </Layout>
