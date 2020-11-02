@@ -3,7 +3,7 @@
 }
 .Welcome {
   height: 40vh;
-  background: var(--secondaryBg);
+  background: var(--headerColor);
   display: flex;
   align-items: center;
   justify-content: center;
