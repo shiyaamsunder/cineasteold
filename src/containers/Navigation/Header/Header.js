@@ -14,17 +14,7 @@ import Search from './Search/Search'
 
 
 const Header = () => {
-    const [headerBg, setHeaderBg] = useState(false)
     const [showSideBar, setShowSideBar] = useState(false)
-
-
-    const changeHeaderBG = () => {
-        if (window.scrollY >= 40) {
-            setHeaderBg(true)
-        } else {
-            setHeaderBg(false)
-        }
-    }
 
 
     const toggleSideBar = () => {
@@ -32,18 +22,11 @@ const Header = () => {
     }
 
 
-    useEffect(() => {
-        window.addEventListener('scroll', changeHeaderBG)
-        return () => window.removeEventListener('scroll', changeHeaderBG)
-    }, [headerBg])
 
     return (
         <>
             <header id="head"
-                className={headerBg ?
-                    classes.Header + ' ' +
-                    classes.active :
-                    classes.Header}>
+                className={classes.Header}>
 
                 <div className={classes.NavLogo}>
                     <Link to="/">
@@ -52,12 +35,12 @@ const Header = () => {
                 </div>
 
                 <div className={classes.NavRight}>
-                    <div className={headerBg ? classes.Search + ' ' + classes.Sactive : classes.Search}>
-                        <Search changeColor={headerBg} />
+                    <div className={classes.Search}>
+                        <Search  />
                     </div>
                     <div className={classes.Items}>
 
-                        <NavItems changeBg={headerBg} />
+                        <NavItems />
                     </div>
 
                 </div>

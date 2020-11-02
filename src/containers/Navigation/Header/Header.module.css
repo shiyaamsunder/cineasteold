@@ -10,11 +10,7 @@
   transition: all 0.6s ease;
   color: white;
   z-index: 100;
-}
-
-.active {
   background-color: var(--headerColor);
-  color: white;
 }
 
 .Header h1 {

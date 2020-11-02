@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import NavItem from '../NavItem/NavItem'
 import Button from '../../../../../components/UI/Button/Button'
 import { useLocation } from 'react-router-dom'
-function SignOutNav({ changeBg, logout }) {
+function SignOutNav({ logout }) {
     const [onHome, setOnHome] = useState(true)
     const location = useLocation()
 
@@ -18,8 +18,8 @@ function SignOutNav({ changeBg, logout }) {
     return (
         <div className={classes.NavSignOut}>
             {onHome ? <Link to="/my-watchlist">
-                <NavItem name="My WatchList" changeColor={changeBg} />
-            </Link> : <Link to="/"> <NavItem name="Home" changeColor={changeBg} /></Link>}
+                <NavItem name="My WatchList" />
+            </Link> : <Link to="/"> <NavItem name="Home" /></Link>}
 
 
             <Link to="/">
