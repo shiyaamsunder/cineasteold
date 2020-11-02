@@ -1,6 +1,6 @@
 {
-  "name": "movie-watchlist-app",
-  "version": "0.1.0",
+  "name": "cineaste",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@brainhubeu/react-carousel": "^1.19.26",
