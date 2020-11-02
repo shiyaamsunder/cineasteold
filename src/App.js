@@ -10,6 +10,7 @@ import {
 import { AuthProvider } from './context/AuthContext';
 import WatchList from './containers/Watchlist/WatchList';
 import Header from './containers/Navigation/Header/Header';
+import Footer from './containers/Footer/Footer'
 import Layout from './components/Layout/Layout';
 import MainContent from './containers/MainContent/MainContent'
 import SignIn from './containers/UserAuth/SignIn/SignIn'
@@ -35,6 +36,7 @@ function App() {
               <Route path='/' exact>
                 <Header />
                 <MainContent />
+                <Footer/>
               </Route >
               <Switch>
                 <Route path="/movies/:movieId" >

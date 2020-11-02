@@ -1,0 +1,30 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  background-color: var(--headerColor);
+  padding: 0.4rem;
+  color: white;
+}
+
+.footer__container {
+  width: 50px;
+  height: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__info {
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+.footer__info > h5,
+p {
+  margin: 0;
+}
