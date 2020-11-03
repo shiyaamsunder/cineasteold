@@ -3,10 +3,11 @@ import MovieCard from '../MovieCard/MovieCard';
 import classes from './MovieCards.module.css'
 import instance from '../../../axios'
 import axios from 'axios'
+import SkeletonComponent from '../../../components/UI/Skeletons/SkeletonComponent';
 
 
 const MovieCards = ({ fetchUrl }) => {
-    const [movies, setMovies] = useState([])
+    const [movies, setMovies] = useState(null)
 
     useEffect(() => {
         const source = axios.CancelToken.source()
@@ -22,14 +23,21 @@ const MovieCards = ({ fetchUrl }) => {
         }
     }, [fetchUrl, setMovies])
 
+    const arr = new Array(20)
+    for(let i=0; i<=20; i++){
+        arr.push(i)
+    }
+
 
     return (
 
 
         <div className={classes.MovieCards}>
-            {movies.map(el => (
+            {movies && movies.map(el => (
                 <MovieCard title={el.title} key={el.id} url={el.poster_path} rating={el.vote_average} id={el.id} onHomepage={true} />
             ))}
+
+            {!movies && arr.map(el=> <SkeletonComponent key={el}/>)}
         </div>
 
     )
