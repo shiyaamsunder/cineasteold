@@ -22,12 +22,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-### Firebase ###
-.idea
-**/node_modules/*
-**/.firebaserc
 
-### Firebase Patch ###
-.runtimeconfig.json
-.firebase/
+.firebaserc
+firebase.json
+/.firebase
 
