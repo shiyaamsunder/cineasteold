@@ -24,10 +24,6 @@ export const MovListProvider = ({ children }) => {
 
     }
 
-    // useEffect(() => {
-
-    // }, [setWatchList, currentUser])
-
     const value = {
         watchList,
         setWatchList,
