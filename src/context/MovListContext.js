@@ -10,7 +10,7 @@ export function useMovList() {
 }
 
 export const MovListProvider = ({ children }) => {
-    const [watchList, setWatchList] = useState([])
+    const [watchList, setWatchList] = useState(null)
     const [isWatchList, setIsWatchList] = useState(false)
     const [movies, setMovies] = useState([])
     const [query, setQuery] = useState('')
