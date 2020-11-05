@@ -1,20 +1,16 @@
 .MovieCards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  width: 90%;
+}
+
+@media (min-width: 780px) {
+  .MovieCards {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-y: hidden;
-    overflow-x: scroll;
-    width: 100%;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+  }
 }
-
-
-@media (min-width:780px){
-    .MovieCards{
-        display:flex;
-        align-items: center;
-        justify-content:flex-start;
-        flex-wrap: wrap;
-        overflow-x: hidden;
-    }
-}
-

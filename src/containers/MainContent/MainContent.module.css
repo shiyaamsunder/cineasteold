@@ -24,13 +24,12 @@ img {
 .Trending {
   background: var(--primaryBg);
   min-height: 100vh;
-  padding-top: 1.5rem;
-  padding-left: 2rem;
+
   margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  max-width: 100%;
 }
 
 .Trending h1 {
