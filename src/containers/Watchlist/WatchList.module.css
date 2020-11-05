@@ -1,35 +1,26 @@
-body{
-    background: #232526; 
-    background: -webkit-linear-gradient(to left, #414345, #232526); 
-    background: linear-gradient(to left, #414345, #232526);
+.WatchListContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  color: white;
+  background-color: var(--primaryBg);
 }
 
-.WatchListContainer{
-  
-height: 100%;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-margin-top: 50px;
-color: white;
-
+.WatchList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
-
-
-.WatchList{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
-.Movies{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    height: 100%;
+.Movies {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
 }
