@@ -24,7 +24,6 @@ img {
 .Trending {
   background: var(--primaryBg);
   min-height: 100vh;
-
   margin: auto;
   display: grid;
   align-content: center;
