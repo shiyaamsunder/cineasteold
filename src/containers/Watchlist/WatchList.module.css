@@ -14,7 +14,10 @@
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: column;
+  margin-top: 1.5rem;
 }
+
+
 
 .Movies {
   display: flex;
@@ -22,4 +25,15 @@
   justify-content: center;
   flex-wrap: wrap;
   height: 100%;
+  margin-top: 1rem;
+}
+
+.WatchList > button {
+  margin-left: auto;
+}
+
+@media only screen and (max-width: 760px){
+  .WatchList > button {
+    margin: 0;
+  }
 }

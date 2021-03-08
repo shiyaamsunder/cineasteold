@@ -51,3 +51,17 @@
   color: var(--white);
   border: 2px solid var(--primaryColor);
 }
+
+.Btn--warning--outline {
+  background: transparent;
+  color: var(--warningColor);
+  border: 2px solid var(--warningColor);
+  transition: all 0.2s ease;
+}
+
+.Btn--warning--outline:hover {
+  background-color: var(--warningColor);
+  color: var(--white);
+  border: 2px solid var(--warningColor);
+}
+
