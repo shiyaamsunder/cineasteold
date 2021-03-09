@@ -1,10 +1,15 @@
 import React from "react";
+import { useEffect } from "react";
 import { useMovList } from "../../context/MovListContext";
 import MovieCard from "../MovieComponents/MovieCard/MovieCard";
 import classes from "./SearchComponent.module.css";
 
 const SearchComponent = () => {
 	const { searchResults } = useMovList();
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<div className={classes.Search}>
