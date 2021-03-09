@@ -1,11 +1,10 @@
 .MovieContainer {
   display: flex;
   flex-direction: column;
-  margin-bottom: 3rem;
-  min-height: 315px;
+  margin: 0.5rem;
+  min-height: 300px;
   max-width: 200px;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
+
 }
 
 .MovieCard {
@@ -43,7 +42,7 @@
   justify-content: space-around;
   padding: 0 12px;
   width: 160px;
-  min-height: 120px;
+  min-height: 80px;
   /* border: 1px solid white; */
 }
 
@@ -63,3 +62,19 @@
   align-items: center;
   justify-content: space-between;
 }
+
+
+@media only screen and (max-width: 768px){
+  .MovieContainer{
+    min-height: 280px;
+    width: 180px;
+    margin: 0;
+    justify-self: center;
+  }
+
+  .MovieCard{
+    min-height: 250px;
+    width:165px;
+    margin-left: 0.3rem;
+  }
+} 

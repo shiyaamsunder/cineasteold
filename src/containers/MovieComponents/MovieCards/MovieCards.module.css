@@ -5,14 +5,14 @@
   align-items:center;
   justify-content: center;
   flex-wrap: wrap;
+  
 }
 
 
 @media only screen and (max-width: 768px){
   .MovieCards{
-    display: flex;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
   }
 }
