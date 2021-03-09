@@ -4,7 +4,7 @@ import classes from "./Modal.module.css";
 import CloseIcon from "@material-ui/icons/Close";
 import { IconButton } from "@material-ui/core";
 
-const Modal = ({ toggle }) => {
+const Modal = ({ toggle, handleBtnClick }) => {
 	return (
 		<div className={classes.ModalContainer}>
 			<IconButton className={classes.Close} onClick={toggle}>
@@ -14,7 +14,9 @@ const Modal = ({ toggle }) => {
 				<h3>Do you really want to clear all the movies in your watchlist?</h3>
 
 				<div>
-					<Button buttonStyle="Btn--warning--outline">Clear all movies</Button>
+					<Button buttonStyle="Btn--warning--outline" onClick={handleBtnClick}>
+						Clear all movies
+					</Button>
 				</div>
 			</div>
 		</div>

@@ -8,10 +8,12 @@ import { db } from "../../firebase";
 import Button from "../../components/UI/Button/Button";
 import Modal from "../../components/UI/Modal/Modal";
 import Backdrop from "../../components/UI/Backdrop/Backdrop";
+import { useHistory } from "react-router";
 
 const WatchList = () => {
 	const { watchList, setWatchList } = useMovList();
 	const [modalIsOpen, setModalIsOpen] = useState(false);
+	const history = useHistory();
 
 	const { currentUser } = useAuth();
 	useEffect(() => {
@@ -29,8 +31,17 @@ const WatchList = () => {
 	}
 
 	const handleClear = () => {
-		console.log("clear");
-		toggleModal();
+		db.collection("users")
+			.doc(currentUser.displayName)
+			.update({
+				bucket: [],
+			})
+			.then((data) => {
+				setWatchList([]);
+				console.log(data);
+				toggleModal();
+				history.push("/");
+			});
 	};
 
 	const toggleModal = () => {
@@ -39,36 +50,53 @@ const WatchList = () => {
 	return (
 		<div className={classes.WatchListContainer}>
 			<div className={classes.WatchList}>
-				<h2 className={classes.Heading}>Your Watchlist</h2>
-
-				<Button
-					buttonStyle={"Btn--warning--outline"}
-					style={{ marginLeft: "auto" }}
-					onClick={handleClear}
-				>
-					Clear watchlist
-				</Button>
+				{watchList?.length > 0 ? (
+					<>
+						<h2 className={classes.Heading}>Your Watchlist</h2>
+						<Button
+							buttonStyle={"Btn--warning--outline"}
+							style={{ marginLeft: "auto" }}
+							onClick={toggleModal}
+						>
+							Clear watchlist
+						</Button>
+					</>
+				) : (
+					<div className={classes.Info}>
+						<h2>No movies added!</h2>
+						<Button
+							buttonStyle={"Btn--primary--outline"}
+							style={{ marginLeft: "auto" }}
+							onClick={() => {
+								history.push("/");
+							}}
+						>
+							Go to Home
+						</Button>
+					</div>
+				)}
 
 				{modalIsOpen ? (
 					<>
 						<Backdrop show={modalIsOpen} toggle={toggleModal} />
-						<Modal toggle={toggleModal} />
+						<Modal toggle={toggleModal} handleBtnClick={handleClear} />
 					</>
 				) : null}
 				<div className={classes.Movies}>
-					{watchList &&
-						watchList.map((movie) => (
-							<MovieCard
-								url={movie.url}
-								title={movie.title}
-								rating={movie.rating}
-								key={movie.id}
-								id={movie.id}
-								onHomepage={false}
-							/>
-						))}
+					{watchList
+						? watchList.map((movie) => (
+								<MovieCard
+									url={movie.url}
+									title={movie.title}
+									rating={movie.rating}
+									key={movie.id}
+									id={movie.id}
+									onHomepage={false}
+								/>
+						  ))
+						: arr.map((el) => <SkeletonComponent key={el} />)}
 
-					{!watchList && arr.map((el) => <SkeletonComponent key={el} />)}
+					{/* {!watchList && watchList } */}
 				</div>
 			</div>
 		</div>
