@@ -11,4 +11,4 @@
 ![login page](./snapshots/login.jpg)
 
 Checkout the live app by clicking the link below:
-[Click Here](https://cineaste-2d390.web.app/)
+<a href="https://cineaste-2d390.web.app/" target="_blank">Click Here</a>
