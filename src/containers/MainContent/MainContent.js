@@ -1,36 +1,35 @@
-import React from 'react'
-import classes from './MainContent.module.css'
+import React from 'react';
+import classes from './MainContent.module.css';
 
-import requests from '../../requests'
+import requests from '../../requests';
 import MovieCards from '../MovieComponents/MovieCards/MovieCards';
 
-
-
 function MainContent() {
-    return (
-        <main className={classes.MainContent}>
+	return (
+		<main className={classes.MainContent}>
+			<section className={classes.Welcome}>
+				<h1>Welcome to Cineaste</h1>
+			</section>
 
-            <div className={classes.Welcome}>
-                <h1>Welcome to Cineaste</h1>
-            </div>
+			<section className={classes.Section}>
+				<h1>Trending Movies</h1>
+				<MovieCards
+					title="original_name"
+					fetchUrl={requests.fetchTrending}
+					onHomepage={true}
+				/>
+			</section>
 
-            <div className={classes.Trending}>
-                <h1>Trending Movies</h1>
-                <MovieCards
-                    title='original_name'
-                    fetchUrl={requests.fetchTrending}
-                    onHomepage={true} />
-                <h1>Top Rated Movies</h1>
-                <MovieCards
-                    title='original_name'
-                    fetchUrl={requests.fetchToprated}
-                    onHomepage={true} />
-
-
-            </div>
-
-        </main>
-    )
+			<section className={classes.Section}>
+				<h1>Top Rated Movies</h1>
+				<MovieCards
+					title="original_name"
+					fetchUrl={requests.fetchToprated}
+					onHomepage={true}
+				/>
+			</section>
+		</main>
+	);
 }
 
-export default MainContent
+export default MainContent;

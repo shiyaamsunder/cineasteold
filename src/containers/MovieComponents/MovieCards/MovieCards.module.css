@@ -1,18 +1,13 @@
-.MovieCards{
-  width: 100%;
-  height: auto;
-  display: flex;
-  align-items:center;
-  justify-content: center;
-  flex-wrap: wrap;
-  
+.MovieCards {
+	width: 90%;
+	height: auto;
+	padding: 20px 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
 }
 
-
-@media only screen and (max-width: 768px){
-  .MovieCards{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    
-  }
+@media only screen and (max-width: 768px) {
+	.MovieCards {
+		row-gap: 2rem;
+	}
 }
