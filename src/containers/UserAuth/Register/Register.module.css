@@ -1,121 +1,126 @@
 .Register {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  background: var(--primaryBg);
-  flex-direction: column;
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background: var(--primaryBg);
+	flex-direction: column;
 }
 
 a {
-  text-decoration: none;
-  outline: none;
+	text-decoration: none;
+	outline: none;
 }
 
 .Register h1 {
-  font-family: "Sansita Swashed", cursive;
-  font-size: 2.5rem;
-  color: var(--primaryColor);
-  margin: 15px;
+	font-family: 'Sansita Swashed', cursive;
+	font-size: 2.5rem;
+	margin: 15px;
+	transition: color 250ms;
 }
 
+.Register h1:hover {
+	color: var(--primaryColor);
+}
 .RegisterContainer {
-  display: flex;
-  width: 300px;
-  background-color: var(--secondaryBg);
-  padding: 1rem;
-  border-radius: 5px;
-  flex-direction: column;
-  height: fit-content;
-  justify-content: space-around;
-  color: white;
+	display: flex;
+	width: 300px;
+	background-color: var(--secondaryBg);
+	padding: 1rem;
+	border-radius: 5px;
+	flex-direction: column;
+	height: fit-content;
+	justify-content: space-around;
+	color: white;
 }
 
 .RegisterContainer h2 {
-  margin: 0;
-  margin-bottom: 0.5rem;
+	margin: 0;
+	margin-bottom: 0.5rem;
 }
 
 .RegisterContainer h4 {
-  font-weight: 500;
-  margin: 0.3rem 0rem;
+	font-weight: 500;
+	margin: 0.3rem 0rem;
 }
 
 .RegisterContainer form input {
-  line-height: 0.8rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 2px solid var(--bgAccent);
-  padding: 0.3rem;
-  width: 95%;
-  margin: 0;
-  margin-bottom: 5px;
-  outline: none;
-  transition: all 0.4s ease;
-  font-family: "Inter", "sans-serif";
-  background-color: var(--bgAccent);
-  color: white;
+	line-height: 0.8rem;
+	font-size: 1rem;
+	border-radius: 5px;
+	border: 2px solid var(--bgAccent);
+	padding: 0.3rem;
+	width: 95%;
+	margin: 0;
+	margin-bottom: 5px;
+	outline: none;
+	transition: all 0.4s ease;
+	font-family: 'Inter', 'sans-serif';
+	background-color: var(--bgAccent);
+	color: white;
 }
 
 .RegisterContainer form input:focus {
-  border: 2px solid var(--primaryColor);
-  background-color: var(--primaryBg);
+	border: 2px solid var(--primaryColor);
+	background-color: var(--primaryBg);
 }
 
 .RegisterButton {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-  margin: 1rem 0;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	justify-content: center;
+	margin: 1rem 0;
 }
 
 .SignUp {
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  color: white;
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0.5rem;
+	color: white;
+	margin-top: 20px;
+	height: 80px;
 }
 
 .SignUp a {
-  margin: 0;
+	margin: 0;
 }
 
 .SignUp p {
-  margin: 5px 0;
+	margin: 5px 0;
 }
 
 .OtherSignIn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .Google {
-  width: 7.2rem;
-  height: 2.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: var(--bgAccent);
-  cursor: pointer;
-  border: 2px solid var(--bgAccent);
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  border-radius: 5px;
-  color: white;
-  font-family: "Inter", "sans-serif";
+	width: 7.2rem;
+	height: 2.3rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	background-color: var(--bgAccent);
+	cursor: pointer;
+	border: 2px solid var(--bgAccent);
+	font-size: 1rem;
+	transition: all 0.3s ease;
+	border-radius: 5px;
+	color: white;
+	font-family: 'Inter', 'sans-serif';
 }
 
 .Google img {
-  width: 24px;
-  transition: transform 0.4s ease;
+	width: 24px;
+	transition: transform 0.4s ease;
 }
 
 .Google:hover {
-  border: 2px solid var(--primaryColor);
+	border: 2px solid var(--primaryColor);
 }
