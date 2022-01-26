@@ -16,7 +16,7 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:react/jsx-runtime", // for react 17 jsx runtime
-    "plugin:testing-library/recommended",
+    "plugin:testing-library/react",
     "prettier",
     "next",
     "next/core-web-vitals"
