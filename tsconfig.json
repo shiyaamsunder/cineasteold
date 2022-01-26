@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@components": ["components/index.ts"],
+      "@components/styled": ["components/styled/index.ts"],
       "@pages/*": ["pages/*"],
       "@utils": ["utils/index.ts"]
     }

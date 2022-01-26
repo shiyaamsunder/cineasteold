@@ -1,9 +1,12 @@
-import "../styles/globals.css";
-
+import { StyledApp } from "@components/styled";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <StyledApp>
+      <Component {...pageProps} />
+    </StyledApp>
+  );
 }
 
 export default MyApp;
