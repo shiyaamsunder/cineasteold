@@ -1,6 +1,6 @@
+import { StyledApp } from "@components/styled";
+import Home from "@pages/index";
 import { render, screen } from "@testing-library/react";
-import { StyledApp } from "components/styled";
-import Home from "pages/index";
 
 // TODO: Find a way to integrate styled components with jest
 describe("Home", () => {
@@ -15,6 +15,7 @@ describe("Home", () => {
       name: /hello world/i,
     });
 
-    expect(heading).toBeInTheDocument();
+    // expect(heading).toBeInTheDocument();
+    expect(heading).toHaveStyle(`font-size: 48px; color:palevioletred`);
   });
 });
