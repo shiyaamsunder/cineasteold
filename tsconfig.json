@@ -17,10 +17,10 @@
     "baseUrl": ".",
     "paths": {
       "@components": ["components/index.ts"],
-      "@components/styled": ["components/styled/index.ts"],
+      "@components/styled": ["components/layout/index.ts"],
       "@pages/*": ["pages/*"],
       "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"]
+      "@utils": ["utils/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
