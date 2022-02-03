@@ -7,16 +7,14 @@ const purple = {
 };
 
 const gray = {
-  100: `background: hsla(0, 0%, 70%, 1)`,
+  100: `hsla(0, 0%, 70%, 1)`,
   200: `hsla(0, 0%, 49%, 1)`,
   300: `hsla(0, 0%, 32%, 1)`,
   400: `hsla(0, 0%, 23%, 1)`,
   500: `hsla(0, 0%, 16%, 1)`,
 };
 
-const colors = {
+export const colors = {
   purple,
   gray,
 };
-
-export default colors;
