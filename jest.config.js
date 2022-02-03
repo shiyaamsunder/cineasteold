@@ -20,6 +20,10 @@ const customJestConfig = {
     "^@pages/(.*)$": "<rootDir>/pages/$1",
 
     "^@components(.*)$": "<rootDir>/components",
+
+    "^@styles/(.*)$": "<rootDir>/styles/$1",
+
+    "^@utils(.*)$": "<rootDir>/utils",
   },
   testEnvironment: "jest-environment-jsdom",
 };

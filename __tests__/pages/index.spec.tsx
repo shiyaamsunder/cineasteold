@@ -12,10 +12,9 @@ describe("Home", () => {
     );
 
     const heading = screen.getByRole("heading", {
-      name: /hello world/i,
+      name: /cineaste/i,
     });
 
-    // expect(heading).toBeInTheDocument();
-    expect(heading).toHaveStyle(`font-size: 48px; color:palevioletred`);
+    expect(heading).toBeInTheDocument();
   });
 });
