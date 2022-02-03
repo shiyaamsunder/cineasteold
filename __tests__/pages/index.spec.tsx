@@ -1,4 +1,4 @@
-import { StyledApp } from "@components/styled";
+import { Layout } from "@components";
 import Home from "@pages/index";
 import { render, screen } from "@testing-library/react";
 
@@ -6,9 +6,9 @@ import { render, screen } from "@testing-library/react";
 describe("Home", () => {
   it("renders a heading", () => {
     render(
-      <StyledApp>
+      <Layout themeName="defaultTheme">
         <Home />
-      </StyledApp>
+      </Layout>
     );
 
     const heading = screen.getByRole("heading", {

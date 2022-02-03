@@ -1,11 +1,11 @@
-import { StyledApp } from "@components/styled";
+import { Layout } from "components/layout";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <StyledApp>
+    <Layout themeName="defaultTheme">
       <Component {...pageProps} />
-    </StyledApp>
+    </Layout>
   );
 }
 
