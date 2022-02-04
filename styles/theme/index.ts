@@ -6,6 +6,7 @@ export const defaultTheme: DefaultTheme = {
   colors: {
     primary: colors.purple[300],
     bg: "black",
+    bgAccent: "hsla(240, 3%, 12%, 1)",
     fg: "white",
     warning: "red",
     purple: colors.purple,

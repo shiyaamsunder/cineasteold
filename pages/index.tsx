@@ -1,8 +1,10 @@
 import { Card } from "@components";
 import type { TColorNameHue } from "@styles/types";
-import { getHSLFromColorString } from "@utils";
+import { getHSLFromColorString, getTrendingMovies } from "@utils";
+import type { IMovie } from "@utils";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useQuery } from "react-query";
 import styled from "styled-components";
 
 const Title = styled.h1<{ textColor?: TColorNameHue }>`
@@ -10,22 +12,43 @@ const Title = styled.h1<{ textColor?: TColorNameHue }>`
   color: ${({ textColor }) => getHSLFromColorString(textColor)};
 `;
 
-const Home: NextPage = () => (
-  <div style={{ height: "100vh" }}>
-    <Head>
-      <title>Cineaste</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+const HomeWrapper = styled.div`
+  width: 90%;
+  min-height: 100vh;
+  margin: 0rem auto;
+  display: flex;
+  flex-direction: column;
+`;
 
-    <Title textColor="purple.100">Cineaste</Title>
-    <Card
-      image="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
-      title="SpiderMan No way Home And a lengthy subtitle"
-      desc="some"
-    >
-      Hello
-    </Card>
-  </div>
-);
+const MovieContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 280px);
+  justify-content: space-between;
+
+  @media (max-width: 690px) {
+    justify-content: center;
+  }
+`;
+
+const Home: NextPage = () => {
+  const { isLoading, data } = useQuery<IMovie[]>("movies", getTrendingMovies);
+
+  return (
+    <HomeWrapper>
+      <Head>
+        <title>Cineaste</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <Title>Cineaste</Title>
+      {isLoading && <Title>Loading...</Title>}
+      <MovieContainer>
+        {data?.map((movie) => (
+          <Card key={movie.id} {...movie} />
+        ))}
+      </MovieContainer>
+    </HomeWrapper>
+  );
+};
 
 export default Home;

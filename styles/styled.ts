@@ -7,6 +7,7 @@ declare module "styled-components" {
     colors: {
       primary: string;
       bg: string;
+      bgAccent: string;
       fg: string;
       warning: string;
       purple: typeof colors.purple;
