@@ -26,6 +26,7 @@ export const Card: FC<IMovie> = (props) => {
           <RatingBadge>{voteAverage}</RatingBadge>
           <Image
             layout="fill"
+            priority
             objectFit="contain"
             alt={title}
             src={`https://image.tmdb.org/t/p/w500/${poster}`}

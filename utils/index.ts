@@ -28,7 +28,7 @@ export const getTrendingMovies = async () => {
   let newResults;
   if (data) {
     const { results } = data;
-    newResults = results.map((i) => ({
+    newResults = results.map((i: any) => ({
       ...i,
       poster: i?.poster_path,
       backdrop: i?.backdrop_path,

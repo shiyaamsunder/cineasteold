@@ -40,8 +40,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Title>Cineaste</Title>
-      {isLoading && <Title>Loading...</Title>}
+      {isLoading && <Title textColor="gray.100">Loading...</Title>}
       <MovieContainer>
         {data?.map((movie) => (
           <Card key={movie.id} {...movie} />
