@@ -1,9 +1,9 @@
 import { Wrapper, Left, Right, Title } from "./navbar";
 
-export const Navbar = () => {
+export const Navbar = () => (
   <Wrapper>
     <Left>
       <Title>Cineaste V2</Title>
     </Left>
-  </Wrapper>;
-};
+  </Wrapper>
+);
