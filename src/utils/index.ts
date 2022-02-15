@@ -14,9 +14,24 @@ export const getHSLFromColorString = (value?: TColorNameHue) => {
 };
 
 const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-export const getTrendingMovies = async () => {
+
+// eslint-disable-next-line
+export const getTrendingMovies = async (page: number) => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/trending/movie/week?api_key=${TMDB_API_KEY}`
+    `https://api.themoviedb.org/3/trending/movie/week?page=${page}&api_key=${TMDB_API_KEY}`
+  );
+  if (!res.ok) {
+    throw Error();
+  }
+  const data = await res.json();
+
+  return data;
+};
+
+export const getSingleMovie = async (movieId?: string | string[]) => {
+  if (movieId === undefined) return {};
+  const res = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${TMDB_API_KEY}`
   );
   if (!res.ok) {
     throw Error();
@@ -27,14 +42,12 @@ export const getTrendingMovies = async () => {
 
   let newResults;
   if (data) {
-    const { results } = data;
-    newResults = results.map((i: any) => ({
-      ...i,
-      poster: i?.poster_path,
-      backdrop: i?.backdrop_path,
-    }));
+    newResults = {
+      ...data,
+      poster: data.poster_path,
+      backdrop: data.backdrop_path,
+    };
   }
   return newResults;
 };
-
 export * from "./types";

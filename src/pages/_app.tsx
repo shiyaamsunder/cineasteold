@@ -1,6 +1,6 @@
-import { Layout } from "components/layout";
-import { Navbar } from "components/navbar";
+import { Navbar, Layout } from "@components";
 import type { AppProps } from "next/app";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <Navbar />
         <Component {...pageProps} />
+        <ReactQueryDevtools position="top-right" />
       </QueryClientProvider>
     </Layout>
   );

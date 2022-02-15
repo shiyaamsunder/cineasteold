@@ -2,7 +2,7 @@ import { themes } from "@styles/themes";
 import type { TThemeName } from "@styles/types";
 import type { FC } from "react";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "styles/Globals";
+import { GlobalStyle } from "@styles/Globals";
 
 import { Wrapper } from "./layout";
 

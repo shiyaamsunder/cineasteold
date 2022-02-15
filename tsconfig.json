@@ -16,11 +16,11 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@components": ["components/index.ts"],
-      "@components/styled": ["components/layout/index.ts"],
-      "@pages/*": ["pages/*"],
-      "@styles/*": ["styles/*"],
-      "@utils": ["utils/index.ts"]
+      "@components": ["src/components/index.ts"],
+      "@components/styled": ["src/components/layout/index.ts"],
+      "@pages/*": ["src/pages/*"],
+      "@styles/*": ["src/styles/*"],
+      "@utils": ["src/utils/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
