@@ -7,7 +7,6 @@ import { Card } from "@components";
 import { usePagination } from "@hooks";
 import { getHSLFromColorString, getTrendingMovies } from "@utils";
 import type { TColorNameHue } from "@styles/types";
-import type { ITrendingMovieResultsFromServer } from "@utils";
 
 const Title = styled.h1<{ textColor?: TColorNameHue }>`
   font-size: 48px;
@@ -35,7 +34,7 @@ const MovieContainer = styled.div`
 const Home: NextPage = () => {
   // TODO: Implement last visited page
   const { page, nextPage, previousPage } = usePagination();
-  const { isLoading, data } = useQuery<ITrendingMovieResultsFromServer>(
+  const { isLoading, data } = useQuery(
     ["movies", page],
     () => getTrendingMovies(page),
     { refetchOnWindowFocus: false, keepPreviousData: true, staleTime: 5000 }

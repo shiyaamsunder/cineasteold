@@ -19,8 +19,7 @@ export interface IMovie {
   director: string;
   release_date: string;
   genre: Genre[];
-  overview: string;
-  runtime: string;
+  runtime: number;
   vote_average: number;
   vote_count: number;
 }

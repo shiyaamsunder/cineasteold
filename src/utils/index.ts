@@ -1,10 +1,19 @@
-import { colors as colorsObj } from "@styles/theme/colors";
+/* eslint-disable no-console */
+/* eslint-disable consistent-return */
+
+import type {
+  IMovie,
+  IMovieFromServer,
+  ITrendingMovieResultsFromServer,
+} from "./types";
+
 import type {
   TColorHue,
   TColorName,
   TColorNameHue,
   TColors,
 } from "@styles/types";
+import { colors as colorsObj } from "@styles/theme/colors";
 
 export const getHSLFromColorString = (value?: TColorNameHue) => {
   if (!value) return colorsObj.purple[300];
@@ -15,39 +24,44 @@ export const getHSLFromColorString = (value?: TColorNameHue) => {
 
 const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-// eslint-disable-next-line
-export const getTrendingMovies = async (page: number) => {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/trending/movie/week?page=${page}&api_key=${TMDB_API_KEY}`
-  );
-  if (!res.ok) {
-    throw Error();
-  }
-  const data = await res.json();
+const typedFetch = async <T>(url: string): Promise<T> =>
+  fetch(url).then((res) => {
+    if (!res.ok) {
+      throw new Error(`Error status: ${res.status}`);
+    }
+    return res.json() as Promise<T>;
+  });
 
-  return data;
+export const getTrendingMovies = async (page: number) => {
+  try {
+    const data = await typedFetch<ITrendingMovieResultsFromServer>(
+      `https://api.themoviedb.org/3/trending/movie/week?page=${page}&api_key=${TMDB_API_KEY}`
+    );
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const getSingleMovie = async (movieId?: string | string[]) => {
-  if (movieId === undefined) return {};
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${TMDB_API_KEY}`
-  );
-  if (!res.ok) {
-    throw Error();
-  }
-  const data = await res.json();
+  try {
+    if (movieId === undefined) {
+      throw new Error("No movie ID was provided");
+    }
 
-  // TODO: refactor this code.
-
-  let newResults;
-  if (data) {
-    newResults = {
+    const data = await typedFetch<IMovieFromServer>(
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${TMDB_API_KEY}`
+    );
+    const newData = {
       ...data,
       poster: data.poster_path,
       backdrop: data.backdrop_path,
+      desc: data.overview,
     };
+    return newData as IMovie;
+  } catch (err) {
+    console.log(err);
   }
-  return newResults;
 };
+
 export * from "./types";
