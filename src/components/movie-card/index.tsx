@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { FC } from "react";
-import type { IMovieFromServer, ITrendingMovie } from "@utils";
 
 import {
   ImageWrapper,
@@ -12,6 +11,8 @@ import {
   Subtitle,
   RatingBadge,
 } from "./movie-card";
+
+import type { IMovieFromServer, ITrendingMovie } from "@utils";
 
 export const Card: FC<IMovieFromServer | ITrendingMovie> = ({
   poster_path: poster,

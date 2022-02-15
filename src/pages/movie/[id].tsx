@@ -1,8 +1,9 @@
-import { getSingleMovie } from "@utils";
-import type { IMovie } from "@utils";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
+
+import type { IMovie } from "@utils";
+import { getSingleMovie } from "@utils";
 
 const Movie = () => {
   const router = useRouter();

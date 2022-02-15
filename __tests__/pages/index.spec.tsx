@@ -1,6 +1,7 @@
+import { render, screen } from "@testing-library/react";
+
 import { Layout } from "@components";
 import Home from "@pages/index";
-import { render, screen } from "@testing-library/react";
 
 // TODO: Find a way to integrate styled components with jest
 describe("Home", () => {

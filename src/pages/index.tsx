@@ -1,12 +1,11 @@
+import type { NextPage } from "next";
+import Head from "next/head";
 import styled from "styled-components";
 import { useQuery } from "react-query";
-import Head from "next/head";
-import type { NextPage } from "next";
 
 import { Card } from "@components";
 import { usePagination } from "@hooks";
 import { getHSLFromColorString, getTrendingMovies } from "@utils";
-
 import type { TColorNameHue } from "@styles/types";
 import type { ITrendingMovieResultsFromServer } from "@utils";
 

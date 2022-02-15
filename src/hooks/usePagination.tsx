@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { ITrendingMovieResultsFromServer } from "@utils";
 
 export const usePagination = () => {
   const [page, setPage] = useState(1);

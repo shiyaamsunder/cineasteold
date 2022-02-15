@@ -1,7 +1,8 @@
-import type { colors } from "@styles/theme/colors";
 import type { DefaultTheme } from "styled-components";
 
 import type { themes } from "./themes";
+
+import type { colors } from "@styles/theme/colors";
 
 export type TColorName = keyof typeof colors;
 export type TColorHue = keyof typeof colors.gray;
