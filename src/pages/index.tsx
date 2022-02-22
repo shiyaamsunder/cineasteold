@@ -2,11 +2,13 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styled from "styled-components";
 import { useQuery } from "react-query";
+import { useEffect } from "react";
 
-import { Card } from "@components";
+import { MovieCard } from "@components";
 import { usePagination } from "@hooks";
 import { getHSLFromColorString, getTrendingMovies } from "@utils";
 import type { TColorNameHue } from "@styles/types";
+import { useStore } from "src/utils/store";
 
 const Title = styled.h1<{ textColor?: TColorNameHue }>`
   font-size: 48px;
@@ -23,22 +25,29 @@ const HomeWrapper = styled.div`
 
 const MovieContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 280px);
+  grid-template-columns: repeat(auto-fill, 260px);
   justify-content: space-between;
-
-  @media (max-width: 690px) {
+  grid-gap: 12px;
+  @media (max-width: 550px) {
     justify-content: center;
+  }
+  @media (max-width: 960px) {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+
+  @media (max-width: 390px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
 const Home: NextPage = () => {
-  // TODO: Implement last visited page
-  const { page, nextPage, previousPage } = usePagination();
-  const { isLoading, data } = useQuery(
-    ["movies", page],
-    () => getTrendingMovies(page),
-    { refetchOnWindowFocus: false, keepPreviousData: true, staleTime: 5000 }
-  );
+  const { isLoading, data } = useQuery(["movies"], () => getTrendingMovies(), {
+    refetchOnWindowFocus: false,
+    keepPreviousData: true,
+    staleTime: 5000,
+  });
 
   return (
     <HomeWrapper>
@@ -50,21 +59,9 @@ const Home: NextPage = () => {
       {isLoading && <Title textColor="gray.100">Loading...</Title>}
       <MovieContainer>
         {data?.results.map((movie) => (
-          <Card key={movie.id} {...movie} />
+          <MovieCard key={movie.id} {...movie} />
         ))}
       </MovieContainer>
-      <div>
-        <button type="button" disabled={page === 1} onClick={previousPage}>
-          Prev
-        </button>
-        <button
-          type="button"
-          disabled={page === 1000}
-          onClick={() => nextPage(data?.total_pages)}
-        >
-          Next{" "}
-        </button>
-      </div>
     </HomeWrapper>
   );
 };
