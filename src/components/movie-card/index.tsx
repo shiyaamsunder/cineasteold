@@ -14,7 +14,7 @@ import {
 
 import type { IMovieFromServer, ITrendingMovie } from "@utils";
 
-export const Card: FC<IMovieFromServer | ITrendingMovie> = ({
+export const MovieCard: FC<IMovieFromServer | ITrendingMovie> = ({
   poster_path: poster,
   title,
   release_date: releaseDate,
@@ -31,7 +31,7 @@ export const Card: FC<IMovieFromServer | ITrendingMovie> = ({
           <Image
             layout="fill"
             priority
-            objectFit="contain"
+            objectFit="cover"
             alt={title}
             src={`https://image.tmdb.org/t/p/w500/${poster}`}
             quality={50}

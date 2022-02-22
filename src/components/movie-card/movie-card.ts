@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  width: fit-content;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  margin: 10px;
   max-width: 300px;
+  min-width: 160px;
 `;
 
 export const RatingBadge = styled.div`
@@ -33,11 +35,20 @@ export const Link = styled.a`
 `;
 
 export const ImageWrapper = styled.div`
-  width: 260px;
-  height: 380px;
+  width: 220px;
+  height: 330px;
   position: relative;
   overflow: hidden;
   border-radius: ${({ theme }) => theme.radius.md};
+  @media (max-width: 960px) {
+    height: 300px;
+    width: 200px;
+  }
+
+  @media (max-width: 960px) {
+    height: 300px;
+    width: 200px;
+  }
 `;
 
 export const Bottom = styled.div`
