@@ -32,10 +32,14 @@ const typedFetch = async <T>(url: string): Promise<T> =>
     return res.json() as Promise<T>;
   });
 
-export const getTrendingMovies = async (page: number) => {
+export const getTrendingMovies = async ({
+  pageParam = 1,
+}: {
+  pageParam?: number;
+}) => {
   try {
     const data = await typedFetch<ITrendingMovieResultsFromServer>(
-      `https://api.themoviedb.org/3/trending/movie/week?page=${page}&api_key=${TMDB_API_KEY}`
+      `https://api.themoviedb.org/3/trending/movie/week?page=${pageParam}&api_key=${TMDB_API_KEY}`
     );
     return data;
   } catch (err) {
