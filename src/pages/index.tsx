@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styled from "styled-components";
 import { useInfiniteQuery } from "react-query";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 
 import { MovieCard } from "@components";
 import { getHSLFromColorString, getTrendingMovies } from "@utils";
@@ -42,24 +42,19 @@ const MovieContainer = styled.div`
 `;
 
 const Home: NextPage = () => {
-  // TODO:Fix the inital load bug
   const { isLoading, data, fetchNextPage, isFetching, isFetchingNextPage } =
     useInfiniteQuery("movies", getTrendingMovies, {
       getNextPageParam: (lastPage) => lastPage && lastPage.page + 1,
     });
-  const ref = useRef<HTMLDivElement>(null);
 
-  const { isVisible } = useOnScreen(ref?.current?.lastElementChild, {
-    rootMargin: "200px",
-    threshold: 0.4,
-  });
+  const { setElementRef, onScreen } = useOnScreen();
 
   useEffect(() => {
-    if (!isVisible) return;
-    if (isVisible) {
+    if (!onScreen) return;
+    if (onScreen) {
       fetchNextPage();
     }
-  }, [isVisible, fetchNextPage]);
+  }, [onScreen, fetchNextPage]);
 
   return (
     <HomeWrapper>
@@ -69,13 +64,17 @@ const Home: NextPage = () => {
       </Head>
 
       {isLoading && <Title textColor="gray.100">Loading...</Title>}
-      <MovieContainer ref={ref}>
+      <MovieContainer>
         {data?.pages.map((group, i) => (
           // eslint-disable-next-line react/no-array-index-key
           <React.Fragment key={i}>
-            {group?.results.map((movie) => (
-              <MovieCard key={movie.id} {...movie} />
-            ))}
+            {group?.results.map((movie, index) =>
+              group.results.length === index + 1 ? (
+                <MovieCard ref={setElementRef} key={movie.id} {...movie} />
+              ) : (
+                <MovieCard key={movie.id} {...movie} />
+              )
+            )}
           </React.Fragment>
         ))}
       </MovieContainer>

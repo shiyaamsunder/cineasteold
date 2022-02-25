@@ -1,26 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-export const useOnScreen = (
-  ref: Element | null | undefined,
-  options?: IntersectionObserverInit
-) => {
-  const [isVisible, setIsVisible] = useState(false);
+export const useOnScreen = () => {
+  const [elementRef, setElementRef] = useState<Element | null>(null);
+  const observer = useRef<IntersectionObserver>();
+  const [onScreen, setOnScreen] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsVisible(entry.isIntersecting);
-    }, options);
+    if (!observer.current)
+      observer.current = new IntersectionObserver(([entry]) => {
+        setOnScreen(entry.isIntersecting);
+      });
 
-    if (ref) {
-      observer.observe(ref);
+    const currentElement = elementRef;
+    const currentObserver = observer.current;
+
+    if (currentElement) {
+      currentObserver.observe(currentElement);
     }
 
     return () => {
-      if (ref) {
-        observer.unobserve(ref);
-      }
+      if (currentElement) currentObserver.unobserve(currentElement);
     };
-  }, [ref, options]);
+  }, [elementRef]);
 
-  return { isVisible };
+  return { setElementRef, onScreen };
 };
