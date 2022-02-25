@@ -1,10 +1,11 @@
+/* eslint-disable react/no-array-index-key */
 import type { NextPage } from "next";
 import Head from "next/head";
 import styled from "styled-components";
 import { useInfiniteQuery } from "react-query";
 import React, { useEffect } from "react";
 
-import { MovieCard } from "@components";
+import { MovieCard, Skeleton } from "@components";
 import { getHSLFromColorString, getTrendingMovies } from "@utils";
 import type { TColorNameHue } from "@styles/types";
 import { useOnScreen } from "@hooks";
@@ -66,7 +67,6 @@ const Home: NextPage = () => {
       {isLoading && <Title textColor="gray.100">Loading...</Title>}
       <MovieContainer>
         {data?.pages.map((group, i) => (
-          // eslint-disable-next-line react/no-array-index-key
           <React.Fragment key={i}>
             {group?.results.map((movie, index) =>
               group.results.length === index + 1 ? (
@@ -77,10 +77,11 @@ const Home: NextPage = () => {
             )}
           </React.Fragment>
         ))}
+        {(isLoading || (isFetching && isFetchingNextPage)) &&
+          Array(6)
+            .fill(0)
+            .map((v, i) => <Skeleton key={i} width={220} height={330} />)}
       </MovieContainer>
-      <h2 style={{ marginTop: "10px" }}>
-        {isFetching && isFetchingNextPage ? "Loading more..." : null}
-      </h2>
     </HomeWrapper>
   );
 };
