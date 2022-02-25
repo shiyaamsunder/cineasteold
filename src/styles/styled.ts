@@ -12,6 +12,7 @@ declare module "styled-components" {
       warning: string;
       purple: typeof colors.purple;
       gray: typeof colors.gray;
+      shadowDark: string;
     };
     radius: {
       sm: string;
@@ -21,6 +22,9 @@ declare module "styled-components" {
       "2xl": string;
       "3xl": string;
       none: string;
+    };
+    shadows: {
+      md: string;
     };
   }
 }

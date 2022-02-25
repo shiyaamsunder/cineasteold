@@ -11,6 +11,7 @@ export const defaultTheme: DefaultTheme = {
     warning: "red",
     purple: colors.purple,
     gray: colors.gray,
+    shadowDark: "hsla(240, 10%, 9%, 0.6)",
   },
   radius: {
     sm: "8px",
@@ -20,5 +21,10 @@ export const defaultTheme: DefaultTheme = {
     "2xl": "40px",
     "3xl": "56px",
     none: "0px",
+  },
+
+  shadows: {
+    md: `0 0 0 1px rgb(255 255 255 / 10%), 0px 0.8px 3px rgb(0 0 0 / 0%),
+    0px 2.7px 6px rgb(0 0 0 / 30%), 0px 10px 10px rgb(0 0 0 / 24%)`,
   },
 };
