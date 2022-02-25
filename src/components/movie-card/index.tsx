@@ -1,6 +1,7 @@
+/* eslint-disable react/display-name */
 import Image from "next/image";
 import Link from "next/link";
-import type { FC } from "react";
+import { forwardRef } from "react";
 
 import {
   ImageWrapper,
@@ -14,34 +15,41 @@ import {
 
 import type { IMovieFromServer, ITrendingMovie } from "@utils";
 
-export const MovieCard: FC<IMovieFromServer | ITrendingMovie> = ({
-  poster_path: poster,
-  title,
-  release_date: releaseDate,
-  vote_average: voteAverage,
-  id,
-}) => (
-  <Wrapper>
-    <Link href={`/movie/${id}`} passHref>
-      {/* eslint-disable */}
-      <StyledLink>
-        {/* eslint-enable */}
-        <ImageWrapper>
-          <RatingBadge>{voteAverage}</RatingBadge>
-          <Image
-            layout="fill"
-            priority
-            objectFit="cover"
-            alt={title}
-            src={`https://image.tmdb.org/t/p/w500/${poster}`}
-            quality={50}
-          />
-        </ImageWrapper>
-      </StyledLink>
-    </Link>
-    <Bottom>
-      <Title>{title}</Title>
-      <Subtitle>{releaseDate.split("-")[0]}</Subtitle>
-    </Bottom>
-  </Wrapper>
+type IMovieCard = IMovieFromServer | ITrendingMovie;
+
+export const MovieCard = forwardRef<HTMLDivElement, IMovieCard>(
+  (props, ref) => {
+    const {
+      poster_path: poster,
+      title,
+      release_date: releaseDate,
+      vote_average: voteAverage,
+      id,
+    } = props;
+    return (
+      <Wrapper ref={ref}>
+        <Link href={`/movie/${id}`} passHref>
+          {/* eslint-disable */}
+          <StyledLink>
+            {/* eslint-enable */}
+            <ImageWrapper>
+              <RatingBadge>{voteAverage}</RatingBadge>
+              <Image
+                layout="fill"
+                priority
+                objectFit="cover"
+                alt={title}
+                src={`https://image.tmdb.org/t/p/w500/${poster}`}
+                quality={50}
+              />
+            </ImageWrapper>
+          </StyledLink>
+        </Link>
+        <Bottom>
+          <Title>{title}</Title>
+          <Subtitle>{releaseDate.split("-")[0]}</Subtitle>
+        </Bottom>
+      </Wrapper>
+    );
+  }
 );
