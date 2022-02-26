@@ -2,15 +2,7 @@ import styled, { keyframes } from "styled-components";
 
 import type { ISkeletonLayoutProps } from ".";
 
-const checkIfValidCSSLayoutProp = (prop: string) =>
-  prop.endsWith("px") || prop.endsWith("rem") || prop.endsWith("%");
-const getValidCSSLayoutValue = (prop: string | number) => {
-  if (typeof prop === "string") {
-    const isValid = checkIfValidCSSLayoutProp(prop);
-    if (isValid) return prop;
-  }
-  return `${prop}px`;
-};
+import { getValidCSSLayoutValue } from "@utils";
 
 const loadingAnimation = keyframes`
 0%{
