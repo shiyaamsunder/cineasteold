@@ -10,6 +10,7 @@ import { getHSLFromColorString, getTrendingMovies } from "@utils";
 import type { TColorNameHue } from "@styles/types";
 import { useOnScreen } from "@hooks";
 
+// TODO: move index.tsx styles to another file
 const Title = styled.h1<{ textColor?: TColorNameHue }>`
   font-size: 48px;
   color: ${({ textColor }) => getHSLFromColorString(textColor)};
@@ -28,13 +29,14 @@ const MovieContainer = styled.div`
   grid-template-columns: repeat(auto-fill, 260px);
   justify-content: space-between;
   grid-gap: 12px;
-  @media (max-width: 550px) {
-    justify-content: center;
-  }
   @media (max-width: 960px) {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
 
+  @media (max-width: 550px) {
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
   @media (max-width: 390px) {
     display: flex;
     flex-direction: column;
@@ -78,7 +80,7 @@ const Home: NextPage = () => {
           </React.Fragment>
         ))}
         {(isLoading || (isFetching && isFetchingNextPage)) &&
-          Array(6)
+          Array(10)
             .fill(0)
             .map((v, i) => <Skeleton key={i} width={220} height={330} />)}
       </MovieContainer>

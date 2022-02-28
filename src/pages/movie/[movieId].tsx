@@ -6,7 +6,8 @@ import { getSingleMovie } from "@utils";
 
 const Movie = () => {
   const router = useRouter();
-  const movieId = router.query?.id;
+  const { movieId } = router.query;
+  // console.log(router);
 
   const { isLoading, data } = useQuery(
     ["movie", movieId],

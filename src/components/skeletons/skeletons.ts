@@ -15,6 +15,7 @@ const loadingAnimation = keyframes`
   background: hsl(0deg 0% 27%);
 }
 `;
+// TODO: make skeletons responsive
 export const Wrapper = styled.div<ISkeletonLayoutProps>`
   width: ${({ width }) => (width ? getValidCSSLayoutValue(width) : "100%")};
   height: ${({ height }) => (height ? getValidCSSLayoutValue(height) : "20px")};

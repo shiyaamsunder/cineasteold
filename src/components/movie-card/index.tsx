@@ -28,10 +28,13 @@ export const MovieCard = forwardRef<HTMLDivElement, IMovieCard>(
     } = props;
     return (
       <Wrapper ref={ref}>
-        <Link href={`/movie/${id}`} passHref>
-          {/* eslint-disable */}
+        <Link
+          href={`?/movieId=${id}`}
+          as={`/movie/${id}`}
+          scroll={false}
+          passHref
+        >
           <StyledLink>
-            {/* eslint-enable */}
             <ImageWrapper>
               <RatingBadge>{voteAverage}</RatingBadge>
               <Image

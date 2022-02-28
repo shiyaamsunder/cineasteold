@@ -45,9 +45,9 @@ export const ImageWrapper = styled.div`
     width: 200px;
   }
 
-  @media (max-width: 960px) {
-    height: 300px;
-    width: 200px;
+  @media (max-width: 550px) {
+    height: 240px;
+    width: 160px;
   }
 `;
 
