@@ -28,6 +28,7 @@ export const RatingBadge = styled.div`
 export const Link = styled.a`
   margin-bottom: 10px;
   transition: 120ms transform ease-in;
+  width: fit-content;
 
   :hover {
     transform: scale(1.05);
@@ -58,6 +59,10 @@ export const Title = styled.h3`
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
+
+  @media (max-width: 400px) {
+    max-width: 160px;
+  }
 `;
 
 export const Subtitle = styled.p`

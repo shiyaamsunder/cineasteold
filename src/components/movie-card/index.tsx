@@ -29,7 +29,7 @@ export const MovieCard = forwardRef<HTMLDivElement, IMovieCard>(
     return (
       <Wrapper ref={ref}>
         <Link
-          href={`?/movieId=${id}`}
+          href={`?movieId=${id}`}
           as={`/movie/${id}`}
           scroll={false}
           passHref

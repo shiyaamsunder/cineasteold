@@ -3,9 +3,10 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styled from "styled-components";
 import { useInfiniteQuery } from "react-query";
-import React, { useEffect } from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
-import { MovieCard, Skeleton } from "@components";
+import { Modal, MovieCard, Skeleton } from "@components";
 import { getHSLFromColorString, getTrendingMovies } from "@utils";
 import type { TColorNameHue } from "@styles/types";
 import { useOnScreen } from "@hooks";
@@ -41,6 +42,7 @@ const MovieContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -52,6 +54,8 @@ const Home: NextPage = () => {
 
   const { setElementRef, onScreen } = useOnScreen();
 
+  const router = useRouter();
+
   useEffect(() => {
     if (!onScreen) return;
     if (onScreen) {
@@ -59,12 +63,18 @@ const Home: NextPage = () => {
     }
   }, [onScreen, fetchNextPage]);
 
+  console.log(router);
   return (
     <HomeWrapper>
       <Head>
         <title>Cineaste</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Modal
+        show={!!router.query?.movieId}
+        onClose={() => router.push("/", {}, { scroll: false })}
+      />
 
       {isLoading && <Title textColor="gray.100">Loading...</Title>}
       <MovieContainer>
