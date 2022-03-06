@@ -21,7 +21,7 @@ export const Wrapper = styled.div<ISkeletonLayoutProps>`
   height: ${({ height }) => (height ? getValidCSSLayoutValue(height) : "20px")};
   background: hsl(0deg 0% 27%);
   border-radius: 4px;
-  margin: 10px 0px;
+  margin: 6px 0px;
   position: relative;
   overflow: hidden;
   animation: 1s linear infinite ${loadingAnimation};

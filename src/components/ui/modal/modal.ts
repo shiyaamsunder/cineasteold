@@ -20,3 +20,24 @@ export const StyledModal = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.md};
   padding: 20px;
 `;
+
+export const StyledModalHeader = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+`;
+
+export const StyledModalCloseButton = styled.button`
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  border: 0px;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  &:hover > svg {
+    transition: 100ms all ease-in;
+    transform: scale(1.2);
+  }
+`;

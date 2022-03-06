@@ -1,8 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import type { FC } from "react";
+import Image from "next/image";
 
-import { StyledModal, StyledModalWrapper } from "./modal";
+import {
+  StyledModal,
+  StyledModalCloseButton,
+  StyledModalHeader,
+  StyledModalWrapper,
+} from "./modal";
 
 interface IModalProps {
   show: boolean;
@@ -38,19 +44,42 @@ export const Modal: FC<IModalProps> = ({ show, onClose, children }) => {
   }, [backdropCloseHandler]);
 
   if (isBrowser) {
-    const portal = document.getElementById("__next");
+    const portal = document.getElementById("modal");
     const body = document.querySelector("body");
-    if (body && show) {
-      body.style.overflowY = "hidden";
-    }
-    if (body && !show) {
-      body.style.overflowY = "scroll";
-    }
+    // if (body && show) {
+    //   body.style.overflowY = "hidden";
+    // }
+    // if (body && !show) {
+    //   body.style.overflowY = "scroll";
+    // }
 
     return portal && show
       ? ReactDOM.createPortal(
           <StyledModalWrapper ref={modalWrapperRef}>
-            <StyledModal ref={modalRef}>{children}</StyledModal>
+            <StyledModal ref={modalRef}>
+              <StyledModalHeader>
+                <StyledModalCloseButton onClick={onClose}>
+                  <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      d="M17.25 6.75L6.75 17.25"
+                    />
+
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      d="M6.75 6.75L17.25 17.25"
+                    />
+                  </svg>
+                </StyledModalCloseButton>
+              </StyledModalHeader>
+              {children}
+            </StyledModal>
           </StyledModalWrapper>,
           portal
         )

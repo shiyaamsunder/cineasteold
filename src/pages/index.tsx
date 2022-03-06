@@ -4,7 +4,7 @@ import Head from "next/head";
 import styled from "styled-components";
 import { useInfiniteQuery } from "react-query";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { Modal, MovieCard, Skeleton } from "@components";
 import { getHSLFromColorString, getTrendingMovies } from "@utils";
@@ -45,6 +45,11 @@ const MovieContainer = styled.div`
     justify-content: center;
   }
 `;
+const LoadingSkeletonWrapper = styled.div`
+  display: grid;
+  grid-template-rows: min-content auto;
+  width: 220px;
+`;
 
 const Home: NextPage = () => {
   const { isLoading, data, fetchNextPage, isFetching, isFetchingNextPage } =
@@ -55,46 +60,54 @@ const Home: NextPage = () => {
   const { setElementRef, onScreen } = useOnScreen();
 
   const router = useRouter();
+  const memoizedFetch = useMemo(() => fetchNextPage, []);
 
+  console.log(isLoading);
   useEffect(() => {
     if (!onScreen) return;
     if (onScreen) {
-      fetchNextPage();
+      memoizedFetch();
     }
-  }, [onScreen, fetchNextPage]);
+  }, [onScreen]);
 
-  console.log(router);
   return (
-    <HomeWrapper>
-      <Head>
-        <title>Cineaste</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+    <>
       <Modal
         show={!!router.query?.movieId}
         onClose={() => router.push("/", {}, { scroll: false })}
       />
+      <HomeWrapper>
+        <Head>
+          <title>Cineaste</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      {isLoading && <Title textColor="gray.100">Loading...</Title>}
-      <MovieContainer>
-        {data?.pages.map((group, i) => (
-          <React.Fragment key={i}>
-            {group?.results.map((movie, index) =>
-              group.results.length === index + 1 ? (
-                <MovieCard ref={setElementRef} key={movie.id} {...movie} />
-              ) : (
-                <MovieCard key={movie.id} {...movie} />
-              )
-            )}
-          </React.Fragment>
-        ))}
-        {(isLoading || (isFetching && isFetchingNextPage)) &&
-          Array(10)
-            .fill(0)
-            .map((v, i) => <Skeleton key={i} width={220} height={330} />)}
-      </MovieContainer>
-    </HomeWrapper>
+        {isLoading && <Title textColor="gray.100">Loading...</Title>}
+        <MovieContainer>
+          {data?.pages.map((group, i) => (
+            <React.Fragment key={i}>
+              {group?.results.map((movie, index) =>
+                group.results.length === index + 1 ? (
+                  <MovieCard ref={setElementRef} key={movie.id} {...movie} />
+                ) : (
+                  <MovieCard key={movie.id} {...movie} />
+                )
+              )}
+            </React.Fragment>
+          ))}
+          {(isLoading || (isFetching && isFetchingNextPage)) &&
+            Array(10)
+              .fill(0)
+              .map((v, i) => (
+                <LoadingSkeletonWrapper key={i}>
+                  <Skeleton height={330} />
+                  <Skeleton width="70%" height={20} />
+                  <Skeleton width="20%" height={20} />
+                </LoadingSkeletonWrapper>
+              ))}
+        </MovieContainer>
+      </HomeWrapper>
+    </>
   );
 };
 
