@@ -13,12 +13,13 @@ export const StyledModalWrapper = styled.div`
 `;
 
 export const StyledModal = styled.div`
+  position: relative;
   width: 95%;
   height: 90%;
   background: ${({ theme }) => theme.colors.gray[500]};
   border-radius: 10px;
   box-shadow: ${({ theme }) => theme.shadows.md};
-  padding: 20px;
+  overflow: hidden;
 `;
 
 export const StyledModalHeader = styled.div`
@@ -29,7 +30,11 @@ export const StyledModalHeader = styled.div`
 `;
 
 export const StyledModalCloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 20px;
   background-color: transparent;
+  z-index: 200;
   width: 24px;
   height: 24px;
   border: 0px;

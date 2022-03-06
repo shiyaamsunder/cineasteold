@@ -6,6 +6,8 @@ import { useInfiniteQuery } from "react-query";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useState } from "react";
 
+import Movie from "./movie/[movieId]";
+
 import { Modal, MovieCard, Skeleton } from "@components";
 import { getHSLFromColorString, getTrendingMovies } from "@utils";
 import type { TColorNameHue } from "@styles/types";
@@ -52,30 +54,43 @@ const LoadingSkeletonWrapper = styled.div`
 `;
 
 const Home: NextPage = () => {
-  const { isLoading, data, fetchNextPage, isFetching, isFetchingNextPage } =
-    useInfiniteQuery("movies", getTrendingMovies, {
-      getNextPageParam: (lastPage) => lastPage && lastPage.page + 1,
-    });
-
+  const {
+    isLoading,
+    data,
+    fetchNextPage,
+    isFetching,
+    isFetchingNextPage,
+    refetch,
+  } = useInfiniteQuery("movies", getTrendingMovies, {
+    getNextPageParam: (lastPage) => lastPage && lastPage.page + 1,
+  });
   const { setElementRef, onScreen } = useOnScreen();
 
   const router = useRouter();
-  const memoizedFetch = useMemo(() => fetchNextPage, []);
+  // const memoizedFetch = useMemo(() => fetchNextPage, [fetchNextPage]);
 
-  console.log(isLoading);
   useEffect(() => {
     if (!onScreen) return;
     if (onScreen) {
-      memoizedFetch();
+      fetchNextPage({ cancelRefetch: true });
     }
-  }, [onScreen]);
+  }, [onScreen, fetchNextPage, refetch]);
 
   return (
     <>
       <Modal
         show={!!router.query?.movieId}
         onClose={() => router.push("/", {}, { scroll: false })}
-      />
+      >
+        <Movie />
+      </Modal>
+      {/* <Modal
+        isOpen={!!router.query?.movieId}
+        onRequestClose={()=> router.push("/")}
+        style={customStyles}
+      >
+        hello there
+      </Modal> */}
       <HomeWrapper>
         <Head>
           <title>Cineaste</title>
@@ -106,6 +121,13 @@ const Home: NextPage = () => {
                 </LoadingSkeletonWrapper>
               ))}
         </MovieContainer>
+        {/* <button
+          style={{ width: "75%", margin: "20px auto", marginBottom: "30px" }}
+          type="button"
+          onClick={() => }}
+        >
+          {isLoading ? "Loading" : "Load more"}
+        </button> */}
       </HomeWrapper>
     </>
   );
