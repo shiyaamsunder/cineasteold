@@ -4,7 +4,13 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import { Navbar, Layout } from "@components";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnMount: false,
+    },
+  },
+});
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Layout themeName="defaultTheme">

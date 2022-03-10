@@ -44,15 +44,7 @@ export const Modal: FC<IModalProps> = ({ show, onClose, children }) => {
   }, [backdropCloseHandler]);
 
   if (isBrowser) {
-    const portal = document.getElementById("modal");
-    const body = document.querySelector("body");
-    // if (body && show) {
-    //   body.style.overflowY = "hidden";
-    // }
-    // if (body && !show) {
-    //   body.style.overflowY = "scroll";
-    // }
-
+    const portal = document.getElementById("__next");
     return portal && show
       ? ReactDOM.createPortal(
           <StyledModalWrapper ref={modalWrapperRef}>
