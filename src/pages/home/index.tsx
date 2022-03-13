@@ -14,7 +14,7 @@ import {
   Title,
 } from "./home";
 
-import { Modal, MovieCard, Skeleton } from "@components";
+import { Heading, Modal, MovieCard, Skeleton } from "@components";
 import { getTrendingMovies } from "@utils";
 import { useOnScreen } from "@hooks";
 
@@ -55,6 +55,11 @@ const Home: NextPage = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
+        <Heading>Cineaste</Heading>
+        <Heading as="h2" textColor="purple.100">
+          Cineaste
+        </Heading>
+        <Heading as="h3">Cineaste</Heading>
         {isLoading && <Title textColor="gray.100">Loading...</Title>}
         <MovieContainer>
           {data?.pages.map((group, i) => (

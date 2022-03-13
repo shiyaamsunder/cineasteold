@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import type { FC } from "react";
-import Image from "next/image";
 
 import {
   StyledModal,
@@ -39,9 +38,15 @@ export const Modal: FC<IModalProps> = ({ show, onClose, children }) => {
 
   useEffect(() => {
     window.addEventListener("click", backdropCloseHandler);
-
-    return () => window.removeEventListener("click", backdropCloseHandler);
-  }, [backdropCloseHandler]);
+    window.addEventListener(
+      "keydown",
+      (event: KeyboardEvent) => event.code === "Escape" && onClose()
+    );
+    return () => {
+      window.removeEventListener("click", backdropCloseHandler);
+      window.removeEventListener("keydown", onClose);
+    };
+  }, [backdropCloseHandler, onClose]);
 
   if (isBrowser) {
     const portal = document.getElementById("__next");

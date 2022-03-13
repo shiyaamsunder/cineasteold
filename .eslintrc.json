@@ -49,6 +49,7 @@
     "react/function-component-definition": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
     "react/jsx-props-no-spreading": "off",
-    "import/order": ["error", { "newlines-between": "always" }]
+    "import/order": ["error", { "newlines-between": "always" }],
+    "react/require-default-props": "off"
   }
 }
