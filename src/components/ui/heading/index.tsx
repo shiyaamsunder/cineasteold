@@ -8,10 +8,11 @@ interface IHeaderProps {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   textColor?: TColorNameHue;
 }
-export const Heading: FC<IHeaderProps> = ({ as, textColor, children }) => {
-  const StyledHeading = styled[as || "h1"]`
-    color: ${getHSLFromColorString(textColor)};
-  `;
-
-  return <StyledHeading>{children}</StyledHeading>;
-};
+const StyledHeading = styled.h1<IHeaderProps>`
+  color: ${({ textColor }) => getHSLFromColorString(textColor)};
+`;
+export const Heading: FC<IHeaderProps> = ({ as, textColor, children }) => (
+  <StyledHeading as={as} textColor={textColor}>
+    {children}
+  </StyledHeading>
+);
