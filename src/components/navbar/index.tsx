@@ -1,9 +1,19 @@
-import { Wrapper, Left, Title } from "./navbar";
+import { Heading } from "../ui";
+
+import { Wrapper, Left, Center, Right, Links, Link } from "./navbar";
 
 export const Navbar = () => (
   <Wrapper>
     <Left>
-      <Title>Cineaste V2</Title>
+      <Heading textColor="gray.100">Cineaste</Heading>
     </Left>
+    <Center>
+      <Links>
+        <Link href="/">Home</Link>
+        <Link href="/trending">Trending</Link>
+        <Link href="/">About</Link>
+      </Links>
+    </Center>
+    <button type="button">Login</button>
   </Wrapper>
 );
