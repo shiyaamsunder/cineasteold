@@ -6,13 +6,12 @@ import { useRouter } from "next/router";
 import React, { useEffect, useRef } from "react";
 
 import Movie from "../movie/[movieId]";
-
 import {
   HomeWrapper,
   LoadingSkeletonWrapper,
   MovieContainer,
   Title,
-} from "./trending";
+} from "../../components/pages/trending";
 
 import { Heading, Modal, MovieCard, Skeleton } from "@components";
 import { getTrendingMovies } from "@utils";
