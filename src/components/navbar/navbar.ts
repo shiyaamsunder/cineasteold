@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.nav`
+  z-index: 100;
   min-height: 60px;
   padding: 1rem;
   display: flex;

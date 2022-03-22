@@ -1,6 +1,6 @@
 import { Heading } from "../ui";
 
-import { Wrapper, Left, Center, Right, Links, Link } from "./navbar";
+import { Wrapper, Left, Center, Links, Link } from "./navbar";
 
 export const Navbar = () => (
   <Wrapper>

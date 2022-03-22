@@ -13,7 +13,7 @@ export const RatingBadge = styled.div`
   width: 36px;
   background: ${({ theme }) => theme.colors.purple[400]};
   height: 24px;
-  z-index: 100;
+  z-index: 50;
   position: absolute;
   top: 10px;
   right: 10px;
