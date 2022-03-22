@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useInfiniteQuery } from "react-query";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import Movie from "../movie/[movieId]";
 
@@ -43,6 +43,9 @@ const TrendingMovies: NextPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onScreen, fetchNextPage, refetch]);
 
+  const element = useRef<HTMLDivElement | null>(null);
+  element.current?.scrollTo({ top: 2000, behavior: "smooth" });
+
   return (
     <>
       <Modal
@@ -52,7 +55,7 @@ const TrendingMovies: NextPage = () => {
         <Movie />
       </Modal>
 
-      <HomeWrapper>
+      <HomeWrapper ref={element}>
         <Head>
           <title>Trending Movies</title>
           <link rel="icon" href="/favicon.ico" />
