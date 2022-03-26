@@ -1,3 +1,4 @@
+import { Button } from "../button";
 import { Heading } from "../ui";
 
 import { Wrapper, Left, Center, Links, Link } from "./navbar";
@@ -14,6 +15,6 @@ export const Navbar = () => (
         <Link href="/">About</Link>
       </Links>
     </Center>
-    <button type="button">Login</button>
+    <Button>Login</Button>
   </Wrapper>
 );

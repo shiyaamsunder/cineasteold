@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 import { trpc } from "@utils";
+import { Button } from "@components";
 
 export default function Home() {
   const hello = trpc.useQuery(["hello", { text: "Shiyaam" }]);
@@ -14,7 +15,26 @@ export default function Home() {
         <title>Home</title>
       </Head>
       <h1>Home</h1>
+
       <p>{hello.data.greeting}</p>
+
+      <div style={{ display: "flex", alignItems: "flex-end" }}>
+        <Button size="sm" type="submit">
+          Small
+        </Button>
+        <Button size="md">Medium</Button>
+        <Button size="lg">Large</Button>
+      </div>
+
+      <Button primary size="sm">
+        Primary
+      </Button>
+      <Button primary size="md">
+        Primary
+      </Button>
+      <Button primary size="lg">
+        Primary
+      </Button>
     </>
   );
 }

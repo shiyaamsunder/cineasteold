@@ -1,3 +1,5 @@
+import Color from "color";
+
 import type {
   TColorHue,
   TColorName,
@@ -22,4 +24,42 @@ export const getValidCSSLayoutValue = (prop: string | number) => {
     if (isValid) return prop;
   }
   return `${prop}px`;
+};
+
+export const getProperSizeFromProp = (size: "sm" | "md" | "lg") => {
+  const mdSize = [96, 36];
+
+  const sizes = {
+    sm: [mdSize[0] / 1.5, mdSize[1] / 1.5],
+    md: mdSize,
+    lg: [mdSize[0] * 1.5, mdSize[1] * 1.5],
+  };
+
+  return {
+    width: sizes[size][0],
+    height: sizes[size][1],
+  };
+};
+
+export const getProperFontSizeFromProp = (size: "sm" | "md" | "lg") => {
+  const mdFontSize = 14;
+  const fontSizes = {
+    sm: mdFontSize - 2,
+    md: mdFontSize,
+    lg: mdFontSize + 2,
+  };
+
+  return fontSizes[size];
+};
+
+export const lighten = (color: string, ratio: number) => {
+  const colorFunc = new Color(color);
+
+  return `${colorFunc.lighten(ratio)}`;
+};
+
+export const darken = (color: string, ratio: number) => {
+  const colorFunc = new Color(color);
+
+  return `${colorFunc.darken(ratio)}`;
 };
