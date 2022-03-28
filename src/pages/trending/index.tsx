@@ -78,7 +78,7 @@ const TrendingMovies: NextPage = () => {
               .fill(0)
               .map((v, i) => (
                 <LoadingSkeletonWrapper key={i}>
-                  <Skeleton height={330} />
+                  <Skeleton height={300} />
                   <Skeleton width="70%" height={20} />
                   <Skeleton width="20%" height={20} />
                 </LoadingSkeletonWrapper>

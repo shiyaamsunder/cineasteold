@@ -40,4 +40,8 @@ export const LoadingSkeletonWrapper = styled.div`
   display: grid;
   grid-template-rows: min-content auto;
   width: 220px;
+
+  @media (max-width: 550px) {
+    width: 190px;
+  }
 `;
