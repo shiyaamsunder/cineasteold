@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import type { IButtonProps } from "./button";
 
@@ -8,28 +8,30 @@ import {
   getProperSizeFromProp,
 } from "@utils";
 
-export const StyledButtonBase = styled.button<IButtonProps>((props) => {
+const buttonCustomProps = css`
+  --default-bg: ${({ theme }) => theme.colors.gray[300]};
+  --default-color: white;
+  --border-radius: 8px;
+  --margin: 4px;
+  --transition: all 120ms ease-in-out;
+`;
+
+const defaultButtonStyles = css<IButtonProps>((props) => {
   const { height, width } = getProperSizeFromProp(props.size || "md");
   const fontSize = getProperFontSizeFromProp(props.size || "md");
   return {
     height,
-    width,
-    borderRadius: "8px",
+    width: props.isFullWidth ? "100%" : width,
+    borderRadius: "var(--border-radius)",
     border: 0,
-    backgroundColor: props.theme.colors.gray[300],
-    color: "white",
-    transition: "all 120ms ease-in-out",
-    margin: 4,
+    backgroundColor: "var(--default-bg)",
+    color: "var(--default-color)",
+    transition: "var(--transition)",
+    margin: "var(--margin)",
 
     fontSize,
-
-    "&:hover": {
-      cursor: "pointer",
-      backgroundColor: props.theme.colors.gray[400],
-    },
-
     "&:active": {
-      transform: "scale(0.97)",
+      transform: !props.disabled ? "scale(0.97)" : "",
     },
 
     "&:focus-visible": {
@@ -39,14 +41,41 @@ export const StyledButtonBase = styled.button<IButtonProps>((props) => {
   };
 });
 
-export const StyledPrimaryButton = styled(StyledButtonBase)((props) => {
+const primaryStyles = css<IButtonProps>((props) => {
   const hoverBg = darken(props.theme.colors.purple[500], 0.1);
-
   return {
     backgroundColor: props.theme.colors.purple[500],
     "&:hover": {
-      cursor: "pointer",
-      backgroundColor: hoverBg,
+      backgroundColor: !props.disabled ? hoverBg : "",
     },
   };
 });
+
+const secondaryStyles = css<IButtonProps>((props) => ({
+  backgroundColor: "transparent",
+  border: `1px solid ${props.theme.colors.purple[500]}`,
+  "&:hover": {
+    backgroundColor: !props.disabled ? props.theme.colors.primary : "",
+  },
+}));
+
+const hoveredButton = css`
+  cursor: pointer;
+`;
+
+export const StyledButtonBase = styled.button<IButtonProps>`
+  ${buttonCustomProps}
+  ${defaultButtonStyles}
+
+  &:hover {
+    ${(p) => !p.disabled && !p.isLoading && !p.isCompleted && hoveredButton}
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  ${(p) => p.primary && primaryStyles}
+  ${(p) => p.secondary && secondaryStyles}
+`;

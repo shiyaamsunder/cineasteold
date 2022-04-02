@@ -1,35 +1,44 @@
 /* eslint-disable react/button-has-type */
-import type { ButtonHTMLAttributes, FC } from "react";
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
-import { StyledButtonBase, StyledPrimaryButton } from "./button.styles";
+import { StyledButtonBase } from "./button.styles";
 
-type IButtonBaseProps = ButtonHTMLAttributes<HTMLButtonElement>;
+interface IButtonStateProps {
+  isLoading?: boolean;
+  isCompleted?: boolean;
+  disabled?: boolean;
+}
 
-export interface IButtonProps extends IButtonBaseProps {
-  size?: "sm" | "md" | "lg";
+interface IButtonVariantProps {
   primary?: boolean;
   secondary?: boolean;
 }
 
-const Button: FC<IButtonProps> = ({
+interface IButtonSizeProps {
+  size?: "sm" | "md" | "lg";
+  isFullWidth?: boolean;
+}
+
+export type IButtonProps = IButtonSizeProps &
+  IButtonStateProps &
+  IButtonVariantProps;
+
+export type IButton<T extends ElementType> = {
+  children: ReactNode;
+  renderAs?: keyof JSX.IntrinsicElements;
+} & ComponentPropsWithoutRef<T> &
+  IButtonProps;
+
+const Button = <T extends ElementType = "button">({
+  renderAs,
   children,
   type = "button",
   size = "md",
-  primary,
   ...rest
-}) => {
-  if (primary) {
-    return (
-      <StyledPrimaryButton type={type} size={size}>
-        {children}
-      </StyledPrimaryButton>
-    );
-  }
-  return (
-    <StyledButtonBase type={type} size={size} {...rest}>
-      {children}
-    </StyledButtonBase>
-  );
-};
+}: IButton<T>) => (
+  <StyledButtonBase as={renderAs} type={type} size={size} {...rest}>
+    {children}
+  </StyledButtonBase>
+);
 
 export { Button };

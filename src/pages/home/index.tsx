@@ -23,16 +23,21 @@ export default function Home() {
           Small
         </Button>
         <Button size="md">Medium</Button>
-        <Button size="lg">Large</Button>
+        <Button size="lg" disabled>
+          Large
+        </Button>
+        <Button isFullWidth size="sm">
+          Full width
+        </Button>
       </div>
 
       <Button primary size="sm">
         Primary
       </Button>
-      <Button primary size="md">
+      <Button primary size="md" disabled>
         Primary
       </Button>
-      <Button primary size="lg">
+      <Button disabled secondary size="lg">
         Primary
       </Button>
     </>

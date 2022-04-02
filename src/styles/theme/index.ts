@@ -4,7 +4,7 @@ import { colors } from "./colors";
 
 export const defaultTheme: DefaultTheme = {
   colors: {
-    primary: colors.purple[300],
+    primary: "hsl(264deg 55% 51%)",
     bg: "black",
     bgAccent: "hsla(240, 3%, 12%, 1)",
     fg: "white",
