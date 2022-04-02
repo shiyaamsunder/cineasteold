@@ -1,4 +1,4 @@
-import { Button } from "../button";
+import { Button } from "../ui/button";
 import { Heading } from "../ui";
 
 import { Wrapper, Left, Center, Links, Link } from "./navbar";
