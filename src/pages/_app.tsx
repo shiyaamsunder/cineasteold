@@ -1,16 +1,19 @@
 import { withTRPC } from "@trpc/next";
+import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 
 import type { AppRouter } from "./api/trpc/[trpc]";
 
 import { Navbar, Layout } from "@components";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
-    <Layout themeName="defaultTheme">
-      <Navbar />
-      <Component {...pageProps} />
-    </Layout>
+    <SessionProvider session={session}>
+      <Layout themeName="defaultTheme">
+        <Navbar />
+        <Component {...pageProps} />
+      </Layout>
+    </SessionProvider>
   );
 }
 
