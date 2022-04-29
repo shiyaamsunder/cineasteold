@@ -14,7 +14,15 @@ const gray = {
   500: `hsla(0, 0%, 16%, 1)`,
 };
 
+const red = {
+  100: "hsl(0, 67%, 73%)",
+  200: "hsl(0, 64%, 64%)",
+  300: "hsl(0, 70%, 63%)",
+  400: "hsl(0, 77%, 60%)",
+  500: "hsl(0, 77%, 54%)",
+};
 export const colors = {
   purple,
   gray,
+  red,
 };

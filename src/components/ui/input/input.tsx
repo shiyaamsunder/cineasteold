@@ -1,6 +1,8 @@
+/* eslint-disable react/destructuring-assignment */
 import type { ComponentPropsWithoutRef, FC } from "react";
 
-import { StyledInput } from "./input.styles";
+import { InputWrapper, StyledInput } from "./input.styles";
+import { StyledLabel } from "./label.styles";
 
 import type { ComponentSizeProps } from "@utils";
 
@@ -12,10 +14,21 @@ interface IInputVariantProps {
   variant?: "outlined" | "filled";
 }
 
-export type IInputProps = IInputSizeProps & IInputVariantProps;
+interface IInputDefaultProps {
+  invalid?: boolean;
+  label?: string;
+}
+export type IInputProps = IInputSizeProps &
+  IInputVariantProps &
+  IInputDefaultProps;
 export type IInput = FC<ComponentPropsWithoutRef<"input"> & IInputProps>;
 
 export const Input: IInput = (props) => {
-  const { variant = "outlined", inputSize = "md", ...rest } = props;
-  return <StyledInput inputSize={inputSize} variant={variant} {...rest} />;
+  const { variant = "outlined", inputSize = "md", label, ...rest } = props;
+  return (
+    <InputWrapper>
+      {label && <StyledLabel invalid={props.invalid}>{label}</StyledLabel>}
+      <StyledInput inputSize={inputSize} variant={variant} {...rest} />
+    </InputWrapper>
+  );
 };

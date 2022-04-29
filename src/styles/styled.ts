@@ -12,6 +12,7 @@ declare module "styled-components" {
       warning: string;
       purple: typeof colors.purple;
       gray: typeof colors.gray;
+      red: typeof colors.red;
       shadowDark: string;
     };
     radius: {

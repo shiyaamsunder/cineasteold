@@ -4,13 +4,12 @@ import { colors } from "./colors";
 
 export const defaultTheme: DefaultTheme = {
   colors: {
+    ...colors,
     primary: "hsl(264deg 55% 51%)",
     bg: "black",
     bgAccent: "hsla(240, 3%, 12%, 1)",
     fg: "white",
     warning: "red",
-    purple: colors.purple,
-    gray: colors.gray,
     shadowDark: "hsla(240, 10%, 9%, 0.6)",
   },
   radius: {

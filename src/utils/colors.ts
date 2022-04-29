@@ -1,4 +1,4 @@
-import Color from "color";
+import { colord } from "colord";
 
 import type {
   TColorHue,
@@ -55,13 +55,13 @@ export const getProperFontSizeFromProp = (size: "sm" | "md" | "lg") => {
 };
 
 export const lighten = (color: string, ratio: number) => {
-  const colorFunc = new Color(color);
+  const colorFunc = colord(color);
 
   return `${colorFunc.lighten(ratio)}`;
 };
 
 export const darken = (color: string, ratio: number) => {
-  const colorFunc = new Color(color);
+  const colorFunc = colord(color);
 
   return `${colorFunc.darken(ratio)}`;
 };
