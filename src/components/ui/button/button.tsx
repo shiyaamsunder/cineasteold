@@ -3,6 +3,8 @@ import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 
 import { StyledButtonBase } from "./button.styles";
 
+import type { ComponentSizeProps } from "@utils";
+
 interface IButtonStateProps {
   isLoading?: boolean;
   isCompleted?: boolean;
@@ -15,8 +17,10 @@ interface IButtonVariantProps {
 }
 
 interface IButtonSizeProps {
-  size?: "sm" | "md" | "lg";
+  size?: ComponentSizeProps;
   isFullWidth?: boolean;
+  width?: string | number;
+  height?: string | number;
 }
 
 export type IButtonProps = IButtonSizeProps &

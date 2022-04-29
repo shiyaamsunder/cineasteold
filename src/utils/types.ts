@@ -79,3 +79,5 @@ export interface ITrendingMovieResultsFromServer {
   total_pages: number;
   total_results: number;
 }
+
+export type ComponentSizeProps = "sm" | "md" | "lg";

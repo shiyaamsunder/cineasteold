@@ -6,6 +6,7 @@ import {
   darken,
   getProperFontSizeFromProp,
   getProperSizeFromProp,
+  getValidCSSLayoutValue,
 } from "@utils";
 
 const buttonCustomProps = css`
@@ -19,9 +20,15 @@ const buttonCustomProps = css`
 const defaultButtonStyles = css<IButtonProps>((props) => {
   const { height, width } = getProperSizeFromProp(props.size || "md");
   const fontSize = getProperFontSizeFromProp(props.size || "md");
+
   return {
-    height,
-    width: props.isFullWidth ? "100%" : width,
+    height: props.height ? getValidCSSLayoutValue(props.height) : height,
+    // eslint-disable-next-line no-nested-ternary
+    width: props.isFullWidth
+      ? "100%"
+      : props.width
+      ? getValidCSSLayoutValue(props.width)
+      : width,
     borderRadius: "var(--border-radius)",
     border: 0,
     backgroundColor: "var(--default-bg)",

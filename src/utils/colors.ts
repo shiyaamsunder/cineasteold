@@ -26,7 +26,9 @@ export const getValidCSSLayoutValue = (prop: string | number) => {
   return `${prop}px`;
 };
 
-export const getProperSizeFromProp = (size: "sm" | "md" | "lg") => {
+export const getProperSizeFromProp = (
+  size: "sm" | "md" | "lg"
+): { width: number; height: number } => {
   const mdSize = [96, 36];
 
   const sizes = {

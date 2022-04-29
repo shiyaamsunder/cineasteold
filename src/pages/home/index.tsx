@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import { trpc } from "@utils";
-import { Button } from "@components";
+import { Button, Input } from "@components";
 
 export default function Home() {
   const hello = trpc.useQuery(["hello", { text: "Shiyaam" }]);
@@ -23,23 +23,15 @@ export default function Home() {
           Small
         </Button>
         <Button size="md">Medium</Button>
-        <Button size="lg" disabled>
+        <Button size="lg" width={400} disabled>
           Large
         </Button>
-        <Button isFullWidth size="sm">
-          Full width
-        </Button>
+        <Button size="sm">Full width</Button>
       </div>
 
-      <Button primary size="sm">
-        Primary
-      </Button>
-      <Button primary size="md" disabled>
-        Primary
-      </Button>
-      <Button disabled secondary size="lg">
-        Primary
-      </Button>
+      <Input inputSize="sm" />
+      <Input />
+      <input />
     </>
   );
 }
