@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import type { IButtonProps } from "./button";
 
 import {
+  color,
   darken,
   getProperFontSizeFromProp,
   getProperSizeFromProp,
@@ -10,7 +11,7 @@ import {
 } from "@utils";
 
 const buttonCustomProps = css`
-  --default-bg: ${({ theme }) => theme.colors.gray[300]};
+  --default-bg: ${color("gray.300")};
   --default-color: white;
   --border-radius: 8px;
   --margin: 4px;
@@ -43,7 +44,7 @@ const defaultButtonStyles = css<IButtonProps>((props) => {
 
     "&:focus-visible": {
       outlineOffset: 3,
-      outline: `1px solid ${props.theme.colors.gray[100]}`,
+      outline: `1px solid ${color("gray.300")}`,
     },
   };
 });
@@ -62,7 +63,7 @@ const secondaryStyles = css<IButtonProps>((props) => ({
   backgroundColor: "transparent",
   border: `1px solid ${props.theme.colors.purple[500]}`,
   "&:hover": {
-    backgroundColor: !props.disabled ? props.theme.colors.primary : "",
+    backgroundColor: !props.disabled ? props.theme.colorsDefault.primary : "",
   },
 }));
 

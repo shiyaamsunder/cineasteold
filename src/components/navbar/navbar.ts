@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { color } from "@utils";
+
 export const Wrapper = styled.nav`
   z-index: 100;
   min-height: 60px;
@@ -7,15 +9,15 @@ export const Wrapper = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: ${({ theme }) => theme.colors.bgAccent};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray[400]};
+  background-color: ${color("bgAccent")};
+  border-bottom: 1px solid ${color("gray.400")};
   margin-bottom: 18px;
 `;
 
 export const Title = styled.h3`
   font-size: 28px;
   font-weight: 500;
-  color: ${({ theme }) => theme.colors.gray[100]};
+  color: ${color("gray.100")};
 `;
 
 export const Center = styled.div`
@@ -38,7 +40,7 @@ export const Link = styled.a`
   font-weight: semi-bold;
   font-size: 14px;
   &:hover {
-    color: ${({ theme }) => theme.colors.purple[100]};
+    color: ${color("purple.100")};
   }
 `;
 export const Left = styled.div``;

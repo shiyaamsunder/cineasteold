@@ -4,16 +4,18 @@ import type { colors } from "./theme/colors";
 
 declare module "styled-components" {
   export interface DefaultTheme {
-    colors: {
+    colorsDefault: {
       primary: string;
       bg: string;
       bgAccent: string;
       fg: string;
       warning: string;
+      shadowDark: string;
+    };
+    colors: {
       purple: typeof colors.purple;
       gray: typeof colors.gray;
       red: typeof colors.red;
-      shadowDark: string;
     };
     radius: {
       sm: string;

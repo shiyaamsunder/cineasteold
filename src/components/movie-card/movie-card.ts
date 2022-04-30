@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { color } from "@utils";
+
 export const Wrapper = styled.div`
   width: fit-content;
   display: flex;
@@ -11,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const RatingBadge = styled.div`
   width: 36px;
-  background: ${({ theme }) => theme.colors.purple[400]};
+  background: ${color("purple.400")};
   height: 24px;
   z-index: 50;
   position: absolute;

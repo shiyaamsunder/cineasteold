@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
+import { color } from "@utils";
+
 export const GlobalStyle = createGlobalStyle`
 html,
 body {
@@ -10,7 +12,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
-  background-color: ${({ theme }) => theme.colors.bgAccent}
+  background-color: ${color("bgAccent")}
 }
 
 * {

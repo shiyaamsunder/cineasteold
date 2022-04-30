@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { color } from "@utils";
+
 export const StyledModalWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -16,7 +18,7 @@ export const StyledModal = styled.div`
   position: relative;
   width: 95%;
   height: 90%;
-  background: ${({ theme }) => theme.colors.gray[500]};
+  background: ${color("gray.500")};
   border-radius: 10px;
   box-shadow: ${({ theme }) => theme.shadows.md};
   overflow: hidden;

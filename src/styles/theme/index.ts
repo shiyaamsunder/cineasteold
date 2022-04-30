@@ -3,8 +3,7 @@ import type { DefaultTheme } from "styled-components";
 import { colors } from "./colors";
 
 export const defaultTheme: DefaultTheme = {
-  colors: {
-    ...colors,
+  colorsDefault: {
     primary: "hsl(264deg 55% 51%)",
     bg: "black",
     bgAccent: "hsla(240, 3%, 12%, 1)",
@@ -12,6 +11,7 @@ export const defaultTheme: DefaultTheme = {
     warning: "red",
     shadowDark: "hsla(240, 10%, 9%, 0.6)",
   },
+  colors,
   radius: {
     sm: "8px",
     md: "16px",

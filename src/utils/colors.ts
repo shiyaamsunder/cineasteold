@@ -1,19 +1,7 @@
 import { colord } from "colord";
+import type { DefaultTheme } from "styled-components";
 
-import type {
-  TColorHue,
-  TColorName,
-  TColorNameHue,
-  TColors,
-} from "@styles/types";
-import { colors as colorsObj } from "@styles/theme/colors";
-
-export const getHSLFromColorString = (value?: TColorNameHue) => {
-  if (!value) return colorsObj.purple[300];
-  const colorName: [TColorName, TColorHue] | string[] = value.split(".");
-  const color: TColors = colorsObj; // doing this because typescript wont allow string for indexing
-  return color[colorName[0]][colorName[1]];
-};
+import type { TColorsObject, TColorToken, TDefaultColors } from "@styles/types";
 
 const checkIfValidCSSLayoutProp = (prop: string) =>
   prop.endsWith("px") || prop.endsWith("rem") || prop.endsWith("%");
@@ -65,3 +53,20 @@ export const darken = (color: string, ratio: number) => {
 
   return `${colorFunc.darken(ratio)}`;
 };
+
+/**
+ * Helper function to fetch the color from Theme using the given color tokens.
+ * @param token TColors
+ * @returns string
+ */
+export const color =
+  (token: TColorToken) =>
+  ({ theme }: { theme: DefaultTheme }) => {
+    const colorName = token.split(".");
+    if (colorName.length === 1 && colorName) {
+      const defaultColors = theme.colorsDefault;
+      return defaultColors[colorName[0] as TDefaultColors];
+    }
+    const splittedColor: TColorsObject = theme.colors; // doing this because typescript wont allow string for indexing
+    return splittedColor[colorName[0]][colorName[1]];
+  };

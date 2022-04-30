@@ -2,49 +2,54 @@ import styled, { css } from "styled-components";
 
 import type { IInputProps } from "./input";
 
-const defaultStyles = css((p) => ({
-  margin: "4px",
-  background: `${p.theme.colors.gray[400]}`,
-  borderRadius: 12,
-  height: 38,
-  outlineOffset: "3px",
-  fontFamily: "inherit",
-  color: "white",
-  padding: "14px 12px",
-  fontSize: 14,
-}));
+import { color } from "@utils";
 
-const outlinedStyles = css((p) => ({
-  border: `2px solid ${p.theme.colors.primary}`,
-  transition: "all 120ms ease-in",
-  outline: 0,
-  "&:active, &:focus-visible": {
-    boxShadow:
-      "0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 0px 4px rgba(154, 87, 253, 0.25), 0px 0px 0px 3px rgba(154, 87, 253, 0.25)",
-  },
-}));
+const defaultStyles = css`
+  margin: 4px;
+  background-color: ${color("gray.400")};
+  border-radius: 12px;
+  height: 38px;
+  outline-offset: 3px;
+  font-family: inherit;
+  color: white;
+  padding: 14px 12px;
+  font-size: 14px;
+  &::placeholder {
+    color: ${color("gray.100")};
+  }
+`;
 
+const outlinedStyles = css`
+  border: 2px solid ${color("purple.300")};
+  transition: "all 120ms ease-in";
+  outline: 0;
+  &:active,
+  &:focus-visible {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+      0px 0px 0px 4px rgba(154, 87, 253, 0.25),
+      0px 0px 0px 3px rgba(154, 87, 253, 0.25);
+  }
+`;
 const smInput = css`
   height: 22px;
   font-size: 14px;
   padding: 14px 10px;
 `;
 
-const errorStyles = css((p) => ({
-  border: `2px solid ${p.theme.colors.red[300]}`,
-  color: `${p.theme.colors.red[300]}`,
-  "&:active, &:focus-visible": {
-    boxShadow:
-      "0px 4px 4px rgba(0, 0, 0, 0.25), 0px 0px 0px 3px rgba(226, 93, 93, 0.25), 0px 0px 0px 2px rgba(226, 93, 93, 0.25)",
-  },
-}));
+const errorStyles = css`
+  border: 2px solid ${color("red.100")};
+  color: ${color("red.300")};
+  &:focus-visible,
+  &:active {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+      0px 0px 0px 3px rgba(226, 93, 93, 0.25),
+      0px 0px 0px 2px rgba(226, 93, 93, 0.25);
+  }
+`;
 
 export const InputWrapper = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
+  margin: 10px;
 `;
-// export const outlined
 export const StyledInput = styled.input<IInputProps>`
   ${defaultStyles}
 

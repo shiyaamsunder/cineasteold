@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-import { getHSLFromColorString } from "@utils";
-import type { TColorNameHue } from "@styles/types";
+import { color } from "@utils";
+import type { TColorToken } from "@styles/types";
 
-export const Title = styled.h1<{ textColor?: TColorNameHue }>`
+export const Title = styled.h1<{ textColor?: TColorToken }>`
   font-size: 48px;
-  color: ${({ textColor }) => getHSLFromColorString(textColor)};
+  color: ${(p) => p.textColor && color(p.textColor)};
 `;
 
 export const HomeWrapper = styled.div`
