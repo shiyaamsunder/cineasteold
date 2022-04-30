@@ -13,6 +13,7 @@ const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   placeholder: "Primary input",
+  label: "Username",
 };
 
 export const Invalid = Template.bind({});
