@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 import { StyledButtonBase } from "./button.styles";
 
@@ -27,20 +27,18 @@ export type IButtonProps = IButtonSizeProps &
   IButtonStateProps &
   IButtonVariantProps;
 
-export type IButton<T extends ElementType> = {
+export type IButton = {
   children: ReactNode;
-  renderAs?: keyof JSX.IntrinsicElements;
-} & ComponentPropsWithoutRef<T> &
+} & ComponentPropsWithoutRef<"button"> &
   IButtonProps;
 
-const Button = <T extends ElementType = "button">({
-  renderAs,
+const Button = ({
   children,
   type = "button",
   size = "md",
   ...rest
-}: IButton<T>) => (
-  <StyledButtonBase as={renderAs} type={type} size={size} {...rest}>
+}: IButton) => (
+  <StyledButtonBase type={type} size={size} {...rest}>
     {children}
   </StyledButtonBase>
 );
