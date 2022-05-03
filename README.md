@@ -1,4 +1,6 @@
-# Cineaste - A simple movie watchlist web app
+# This is the old version of Cineaste made with create-react-app
+
+## Cineaste - A simple movie watchlist web app
 
 ## Made using React JS
 
