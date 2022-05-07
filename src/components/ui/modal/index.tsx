@@ -9,16 +9,18 @@ import {
   StyledModalWrapper,
 } from "./modal";
 
+import { useScrollLock } from "@hooks";
+
 interface IModalProps {
   show: boolean;
   onClose: () => void;
 }
 
-// TODO: persist scroll gap
 export const Modal: FC<IModalProps> = ({ show, onClose, children }) => {
   const [isBrowser, setBrowser] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const modalWrapperRef = useRef<HTMLDivElement>(null);
+  const { lockScroll, unlockScroll } = useScrollLock();
 
   const backdropCloseHandler = useCallback(
     (e: MouseEvent) => {
@@ -37,11 +39,20 @@ export const Modal: FC<IModalProps> = ({ show, onClose, children }) => {
   }, []);
 
   useEffect(() => {
+    if (show) {
+      lockScroll();
+    } else {
+      unlockScroll();
+    }
+  }, [lockScroll, show, unlockScroll]);
+  useEffect(() => {
     window.addEventListener("click", backdropCloseHandler);
-    window.addEventListener(
-      "keydown",
-      (event: KeyboardEvent) => event.code === "Escape" && onClose()
-    );
+
+    // this causes multiple re-renders: Need to fix!!
+    // window.addEventListener(
+    //   "keydown",
+    //   (event: KeyboardEvent) => event.code === "Escape" && console.log("hello")
+    // );
     return () => {
       window.removeEventListener("click", backdropCloseHandler);
       window.removeEventListener("keydown", onClose);
