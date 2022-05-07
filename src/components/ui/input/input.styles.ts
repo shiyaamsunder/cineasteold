@@ -14,6 +14,7 @@ const defaultStyles = css`
   color: white;
   padding: 14px 12px;
   font-size: 14px;
+  transition: all 180ms ease-in-out;
   &::placeholder {
     color: ${color("gray.100")};
   }
