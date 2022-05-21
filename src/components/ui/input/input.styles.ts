@@ -27,8 +27,26 @@ const outlinedStyles = css`
   &:active,
   &:focus-visible {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-      0px 0px 0px 4px rgba(154, 87, 253, 0.25),
-      0px 0px 0px 3px rgba(154, 87, 253, 0.25);
+      0px 0px 0px 3px rgba(154, 87, 253, 0.25),
+      0px 0px 0px 2px rgba(154, 87, 253, 0.25);
+  }
+`;
+
+const filledStyles = css`
+  background: ${color("gray.300")};
+  border: 2px solid transparent;
+  outline: none;
+
+  &:hover {
+    background: ${color("gray.400")};
+  }
+
+  &:focus {
+    background: transparent;
+    border: 2px solid ${color("purple.300")};
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+      0px 0px 0px 3px rgba(154, 87, 253, 0.25),
+      0px 0px 0px 2px rgba(154, 87, 253, 0.25);
   }
 `;
 const smInput = css`
@@ -54,7 +72,10 @@ export const InputWrapper = styled.div`
 export const StyledInput = styled.input<IInputProps>`
   ${defaultStyles}
 
+  ${(p) => p.isFullWidth && "width:100%;"}
   ${(p) => p.variant === "outlined" && outlinedStyles}
+
+  ${(p) => p.variant === "filled" && filledStyles}  
 
   ${(p) => p.invalid && errorStyles}
 
