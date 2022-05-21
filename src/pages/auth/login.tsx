@@ -1,6 +1,6 @@
 import { signIn } from "next-auth/react";
 
-import { Container, Wrapper } from "./login.styles";
+import { Container, Wrapper } from "../../styles/pages/login.styles";
 
 import { Button, Input } from "@components";
 
