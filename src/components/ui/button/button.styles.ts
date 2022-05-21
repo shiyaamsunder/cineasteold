@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 import type { IButtonProps } from "./button";
 
@@ -24,6 +24,9 @@ const defaultButtonStyles = css<IButtonProps>((props) => {
 
   return {
     height: props.height ? getValidCSSLayoutValue(props.height) : height,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     // eslint-disable-next-line no-nested-ternary
     width: props.isFullWidth
       ? "100%"
@@ -71,6 +74,27 @@ const hoveredButton = css`
   cursor: pointer;
 `;
 
+const loadingAnimation = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+
+`;
+export const Loader = styled.div<IButtonProps>`
+  border: 2px solid white;
+  border-top: 2px solid ${color("gray.100")};
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: ${loadingAnimation} 800ms linear infinite;
+  margin: auto;
+`;
+
+const smallButtonLoaderStyles = css`
+  ${Loader} {
+    width: 15px;
+    height: 15px;
+  }
+`;
 export const StyledButtonBase = styled.button<IButtonProps>`
   ${buttonCustomProps}
   ${defaultButtonStyles}
@@ -80,9 +104,11 @@ export const StyledButtonBase = styled.button<IButtonProps>`
   }
 
   &:disabled {
-    opacity: 0.6;
+    opacity: 0.7;
     cursor: not-allowed;
   }
+
+  ${(p) => p.size === "sm" && smallButtonLoaderStyles}
 
   ${(p) => p.primary && primaryStyles}
   ${(p) => p.secondary && secondaryStyles}
