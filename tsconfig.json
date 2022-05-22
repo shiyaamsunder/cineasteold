@@ -18,6 +18,7 @@
     "paths": {
       "@components": ["src/components/index.ts"],
       "@components/styled": ["src/components/layout/index.ts"],
+      "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],
       "@utils": ["src/utils/index.ts"],
