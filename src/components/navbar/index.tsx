@@ -1,39 +1,73 @@
+import type { Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 
-import { Button } from "../ui/button";
-import { Heading } from "../ui";
+import {
+  Wrapper,
+  Left,
+  Center,
+  Links,
+  Link,
+  SideNavbarWrapper,
+  SideBarHeader,
+} from "./navbar";
 
-import { Wrapper, Left, Center, Links, Link } from "./navbar";
+import { BurgerIcon, CloseIcon, IconButton } from "@components/icons";
+import { Button, Heading } from "@components/ui";
 
-function AuthComponent() {
+const AuthComponent = () => {
   const { data: session } = useSession();
   if (session) {
-    return (
-      <>
-        Signed in as {session.user?.email} <br />
-        <Button onClick={() => signOut()}>Sign out</Button>
-      </>
-    );
+    return <Button onClick={() => signOut()}>Sign out</Button>;
   }
-  return (
-    <>
-      Not signed in <br />
-      <Button onClick={() => signIn()}>Sign in</Button>
-    </>
-  );
-}
-export const Navbar = () => (
-  <Wrapper>
-    <Left>
-      <Heading textColor="gray.100">Cineaste</Heading>
-    </Left>
-    <Center>
-      <Links>
-        <Link href="/">Home</Link>
-        <Link href="/trending">Trending</Link>
-        <Link href="/">About</Link>
-      </Links>
-    </Center>
-    <AuthComponent />
-  </Wrapper>
+  return <Button onClick={() => signIn()}>Sign in</Button>;
+};
+
+const LinksComponent = () => (
+  <Links>
+    <Link href="/">Home</Link>
+    <Link href="/trending">Trending</Link>
+    <Link href="/">About</Link>
+  </Links>
 );
+
+const SideNavbar = ({
+  show,
+  setShowSideBar,
+}: {
+  show: boolean;
+  setShowSideBar: Dispatch<SetStateAction<boolean>>;
+}) => (
+  <SideNavbarWrapper show={show}>
+    <SideBarHeader>
+      <Heading textColor="gray.100">Cineaste</Heading>
+      <IconButton onClick={() => setShowSideBar(!show)}>
+        <CloseIcon />
+      </IconButton>
+    </SideBarHeader>
+    <LinksComponent />
+  </SideNavbarWrapper>
+);
+export const Navbar = () => {
+  const [showSideBar, setShowSideBar] = useState(false);
+
+  return (
+    <Wrapper>
+      <Left>
+        <IconButton onClick={() => setShowSideBar(!showSideBar)}>
+          <BurgerIcon />
+        </IconButton>
+
+        <Heading textColor="gray.100">Cineaste</Heading>
+      </Left>
+      <Center>
+        <LinksComponent />
+      </Center>
+      <AuthComponent />
+
+      {showSideBar && (
+        <SideNavbar show={showSideBar} setShowSideBar={setShowSideBar} />
+      )}
+    </Wrapper>
+  );
+};
