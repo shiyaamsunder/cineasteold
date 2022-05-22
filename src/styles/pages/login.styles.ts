@@ -19,6 +19,13 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const ActionContainer = styled.div`
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 export const Container = styled.div`
   padding: 1rem;
   background-color: ${color("gray.500")};

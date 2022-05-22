@@ -28,11 +28,8 @@ const defaultButtonStyles = css<IButtonProps>((props) => {
     alignItems: "center",
     justifyContent: "center",
     // eslint-disable-next-line no-nested-ternary
-    width: props.isFullWidth
-      ? "100%"
-      : props.width
-      ? getValidCSSLayoutValue(props.width)
-      : width,
+    width: props.width ? width : "auto",
+    minWidth: "96px",
     borderRadius: "var(--border-radius)",
     border: 0,
     backgroundColor: "var(--default-bg)",
