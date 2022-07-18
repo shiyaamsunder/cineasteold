@@ -22,7 +22,8 @@
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],
       "@utils": ["src/utils/index.ts"],
-      "@hooks": ["src/hooks/index.ts"]
+      "@hooks": ["src/hooks/index.ts"],
+      "@server/*": ["src/server/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

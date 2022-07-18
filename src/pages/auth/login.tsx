@@ -13,7 +13,7 @@ const LoginPage = () => (
 
     <Container>
       <Input label="Username" isFullWidth variant="filled" />
-      <Input label="Password" isFullWidth variant="filled" />
+      <Input label="Password" isFullWidth variant="filled" type="password" />
 
       <ActionContainer>
         <Button onClick={() => signIn("google")}>Sign In with Google</Button>
