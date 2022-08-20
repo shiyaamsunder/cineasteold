@@ -1,15 +1,17 @@
 import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
 import {
   Wrapper,
   Left,
-  Center,
+  Container,
   Links,
   Link,
   SideNavbarWrapper,
   SideBarHeader,
+  Right,
 } from "./navbar";
 
 import { BurgerIcon, CloseIcon, IconButton } from "@components/icons";
@@ -17,6 +19,7 @@ import { Button, Heading } from "@components/ui";
 
 const AuthComponent = () => {
   const { data: session } = useSession();
+
   if (session) {
     return <Button onClick={() => signOut()}>Sign out</Button>;
   }
@@ -50,21 +53,22 @@ const SideNavbar = ({
 );
 export const Navbar = () => {
   const [showSideBar, setShowSideBar] = useState(false);
+  const router = useRouter();
 
   return (
     <Wrapper>
-      <Left>
-        <IconButton onClick={() => setShowSideBar(!showSideBar)}>
-          <BurgerIcon />
-        </IconButton>
+      <Container>
+        <Left>
+          <IconButton onClick={() => setShowSideBar(!showSideBar)}>
+            <BurgerIcon />
+          </IconButton>
 
-        <Heading textColor="gray.100">Cineaste</Heading>
-      </Left>
-      <Center>
-        <LinksComponent />
-      </Center>
-      <AuthComponent />
+          <Heading textColor="gray.100">Cineaste</Heading>
+          <LinksComponent />
+        </Left>
 
+        <Right>{router.route !== "/auth/login" && <AuthComponent />}</Right>
+      </Container>
       {showSideBar && (
         <SideNavbar show={showSideBar} setShowSideBar={setShowSideBar} />
       )}
