@@ -33,4 +33,7 @@ export const Container = styled.div`
   height: auto;
   margin: 1rem 0;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
