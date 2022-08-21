@@ -1,7 +1,7 @@
-import type { Dispatch, SetStateAction } from "react";
-import { useState } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import type { Dispatch, SetStateAction} from "react";
+import { useEffect , useState } from "react";
 import { useRouter } from "next/router";
+import type { Session } from "@supabase/supabase-js";
 
 import {
   Wrapper,
@@ -14,16 +14,31 @@ import {
   Right,
 } from "./navbar";
 
+import { supabase } from "@utils";
 import { BurgerIcon, CloseIcon, IconButton } from "@components/icons";
 import { Button, Heading } from "@components/ui";
 
 const AuthComponent = () => {
-  const { data: session } = useSession();
+  const [session, setSession] = useState<Session | null>(null);
+  const router = useRouter();
+  useEffect(() => {
+    const authState = supabase.auth.onAuthStateChange((e, s) => {
+      if (e === "SIGNED_IN") {
+        setSession(s);
+      }
+    });
+
+    return () => authState.data?.unsubscribe();
+  }, []);
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    await router.push("/auth/login");
+  };
 
   if (session) {
-    return <Button onClick={() => signOut()}>Sign out</Button>;
+    return <Button onClick={signOut}>Sign out</Button>;
   }
-  return <Button onClick={() => signIn()}>Sign in</Button>;
+  return <Button onClick={() => router.push("/auth/login")}>Sign in</Button>;
 };
 
 const LinksComponent = () => (
