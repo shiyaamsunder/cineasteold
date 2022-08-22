@@ -1,26 +1,112 @@
-import { signIn } from "next-auth/react";
+import { useState } from "react";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 import {
   ActionContainer,
   Container,
+  Divider,
+  EmailContainer,
   Wrapper,
 } from "@styles/pages/login.styles";
-import { Button, Input } from "@components";
+import { Button, Heading, Input } from "@components";
+import { supabase } from "@utils";
 
-const LoginPage = () => (
-  <Wrapper>
-    <h1>Login</h1>
+const LoginPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    <Container>
-      <Input label="Username" isFullWidth variant="filled" />
-      <Input label="Password" isFullWidth variant="filled" type="password" />
+  const router = useRouter();
+  const handleLogin = async (
+    email: string,
+    password: string,
+    type: "signIn" | "signUp"
+  ) => {
+    try {
+      setIsLoading(true);
 
-      <ActionContainer>
-        <Button onClick={() => signIn("google")}>Sign In with Google</Button>
-        <Button>Sign In</Button>
-      </ActionContainer>
-    </Container>
-  </Wrapper>
-);
+      let error;
+      switch (type) {
+        case "signIn":
+          error = await supabase.auth.signIn({ email, password });
+          break;
+
+        case "signUp":
+          error = await supabase.auth.signUp({ email, password });
+          break;
+        default:
+          break;
+      }
+      if (error) throw error;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+      router.push("/");
+    }
+  };
+  return (
+    <>
+      <Head>
+        <title>Login</title>
+      </Head>
+      <Wrapper>
+        <h1>Login</h1>
+
+        <Container>
+          <EmailContainer>
+            <Heading as="h4">Sign up/in with Email</Heading>
+            <Input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              label="Email"
+              isFullWidth
+              variant="filled"
+              type="email"
+            />
+            <Input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              label="Password"
+              isFullWidth
+              variant="filled"
+              type="password"
+            />
+
+            <ActionContainer>
+              <Button
+                primary
+                isLoading={isLoading}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLogin(email, password, "signIn");
+                }}
+              >
+                Login
+              </Button>
+              <span>Or</span>
+              <Button
+                secondary
+                isLoading={isLoading}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLogin(email, password, "signUp");
+                }}
+              >
+                Register
+              </Button>
+            </ActionContainer>
+          </EmailContainer>
+          <Divider />
+          <p style={{ margin: "10px 0px" }}>Or</p>
+          <Button onClick={() => supabase.auth.signIn({ provider: "google" })}>
+            Sign In with Google
+          </Button>
+        </Container>
+      </Wrapper>
+    </>
+  );
+};
 
 export default LoginPage;

@@ -12,9 +12,17 @@ export const Wrapper = styled.nav`
   background-color: ${color("bgAccent")};
   border-bottom: 1px solid ${color("gray.400")};
   margin-bottom: 18px;
+`;
+
+export const Container = styled.div`
+  width: 80%;
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 
   @media screen and (max-width: 700px) {
-    padding: 1rem 0.5rem;
+    width: 100%;
   }
 `;
 
@@ -32,7 +40,7 @@ export const Center = styled.div`
 `;
 
 export const Links = styled.ul`
-  width: 90%;
+  width: 60%;
   display: flex;
   margin: auto;
   justify-content: space-around;
@@ -57,10 +65,13 @@ export const Link = styled.a`
 `;
 export const Left = styled.div`
   display: flex;
+  justify-content: space-between;
+  width: 100%;
   & > button {
     display: none;
   }
   @media screen and (max-width: 700px) {
+    justify-content: flex-start;
     & > button {
       display: block;
     }
