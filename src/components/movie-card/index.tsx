@@ -4,13 +4,13 @@ import Link from "next/link";
 import { forwardRef } from "react";
 
 import {
-    ImageWrapper,
-    Link as StyledLink,
-    Title,
-    Wrapper,
-    Bottom,
-    Subtitle,
-    RatingBadge,
+  ImageWrapper,
+  Link as StyledLink,
+  Title,
+  Wrapper,
+  Bottom,
+  Subtitle,
+  RatingBadge,
 } from "./movie-card";
 
 import type { IMovieFromServer, ITrendingMovie } from "@utils";
