@@ -17,35 +17,16 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
 
   const router = useRouter();
-  const handleLogin = async (
-    email: string,
-    password: string,
-    type: "signIn" | "signUp"
-  ) => {
+  const handleLogin = async (email: string, password: string) => {
     try {
-      setIsLoading(true);
-
-      switch (type) {
-        case "signIn":
-          let { error: signInError } = await supabase.auth.signIn({
-            email,
-            password,
-          });
-          if (signInError) throw signInError;
-          break;
-
-        case "signUp":
-          let { error: signUpError } = await supabase.auth.signUp({
-            email,
-            password,
-          });
-          if (signUpError) throw signUpError;
-          break;
-        default:
-          break;
-      }
-    } catch (error: any) {
-      console.log(error.message);
+      const { error: signInError } = await supabase.auth.signIn({
+        email,
+        password,
+      });
+      if (signInError) throw signInError;
+    } catch (error) {
+      // eslint-disable-next-line
+      console.log(error);
     } finally {
       setIsLoading(false);
       router.push("/");
@@ -84,7 +65,7 @@ const LoginPage = () => {
                 isLoading={isLoading}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleLogin(email, password, "signIn");
+                  handleLogin(email, password);
                 }}
               >
                 Login
@@ -112,7 +93,7 @@ const LoginPage = () => {
         </Container>
 
         <ActionContainer>
-          Don't have an account? Sign up{" "}
+          Don&apos;t have an account? Sign up{" "}
           <Link size="lg" href="/auth/register">
             here
           </Link>
