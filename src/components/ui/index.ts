@@ -4,3 +4,4 @@ export { Heading } from "./heading";
 export { Button } from "./button";
 export { Input } from "./input";
 export { Link } from "./link";
+export { Divider } from "./divider";

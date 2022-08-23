@@ -5,11 +5,10 @@ import { useRouter } from "next/router";
 import {
   ActionContainer,
   Container,
-  Divider,
   EmailContainer,
   Wrapper,
 } from "@styles/pages/login.styles";
-import { Button, Heading, Input } from "@components";
+import { Button, Divider, Heading, Input, Link } from "@components";
 import { supabase } from "@utils";
 
 const LoginPage = () => {
@@ -57,12 +56,11 @@ const LoginPage = () => {
       <Head>
         <title>Login</title>
       </Head>
-      <Wrapper>
-        <h1>Login</h1>
 
+      <Wrapper>
+        <Heading as="h2">Sign In</Heading>
         <Container>
           <EmailContainer>
-            <Heading as="h4">Sign up/in with Email</Heading>
             <Input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -91,8 +89,7 @@ const LoginPage = () => {
               >
                 Login
               </Button>
-              <span>Or</span>
-              <Button
+              {/* <Button
                 secondary
                 isLoading={isLoading}
                 onClick={(e) => {
@@ -101,15 +98,25 @@ const LoginPage = () => {
                 }}
               >
                 Register
-              </Button>
+              </Button> */}
             </ActionContainer>
           </EmailContainer>
-          <Divider />
-          <p style={{ margin: "10px 0px" }}>Or</p>
-          <Button onClick={() => supabase.auth.signIn({ provider: "google" })}>
-            Sign In with Google
-          </Button>
+          <Divider>Or</Divider>
+          <ActionContainer>
+            <Button
+              onClick={() => supabase.auth.signIn({ provider: "google" })}
+            >
+              Sign In with Google
+            </Button>
+          </ActionContainer>
         </Container>
+
+        <ActionContainer>
+          Don't have an account? Sign up{" "}
+          <Link size="lg" href="/auth/register">
+            here
+          </Link>
+        </ActionContainer>
       </Wrapper>
     </>
   );
