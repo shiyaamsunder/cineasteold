@@ -26,21 +26,27 @@ const LoginPage = () => {
     try {
       setIsLoading(true);
 
-      let error;
       switch (type) {
         case "signIn":
-          error = await supabase.auth.signIn({ email, password });
+          let { error: signInError } = await supabase.auth.signIn({
+            email,
+            password,
+          });
+          if (signInError) throw signInError;
           break;
 
         case "signUp":
-          error = await supabase.auth.signUp({ email, password });
+          let { error: signUpError } = await supabase.auth.signUp({
+            email,
+            password,
+          });
+          if (signUpError) throw signUpError;
           break;
         default:
           break;
       }
-      if (error) throw error;
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.log(error.message);
     } finally {
       setIsLoading(false);
       router.push("/");

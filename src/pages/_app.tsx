@@ -4,12 +4,15 @@ import type { AppProps } from "next/app";
 import type { AppRouter } from "./api/trpc/[trpc]";
 
 import { Navbar, Layout } from "@components";
+import { AuthProvider, supabase } from "@utils";
 
 function MyApp({ Component, pageProps: { ...pageProps } }: AppProps) {
   return (
     <Layout themeName="defaultTheme">
-      <Navbar />
-      <Component {...pageProps} />
+      <AuthProvider supabase={supabase}>
+        <Navbar />
+        <Component {...pageProps} />
+      </AuthProvider>
     </Layout>
   );
 }

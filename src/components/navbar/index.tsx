@@ -1,7 +1,6 @@
-import type { Dispatch, SetStateAction} from "react";
-import { useEffect , useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import type { Session } from "@supabase/supabase-js";
 
 import {
   Wrapper,
@@ -17,25 +16,17 @@ import {
 import { supabase } from "@utils";
 import { BurgerIcon, CloseIcon, IconButton } from "@components/icons";
 import { Button, Heading } from "@components/ui";
+import { useAuth } from "@hooks";
 
 const AuthComponent = () => {
-  const [session, setSession] = useState<Session | null>(null);
+  const auth = useAuth();
   const router = useRouter();
-  useEffect(() => {
-    const authState = supabase.auth.onAuthStateChange((e, s) => {
-      if (e === "SIGNED_IN") {
-        setSession(s);
-      }
-    });
-
-    return () => authState.data?.unsubscribe();
-  }, []);
   const signOut = async () => {
     await supabase.auth.signOut();
     await router.push("/auth/login");
   };
 
-  if (session) {
+  if (auth?.session) {
     return <Button onClick={signOut}>Sign out</Button>;
   }
   return <Button onClick={() => router.push("/auth/login")}>Sign in</Button>;

@@ -4,21 +4,14 @@ import type { Session } from "@supabase/supabase-js";
 
 import { supabase } from "@utils";
 import { Button, Input } from "@components";
+import { useAuth } from "@hooks";
 
 export default function Home() {
   const [session, setSession] = useState<Session | null>(null);
   // const [loading, setLoading] = useState<boolean>(false);
+  const auth = useAuth();
 
-  useEffect(() => {
-    const authState = supabase.auth.onAuthStateChange((e, s) => {
-      if (e === "SIGNED_IN") {
-        setSession(s);
-      }
-    });
-
-    return () => authState.data?.unsubscribe();
-  }, []);
-
+  console.log(auth);
   return (
     <>
       <Head>
@@ -27,6 +20,7 @@ export default function Home() {
       <h1>Home</h1>
 
       {session && <p>{session.user?.id}</p>}
+      {auth?.session && <p>{auth.session.user?.id}</p>}
       <div style={{ display: "flex", alignItems: "flex-end" }}>
         <Button>Small</Button>
         <Input />
