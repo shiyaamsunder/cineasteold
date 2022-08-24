@@ -11,19 +11,20 @@ import {
 import { Button, Divider, Heading, Input, Link } from "@components";
 import { supabase } from "@utils";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const router = useRouter();
+
   const handleLogin = async (email: string, password: string) => {
     try {
-      const { error: signInError } = await supabase.auth.signIn({
+      const { error: signUpError } = await supabase.auth.signUp({
         email,
         password,
       });
-      if (signInError) throw signInError;
+      if (signUpError) throw signUpError;
       else router.push("/");
     } catch (error) {
       if (error instanceof Error) alert(error.message);
@@ -31,14 +32,15 @@ const LoginPage = () => {
       setIsLoading(false);
     }
   };
+
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>Register</title>
       </Head>
 
       <Wrapper>
-        <Heading as="h2">Sign In</Heading>
+        <Heading as="h2">Sign Up</Heading>
         <Container>
           <EmailContainer>
             <Input
@@ -67,7 +69,7 @@ const LoginPage = () => {
                   handleLogin(email, password);
                 }}
               >
-                Login
+                Register
               </Button>
             </ActionContainer>
           </EmailContainer>
@@ -76,14 +78,14 @@ const LoginPage = () => {
             <Button
               onClick={() => supabase.auth.signIn({ provider: "google" })}
             >
-              Sign In with Google
+              Sign Up with Google
             </Button>
           </ActionContainer>
         </Container>
 
         <ActionContainer>
-          Don&apos;t have an account? Sign up{" "}
-          <Link size="lg" href="/auth/register">
+          Already have an account? Sign up{" "}
+          <Link size="lg" href="/auth/login">
             here
           </Link>
         </ActionContainer>
@@ -92,4 +94,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
