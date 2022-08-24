@@ -59,7 +59,7 @@ const SideNavbar = ({
 );
 export const Navbar = () => {
   const [showSideBar, setShowSideBar] = useState(false);
-  const router = useRouter();
+  const { route } = useRouter();
 
   return (
     <Wrapper>
@@ -73,7 +73,11 @@ export const Navbar = () => {
           <LinksComponent />
         </Left>
 
-        <Right>{router.route !== "/auth/login" && <AuthComponent />}</Right>
+        <Right>
+          {route === "/auth/register" || route === "/auth/login" ? null : (
+            <AuthComponent />
+          )}
+        </Right>
       </Container>
       {showSideBar && (
         <SideNavbar show={showSideBar} setShowSideBar={setShowSideBar} />
