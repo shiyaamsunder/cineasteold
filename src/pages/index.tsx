@@ -1,10 +1,11 @@
 import Head from "next/head";
 
-import { trpc } from "@utils";
 import { Button, Input } from "@components";
+import { useAuth } from "@hooks";
 
 export default function Home() {
-  const hello = trpc.useQuery(["hello", { text: "Shiyaam" }]);
+  // const [loading, setLoading] = useState<boolean>(false);
+  const auth = useAuth();
 
   return (
     <>
@@ -13,10 +14,10 @@ export default function Home() {
       </Head>
       <h1>Home</h1>
 
-      <p>{hello.data && hello.data.greeting}</p>
-
+      {auth?.session && <p>{auth.session.user?.id}</p>}
       <div style={{ display: "flex", alignItems: "flex-end" }}>
         <Button>Small</Button>
+
         <Input />
       </div>
     </>

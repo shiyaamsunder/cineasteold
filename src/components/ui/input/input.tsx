@@ -8,6 +8,7 @@ import type { ComponentSizeProps } from "@utils";
 
 interface IInputSizeProps {
   inputSize?: ComponentSizeProps | number;
+  isFullWidth?: boolean;
 }
 
 interface IInputVariantProps {

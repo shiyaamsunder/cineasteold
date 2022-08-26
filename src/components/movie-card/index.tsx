@@ -36,7 +36,7 @@ export const MovieCard = forwardRef<HTMLDivElement, IMovieCard>(
         >
           <StyledLink>
             <ImageWrapper>
-              <RatingBadge>{voteAverage}</RatingBadge>
+              <RatingBadge>{voteAverage.toFixed(1)}</RatingBadge>
               <Image
                 layout="fill"
                 priority

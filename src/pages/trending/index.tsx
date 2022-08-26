@@ -8,15 +8,12 @@ import React, { useEffect, useRef } from "react";
 import Movie from "../movie/[movieId]";
 
 import {
-  Heading,
-  Modal,
-  MovieCard,
-  Skeleton,
   HomeWrapper,
   LoadingSkeletonWrapper,
   MovieContainer,
   Title,
-} from "@components";
+} from "@styles/pages/trending";
+import { Heading, Modal, MovieCard, Skeleton } from "@components";
 import { getTrendingMovies } from "@utils";
 import { useOnScreen } from "@hooks";
 

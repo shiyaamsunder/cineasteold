@@ -50,6 +50,8 @@
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
     "react/jsx-props-no-spreading": "off",
     "import/order": ["error", { "newlines-between": "always" }],
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "arrow-body-style": "off",
+    "no-shadow": "off"
   }
 }

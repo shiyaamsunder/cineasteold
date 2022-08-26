@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
-import { StyledButtonBase } from "./button.styles";
+import { Loader, StyledButtonBase } from "./button.styles";
 
 import type { ComponentSizeProps } from "@utils";
 
@@ -36,10 +36,11 @@ const Button = ({
   children,
   type = "button",
   size = "md",
+  isLoading,
   ...rest
 }: IButton) => (
-  <StyledButtonBase type={type} size={size} {...rest}>
-    {children}
+  <StyledButtonBase type={type} size={size} disabled={isLoading} {...rest}>
+    {isLoading ? <Loader /> : children}
   </StyledButtonBase>
 );
 
