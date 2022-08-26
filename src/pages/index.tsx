@@ -7,7 +7,6 @@ export default function Home() {
   // const [loading, setLoading] = useState<boolean>(false);
   const auth = useAuth();
 
-  console.log(auth);
   return (
     <>
       <Head>
@@ -18,6 +17,7 @@ export default function Home() {
       {auth?.session && <p>{auth.session.user?.id}</p>}
       <div style={{ display: "flex", alignItems: "flex-end" }}>
         <Button>Small</Button>
+
         <Input />
       </div>
     </>
