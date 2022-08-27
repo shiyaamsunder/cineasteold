@@ -51,9 +51,7 @@ const Movie = () => {
           blurDataURL={`https://image.tmdb.org/t/p/w500/${data.backdrop}`}
         />
         <TitleOverlay>
-          <Heading as="h2" style={{ marginLeft: "20px", marginBottom: "20px" }}>
-            {data.title}
-          </Heading>
+          <Heading as="h1">{data.title}</Heading>
         </TitleOverlay>
       </MoviePageContainer>
     </>
