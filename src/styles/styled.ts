@@ -29,5 +29,29 @@ declare module "styled-components" {
     shadows: {
       md: string;
     };
+
+    mediaQueries: {
+      pixels: {
+        mobile: number;
+        tablet: number;
+        laptop: number;
+        laptopLarge: number;
+        "4k": number;
+      };
+      minWidth: {
+        mobile: string;
+        tablet: string;
+        laptop: string;
+        laptopLarge: string;
+        "4k": string;
+      };
+      maxWidth: {
+        mobile: string;
+        tablet: string;
+        laptop: string;
+        laptopLarge: string;
+        "4k": string;
+      };
+    };
   }
 }
