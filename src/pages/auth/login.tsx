@@ -52,7 +52,6 @@ const LoginPage = () => {
     }
   }, [emailValid, passwordValid]);
 
-  console.log(disabled);
   const router = useRouter();
   const handleLogin = async (email: string, password: string) => {
     try {
