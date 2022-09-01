@@ -53,20 +53,20 @@ const RegisterPage = () => {
   }, [emailValid, passwordValid]);
 
   const router = useRouter();
-  const handleLogin = async (email: string, password: string) => {
+  const handleRegister = async (email: string, password: string) => {
     try {
       setIsLoading(true);
       setErrorMessage("");
-      const { error: signInError } = await supabase.auth.signIn({
+      const { error: signUpError } = await supabase.auth.signUp({
         email,
         password,
       });
-      if (signInError) throw signInError;
+      if (signUpError) throw signUpError;
       else router.push("/");
     } catch (error) {
       setShowModal(true);
 
-      const {message} = error as ApiError;
+      const { message } = error as ApiError;
       // let status = (error as ApiError).status;
 
       // console.log(message);
@@ -113,7 +113,7 @@ const RegisterPage = () => {
                 disabled={disabled}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleLogin(email, password);
+                  handleRegister(email, password);
                 }}
               >
                 Register
