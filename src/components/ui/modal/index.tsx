@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import type { FC } from "react";
+import type { FC, ComponentPropsWithRef, ReactNode } from "react";
 
 import {
   StyledModal,
@@ -11,12 +11,17 @@ import {
 
 import { useScrollLock } from "@hooks";
 
-interface IModalProps {
+export interface IModalProps {
   show: boolean;
   onClose: () => void;
+  width?: number | string;
+  height?: number | string;
 }
 
-export const Modal: FC<IModalProps> = ({ show, onClose, children }) => {
+export type IModal = { children: ReactNode } & IModalProps &
+  ComponentPropsWithRef<"div">;
+
+export const Modal = ({ show, onClose, width, height, children }: IModal) => {
   const [isBrowser, setBrowser] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const modalWrapperRef = useRef<HTMLDivElement>(null);
@@ -48,7 +53,7 @@ export const Modal: FC<IModalProps> = ({ show, onClose, children }) => {
   useEffect(() => {
     window.addEventListener("click", backdropCloseHandler);
 
-    // this causes multiple re-renders: Need to fix!!
+    // TODO: this causes multiple re-renders: Need to fix!!
     // window.addEventListener(
     //   "keydown",
     //   (event: KeyboardEvent) => event.code === "Escape" && console.log("hello")
@@ -64,7 +69,7 @@ export const Modal: FC<IModalProps> = ({ show, onClose, children }) => {
     return portal && show
       ? ReactDOM.createPortal(
           <StyledModalWrapper ref={modalWrapperRef}>
-            <StyledModal ref={modalRef}>
+            <StyledModal ref={modalRef} width={width} height={height}>
               <StyledModalHeader>
                 <StyledModalCloseButton onClick={onClose}>
                   <svg width="24" height="24" fill="none" viewBox="0 0 24 24">

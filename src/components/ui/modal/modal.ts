@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { color } from "@utils";
+import { color, getValidCSSLayoutValue } from "@utils";
 
 export const StyledModalWrapper = styled.div`
   position: fixed;
@@ -12,12 +12,17 @@ export const StyledModalWrapper = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 500;
+  background: #000000ad;
+  backdrop-filter: blur(2px);
 `;
 
-export const StyledModal = styled.div`
+export const StyledModal = styled.div<{
+  width?: string | number;
+  height?: string | number;
+}>`
   position: relative;
-  width: 95%;
-  height: 90%;
+  width: ${(p) => (!p.width ? "95%" : getValidCSSLayoutValue(p.width))};
+  height: ${(p) => (!p.height ? "90%" : getValidCSSLayoutValue(p.height))};
   background: ${color("gray.500")};
   border-radius: 10px;
   box-shadow: ${({ theme }) => theme.shadows.md};
