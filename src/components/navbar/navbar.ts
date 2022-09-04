@@ -95,7 +95,6 @@ const SideBarLinksStyles = css`
 
     & a {
       width: 98%;
-      /* height: 60px; */
       padding: 1rem;
       margin: 1rem auto;
       border-radius: 5px;
@@ -106,9 +105,14 @@ const SideBarLinksStyles = css`
     }
   }
 `;
+
 export const SideNavbarWrapper = styled.div<{ show: boolean }>`
-  width: 80%;
+  z-index: 100;
+  transform: translateX(-100%);
+  ${(p) => p.show && "transform: translateX(0px);"}
+
   height: 100%;
+  width: 300px;
   position: fixed;
   top: 0;
   left: 0;
@@ -116,16 +120,22 @@ export const SideNavbarWrapper = styled.div<{ show: boolean }>`
 
   ${(p) => p.show && SideBarLinksStyles}
 
-  z-index: 100;
+  transition: all 500ms ease-in;
+
+  @media screen and (${(p) => p.theme.mediaQueries.minWidth.mobile}) {
+    width: 280px;
+  }
 `;
 
 export const SideBarHeader = styled.div`
   height: 60px;
-  border-bottom: 1px solid ${color("gray.300")};
-  padding: 8px 16px;
+  padding: 10px 12px;
+  width: 100%;
+  border-bottom: 1px solid hsla(0, 0%, 32%, 1);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-right: 10px;
 
   & > svg {
     cursor: pointer;

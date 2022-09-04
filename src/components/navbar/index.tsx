@@ -1,4 +1,3 @@
-import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
@@ -40,23 +39,6 @@ const LinksComponent = () => (
   </Links>
 );
 
-const SideNavbar = ({
-  show,
-  setShowSideBar,
-}: {
-  show: boolean;
-  setShowSideBar: Dispatch<SetStateAction<boolean>>;
-}) => (
-  <SideNavbarWrapper show={show}>
-    <SideBarHeader>
-      <Heading textColor="gray.100">Cineaste</Heading>
-      <IconButton onClick={() => setShowSideBar(!show)}>
-        <CloseIcon />
-      </IconButton>
-    </SideBarHeader>
-    <LinksComponent />
-  </SideNavbarWrapper>
-);
 export const Navbar = () => {
   const [showSideBar, setShowSideBar] = useState(false);
   const { route } = useRouter();
@@ -79,9 +61,16 @@ export const Navbar = () => {
           )}
         </Right>
       </Container>
-      {showSideBar && (
-        <SideNavbar show={showSideBar} setShowSideBar={setShowSideBar} />
-      )}
+
+      <SideNavbarWrapper show={showSideBar}>
+        <SideBarHeader>
+          <Heading textColor="gray.100">Cineaste</Heading>
+          <IconButton onClick={() => setShowSideBar(!showSideBar)}>
+            <CloseIcon />
+          </IconButton>
+        </SideBarHeader>
+        <LinksComponent />
+      </SideNavbarWrapper>
     </Wrapper>
   );
 };
