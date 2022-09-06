@@ -24,7 +24,12 @@
       "@utils": ["src/utils/index.ts"],
       "@hooks": ["src/hooks/index.ts"],
       "@server/*": ["src/server/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
