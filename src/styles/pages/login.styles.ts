@@ -31,21 +31,34 @@ export const Container = styled.div`
   flex-direction: column;
   padding: 1rem;
   background-color: ${color("gray.500")};
-  width: 100%;
+  width: 450px;
   height: auto;
   margin: 1rem 0;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-`;
 
-export const EmailContainer = styled.div`
-  width: 78%;
-  @media screen and (max-width: 960px) {
-    width: 80%;
-  }
   @media screen and (max-width: 700px) {
     width: 100%;
   }
+`;
+
+export const EmailContainer = styled.div`
+  width: 100%;
+`;
+
+export const PasswordMessageContainer = styled.ul`
+  list-style-type: none;
+  color: ${(p) => p.theme.colors.gray[200]};
+`;
+export const PMessageListItem = styled.li<{ isValid: boolean }>`
+  &::marker {
+    content: ${(p) => p.isValid && '"✓ "'};
+    color: ${(p) => p.isValid && "green"};
+  }
+
+  color: ${(p) => p.isValid && "white"};
+  list-style-type: ${(p) => !p.isValid && "disc"};
+  margin-bottom: 2px;
 `;

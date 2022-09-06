@@ -6,7 +6,7 @@ import { color } from "@utils";
 
 const defaultStyles = css`
   margin: 4px;
-  background-color: ${color("gray.400")};
+  margin-bottom: 0px;
   border-radius: 12px;
   height: 38px;
   outline-offset: 3px;
@@ -15,6 +15,7 @@ const defaultStyles = css`
   padding: 14px 12px;
   font-size: 14px;
   transition: all 180ms ease-in-out;
+  background-color: ${color("gray.400")};
   &::placeholder {
     color: ${color("gray.100")};
   }
@@ -33,9 +34,9 @@ const outlinedStyles = css`
 `;
 
 const filledStyles = css`
-  background: ${color("gray.300")};
   border: 2px solid transparent;
   outline: none;
+  background: ${color("gray.300")};
 
   &:hover {
     background: ${color("gray.400")};
@@ -56,7 +57,7 @@ const smInput = css`
 `;
 
 const errorStyles = css`
-  border: 2px solid ${color("red.100")};
+  border: 2px solid ${color("red.200")};
   color: ${color("red.300")};
   &:focus-visible,
   &:active {
@@ -66,8 +67,58 @@ const errorStyles = css`
   }
 `;
 
-export const InputWrapper = styled.div`
+const errorInputWrapper = css`
+  border-color: ${color("red.300")};
+`;
+
+export const InputWrapper = styled.div<{ invalid?: boolean }>`
   margin: 10px;
+  padding: 2.5px 5px;
+  margin-bottom: 20px;
+  border-width: 0px 0px 0px 4px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 2px;
+
+  /* ${(p) => p.invalid && errorInputWrapper} */
+`;
+
+export const MessagesWrapper = styled.div`
+  width: 100%;
+  margin-top: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 500ms ease-in-out;
+`;
+export const ErrorMessage = styled.div<{ isFullWidth?: boolean }>`
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 12px;
+  /* background: ${color("red.400")}; */
+  color: ${color("red.200")};
+
+  font-size: 13px;
+  font-weight: 500;
+`;
+
+export const SuggestionMessage = styled.div`
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 12px;
+  background: ${color("red.400")};
+  color: hsl(0deg 100% 96%);
+
+  font-size: 13px;
+  font-weight: 500;
+`;
+
+export const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: -22px;
 `;
 export const StyledInput = styled.input<IInputProps>`
   ${defaultStyles}

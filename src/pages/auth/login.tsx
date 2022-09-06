@@ -10,7 +10,7 @@ import {
   Wrapper,
 } from "@styles/pages/login.styles";
 import { Button, Divider, Heading, Input, Link, Modal } from "@components";
-import { supabase } from "@utils";
+import { supabase, validateEmail, validatePassword } from "@utils";
 import { useInput } from "@hooks";
 
 const LoginPage = () => {
@@ -18,16 +18,6 @@ const LoginPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-  function validateEmail(email: string): boolean {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  }
-
-  const validatePassword = (password: string) => {
-    // TODO: make this to check for stronger password
-    return password.length >= 6;
-  };
 
   const {
     value: email,
@@ -66,10 +56,7 @@ const LoginPage = () => {
     } catch (error) {
       setShowModal(true);
 
-      const {message} = error as ApiError;
-      // let status = (error as ApiError).status;
-
-      // console.log(message);
+      const { message } = error as ApiError;
       setErrorMessage(message);
     } finally {
       setIsLoading(false);
@@ -94,6 +81,7 @@ const LoginPage = () => {
               variant="filled"
               type="email"
               invalid={emailError}
+              errorMessage="Enter a valid email"
             />
             <Input
               value={password}
@@ -104,6 +92,7 @@ const LoginPage = () => {
               variant="filled"
               type="password"
               invalid={passwordError}
+              errorMessage="Enter a valid password"
             />
             <ActionContainer>
               <Button

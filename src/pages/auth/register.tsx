@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import type { ApiError } from "@supabase/supabase-js";
@@ -7,10 +7,17 @@ import {
   ActionContainer,
   Container,
   EmailContainer,
+  PasswordMessageContainer,
+  PMessageListItem,
   Wrapper,
 } from "@styles/pages/login.styles";
 import { Button, Divider, Heading, Input, Link, Modal } from "@components";
-import { supabase } from "@utils";
+import {
+  supabase,
+  validateEmail,
+  validatePassword,
+  validatePasswordParts,
+} from "@utils";
 import { useInput } from "@hooks";
 
 const RegisterPage = () => {
@@ -18,16 +25,6 @@ const RegisterPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
-  function validateEmail(email: string): boolean {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  }
-
-  const validatePassword = (password: string) => {
-    // TODO: make this to check for stronger password
-    return password.length >= 6;
-  };
 
   const {
     value: email,
@@ -67,14 +64,20 @@ const RegisterPage = () => {
       setShowModal(true);
 
       const { message } = error as ApiError;
-      // let status = (error as ApiError).status;
-
-      // console.log(message);
       setErrorMessage(message);
     } finally {
       setIsLoading(false);
     }
   };
+
+  // TODO: refactor this out into a custom hook
+  const {
+    hasOneDigit,
+    hasValidLength,
+    hasOneLowerCase,
+    hasOneUpperCase,
+    hasOneSpecialChar,
+  } = useMemo(() => validatePasswordParts(password), [password]);
 
   return (
     <>
@@ -95,6 +98,7 @@ const RegisterPage = () => {
               variant="filled"
               type="email"
               invalid={emailError}
+              errorMessage="Enter a valid email (it should contain @)"
             />
             <Input
               value={password}
@@ -105,7 +109,26 @@ const RegisterPage = () => {
               variant="filled"
               type="password"
               invalid={passwordError}
+              errorMessage="Enter a valid password"
             />
+
+            <PasswordMessageContainer>
+              <PMessageListItem isValid={hasValidLength}>
+                Must contain 8-24 characters
+              </PMessageListItem>
+              <PMessageListItem isValid={hasOneDigit}>
+                Must contain atleast one digit
+              </PMessageListItem>
+              <PMessageListItem isValid={hasOneLowerCase}>
+                Must contain atleast one lowercase character
+              </PMessageListItem>
+              <PMessageListItem isValid={hasOneUpperCase}>
+                Must contain atleast one uppercase character
+              </PMessageListItem>
+              <PMessageListItem isValid={hasOneSpecialChar}>
+                Must contain atleast one special character
+              </PMessageListItem>{" "}
+            </PasswordMessageContainer>
             <ActionContainer>
               <Button
                 primary
@@ -131,7 +154,7 @@ const RegisterPage = () => {
         </Container>
 
         <div>
-          Already have an account? Sign up{" "}
+          Already have an account? Sign in{" "}
           <Link size="lg" href="/auth/login">
             here
           </Link>

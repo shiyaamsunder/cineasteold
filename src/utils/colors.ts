@@ -2,6 +2,7 @@ import { colord } from "colord";
 import type { DefaultTheme } from "styled-components";
 
 import type { TColorsObject, TColorToken, TDefaultColors } from "@styles/types";
+import { colors } from "@styles/theme/colors";
 
 const checkIfValidCSSLayoutProp = (prop: string) =>
   prop.endsWith("px") || prop.endsWith("rem") || prop.endsWith("%");
@@ -70,3 +71,17 @@ export const color =
     const splittedColor: TColorsObject = theme.colors; // doing this because typescript wont allow string for indexing
     return splittedColor[colorName[0]][colorName[1]];
   };
+
+export const getIconColor = (
+  color: "currentColor" | "danger" | "success" | "warning"
+) => {
+  if (color === "currentColor") return color;
+  const iconColors = {
+    danger: colors.red[200],
+    // TODO: Add yellow and green color palette
+    success: "#fffff",
+    warning: "#fffff",
+  };
+
+  return iconColors[color];
+};
