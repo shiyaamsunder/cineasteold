@@ -1,5 +1,7 @@
 import { withTRPC } from "@trpc/next";
 import type { AppProps } from "next/app";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import type { AppRouter } from "./api/trpc/[trpc]";
 
@@ -7,12 +9,22 @@ import { Navbar, Layout } from "@components";
 import { AuthProvider, supabase } from "@utils";
 
 function MyApp({ Component, pageProps: { ...pageProps } }: AppProps) {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
   return (
     <Layout themeName="defaultTheme">
-      <AuthProvider supabase={supabase}>
-        <Navbar />
-        <Component {...pageProps} />
-      </AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider supabase={supabase}>
+          <Navbar />
+          <Component {...pageProps} />
+        </AuthProvider>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
     </Layout>
   );
 }
@@ -44,5 +56,5 @@ export default withTRPC<AppRouter>({
   /**
    * @link https://trpc.io/docs/ssr
    */
-  // ssr: true,
+  ssr: true,
 })(MyApp);
