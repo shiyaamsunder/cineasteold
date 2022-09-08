@@ -1,6 +1,6 @@
 import "styled-components";
 
-import type { colors } from "./theme/colors";
+import type { TColorObjects } from "./types";
 
 declare module "styled-components" {
   export interface DefaultTheme {
@@ -12,11 +12,7 @@ declare module "styled-components" {
       warning: string;
       shadowDark: string;
     };
-    colors: {
-      purple: typeof colors.purple;
-      gray: typeof colors.gray;
-      red: typeof colors.red;
-    };
+    colors: TColorObjects;
     radius: {
       sm: string;
       md: string;

@@ -22,11 +22,26 @@ const red = {
   500: "hsl(0, 77%, 54%)",
 };
 
-const green = {};
+const green = {
+  100: "hsl(135, 70%, 68%)",
+  200: "hsl(135, 70%, 58%)",
+  300: "hsl(135, 70%, 45%)",
+  400: "hsl(135, 70%, 35%)",
+  500: "hsl(135, 70%, 25%)",
+};
 
-const yellow = {};
+const yellow = {
+  100: "hsl(48, 95%, 75%)",
+  200: "hsl(46, 95%, 69%)",
+  300: "hsl(43, 97%, 65%)",
+  400: "hsl(41, 91%, 55%)",
+  500: "hsl(41, 91%, 45%)",
+};
+
 export const colors = {
   purple,
   gray,
   red,
+  green,
+  yellow,
 };

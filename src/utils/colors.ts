@@ -1,7 +1,11 @@
 import { colord } from "colord";
 import type { DefaultTheme } from "styled-components";
 
-import type { TColorsObject, TColorToken, TDefaultColors } from "@styles/types";
+import type {
+  TGenericColorsObject,
+  TColorToken,
+  TDefaultColors,
+} from "@styles/types";
 import { colors } from "@styles/theme/colors";
 
 const checkIfValidCSSLayoutProp = (prop: string) =>
@@ -68,7 +72,7 @@ export const color =
       const defaultColors = theme.colorsDefault;
       return defaultColors[colorName[0] as TDefaultColors];
     }
-    const splittedColor: TColorsObject = theme.colors; // doing this because typescript wont allow string for indexing
+    const splittedColor: TGenericColorsObject = theme.colors; // doing this because typescript wont allow string for indexing
     return splittedColor[colorName[0]][colorName[1]];
   };
 
@@ -79,8 +83,8 @@ export const getIconColor = (
   const iconColors = {
     danger: colors.red[200],
     // TODO: Add yellow and green color palette
-    success: "#fffff",
-    warning: "#fffff",
+    success: colors.green[200],
+    warning: colors.yellow[200],
   };
 
   return iconColors[color];

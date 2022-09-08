@@ -10,6 +10,8 @@ type TColorNameHue = `${TColorName}.${TColorHue}`;
 export type TDefaultColors = keyof typeof themes.defaultTheme.colorsDefault;
 
 export type TColorToken = TColorNameHue | TDefaultColors;
-export type TColorsObject = { [key: string]: { [key: string]: string } };
+export type TGenericColorsObject = { [key: string]: { [key: string]: string } };
 export type TThemeName = keyof typeof themes;
 export type ThemesRecord = Record<TThemeName, DefaultTheme>;
+export type TColorObject = Record<TColorHue, string>;
+export type TColorObjects = Record<TColorName, TColorObject>;
