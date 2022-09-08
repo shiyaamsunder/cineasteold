@@ -10,45 +10,33 @@ import {
   getValidCSSLayoutValue,
 } from "@utils";
 
-const buttonCustomProps = css`
-  --default-bg: ${color("gray.300")};
-  --default-color: white;
-  --border-radius: 8px;
-  --margin: 4px;
-  --transition: all 120ms ease-in-out;
+const defaultButtonStyles = css<IButtonProps>`
+  height: ${(p) =>
+    p.height
+      ? getValidCSSLayoutValue(p.height)
+      : `${getProperSizeFromProp(p.size || "md").height  }px`};
+  width: ${(p) => (p.width ? getValidCSSLayoutValue(p.width) : "auto")};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+  border-radius: 8px;
+  border: 0px;
+  background-color: ${color("gray.300")};
+  color: white;
+  transition: all 120ms ease-in-out;
+  margin: 4px;
+  font-size: ${(p) => p.size && getProperFontSizeFromProp(p.size || "md")};
+  &:active {
+    transform: ${(p) => !p.disabled && "scale(0.97)"};
+  }
+
+  &:focus-visible {
+    outline-offset: 3px;
+    outline: 1px solid ${color("gray.300")};
+  }
 `;
-
-const defaultButtonStyles = css<IButtonProps>((props) => {
-  const { height, width } = getProperSizeFromProp(props.size || "md");
-  const fontSize = getProperFontSizeFromProp(props.size || "md");
-
-  return {
-    height: props.height ? getValidCSSLayoutValue(props.height) : height,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    // eslint-disable-next-line no-nested-ternary
-    width: props.width ? width : "auto",
-    minWidth: "96px",
-    borderRadius: "var(--border-radius)",
-    border: 0,
-    backgroundColor: "var(--default-bg)",
-    color: "var(--default-color)",
-    transition: "var(--transition)",
-    margin: "var(--margin)",
-
-    fontSize,
-    "&:active": {
-      transform: !props.disabled ? "scale(0.97)" : "",
-    },
-
-    "&:focus-visible": {
-      outlineOffset: 3,
-      outline: `1px solid ${color("gray.300")}`,
-    },
-  };
-});
-
 const primaryStyles = css<IButtonProps>((props) => {
   const hoverBg = darken(props.theme.colors.purple[500], 0.1);
   return {
@@ -93,7 +81,6 @@ const smallButtonLoaderStyles = css`
   }
 `;
 export const StyledButtonBase = styled.button<IButtonProps>`
-  ${buttonCustomProps}
   ${defaultButtonStyles}
 
   &:hover {
