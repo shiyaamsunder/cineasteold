@@ -5,7 +5,9 @@ const nextConfig = {
     domains: ["image.tmdb.org"],
   },
   compiler: {
-    styledComponents: true,
+    styledComponents: {
+      cssProp: true,
+    },
   },
 };
 

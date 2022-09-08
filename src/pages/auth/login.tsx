@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import type { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import type { ApiError } from "@supabase/supabase-js";
 
@@ -147,4 +148,18 @@ const LoginPage = () => {
   );
 };
 
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const { user } = await supabase.auth.api.getUserByCookie(req);
+  if (user) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+};
 export default LoginPage;
