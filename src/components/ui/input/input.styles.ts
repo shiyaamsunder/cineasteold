@@ -42,6 +42,7 @@ const filledStyles = css`
     background: ${color("gray.400")};
   }
 
+  box-shadow: 0px 1px 4px rgb(41 41 41 / 59%);
   &:focus {
     background: transparent;
     border: 2px solid ${color("purple.300")};
