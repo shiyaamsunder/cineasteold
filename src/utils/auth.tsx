@@ -1,7 +1,8 @@
-import { createContext, useState, useEffect, ReactNode } from "react";
+import type { ReactNode} from "react";
+import { createContext, useState, useEffect, useMemo } from "react";
 import type { Session, SupabaseClient, User } from "@supabase/supabase-js";
 
-import { supabase } from "./supabaseClient";
+import type { supabase } from "./supabaseClient";
 
 type TSupabaseSignOut = typeof supabase.auth.signOut;
 
@@ -22,15 +23,26 @@ export const AuthProvider = ({
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
 
+  const authValue = useMemo(
+    () => ({ session, user, signOut: () => supabase.auth.signOut() }),
+    [session, user]
+  );
   useEffect(() => {
     const activeSession = supabase.auth.session();
     setSession(activeSession);
     setUser(activeSession?.user ?? null);
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      (_, currentSession) => {
+      (event, currentSession) => {
         setSession(currentSession);
         setUser(currentSession?.user ?? null);
+
+        fetch("/api/auth", {
+          method: "POST",
+          headers: new Headers({ "Content-Type": "application/json" }),
+          credentials: "same-origin",
+          body: JSON.stringify({ event, session }),
+        });
       }
     );
 
@@ -40,10 +52,6 @@ export const AuthProvider = ({
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ session, user, signOut: () => supabase.auth.signOut() }}
-    >
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
   );
 };
