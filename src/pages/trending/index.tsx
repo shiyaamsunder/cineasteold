@@ -13,12 +13,12 @@ import {
   MovieContainer,
 } from "@styles/pages/trending";
 import { Heading, Modal, MovieCard /* Skeleton  */ } from "@components";
-import type { ITrendingMovie } from "@utils";
+import { getTrendingMoviesRange } from "@utils";
 
 export const getStaticProps = async () => {
-  const res = await fetch("http:localhost:3000/api/trending?page=2");
-
-  const movies: ITrendingMovie[] = await res.json();
+  const pageEnd = 3;
+  const range = [...Array(pageEnd).keys()].map((_, i) => i + 1);
+  const movies = await getTrendingMoviesRange(range);
   return {
     props: {
       movies,

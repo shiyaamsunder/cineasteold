@@ -3,6 +3,7 @@
 import type {
   IMovie,
   IMovieFromServer,
+  ITrendingMovie,
   ITrendingMovieResultsFromServer,
 } from "./types";
 
@@ -30,6 +31,25 @@ export const getTrendingMovies = async ({
     console.log(err);
   }
   return null;
+};
+
+export const getTrendingMoviesRange = async (range: number[]) => {
+  const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+  const urls = range.map(
+    (n) =>
+      `https://api.themoviedb.org/3/trending/movie/week?page=${n}&api_key=${TMDB_API_KEY}`
+  );
+
+  const requests = urls.map((url) => fetch(url));
+
+  const responses = await Promise.all(requests);
+  const json = responses.map((res) => res.json());
+
+  const rawData = await Promise.all(json);
+
+  const data: ITrendingMovie[] = rawData.map((d) => d.results).flat();
+
+  return data;
 };
 
 export const getSingleMovie = async (movieId?: string | string[]) => {
