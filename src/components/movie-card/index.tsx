@@ -28,12 +28,7 @@ export const MovieCard = forwardRef<HTMLDivElement, IMovieCard>(
     } = props;
     return (
       <Wrapper ref={ref}>
-        <Link
-          href={`?movieId=${id}`}
-          as={`/movie/${id}`}
-          scroll={false}
-          passHref
-        >
+        <Link href={`/movie/${id}`} passHref>
           <StyledLink>
             <ImageWrapper>
               <RatingBadge>{voteAverage.toFixed(1)}</RatingBadge>

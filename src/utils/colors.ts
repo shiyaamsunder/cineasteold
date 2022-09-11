@@ -82,7 +82,6 @@ export const getIconColor = (
   if (color === "currentColor") return color;
   const iconColors = {
     danger: colors.red[200],
-    // TODO: Add yellow and green color palette
     success: colors.green[200],
     warning: colors.yellow[200],
   };

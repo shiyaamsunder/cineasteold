@@ -14,6 +14,7 @@ export const HomeWrapper = styled.div`
   margin: 0rem auto;
   display: flex;
   flex-direction: column;
+  margin-top: 18px;
 `;
 
 export const MovieContainer = styled.div`

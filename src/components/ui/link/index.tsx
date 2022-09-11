@@ -16,6 +16,8 @@ const StyledLink = styled.a<ILink>`
   font-size: ${({ size }) => size && `${getProperFontSizeFromProp(size)}px`};
   color: ${color("purple.100")};
   margin: 0px 5px;
+  cursor: pointer;
+  transition: all 120ms ease-in;
   &:hover {
     color: ${color("purple.300")};
     text-decoration: underline;

@@ -9,6 +9,9 @@ const nextConfig = {
       cssProp: true,
     },
   },
+  experimental: {
+    scrollRestoration: true,
+  },
 };
 
 module.exports = nextConfig;

@@ -11,7 +11,6 @@ export const Wrapper = styled.nav`
   justify-content: space-around;
   background-color: ${color("bgAccent")};
   border-bottom: 1px solid ${color("gray.400")};
-  margin-bottom: 18px;
 `;
 
 export const Container = styled.div`
