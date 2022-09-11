@@ -4,10 +4,10 @@ import React from "react";
 
 import { HomeWrapper, MovieContainer } from "@styles/pages/trending";
 import { Heading, MovieCard } from "@components";
-import { getTrendingMoviesRange } from "@utils";
+import { getTrendingMovies } from "@utils";
 
 export const getStaticProps = async () => {
-  const movies = await getTrendingMoviesRange(1);
+  const movies = await getTrendingMovies([1, 2, 3]);
   return {
     props: {
       movies,

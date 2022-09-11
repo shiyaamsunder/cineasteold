@@ -4,15 +4,15 @@ import Image from "next/image";
 
 import {
   // getSingleMovie,
-  getSingleMovieN,
-  getTrendingMoviesRange,
+  getSingleMovie,
+  getTrendingMovies,
 } from "@utils";
 import { Heading } from "@components";
 import { useMediaQuery } from "@hooks";
 import { MoviePageContainer, TitleOverlay } from "@styles/pages/movie.styles";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const movie = await getSingleMovieN(params?.movieId);
+  const movie = await getSingleMovie(params?.movieId);
   return {
     props: {
       movie,
@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 export const getStaticPaths = async () => {
-  const movies = await getTrendingMoviesRange();
+  const movies = await getTrendingMovies([1, 2, 3]);
 
   const paths = movies.map((m) => ({
     params: { movieId: m.id.toString() },
