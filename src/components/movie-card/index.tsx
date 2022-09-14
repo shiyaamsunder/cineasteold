@@ -34,11 +34,10 @@ export const MovieCard = forwardRef<HTMLDivElement, IMovieCard>(
               <RatingBadge>{voteAverage.toFixed(1)}</RatingBadge>
               <Image
                 layout="fill"
-                priority
                 objectFit="cover"
                 alt={title}
-                src={`https://image.tmdb.org/t/p/w500/${poster}`}
-                quality={50}
+                src={`https://image.tmdb.org/t/p/w300${poster}`}
+                quality={100}
               />
             </ImageWrapper>
           </StyledLink>

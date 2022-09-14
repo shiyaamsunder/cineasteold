@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const RatingBadge = styled.div`
   width: 36px;
-  background: ${color("purple.400")};
+  background: ${color("purple.500")};
   height: 24px;
   z-index: 50;
   position: absolute;
@@ -57,7 +57,7 @@ export const ImageWrapper = styled.div`
 export const Bottom = styled.div`
   padding: 6px;
 `;
-export const Title = styled.h3`
+export const Title = styled.p`
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;

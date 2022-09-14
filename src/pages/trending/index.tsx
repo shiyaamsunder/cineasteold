@@ -24,6 +24,10 @@ const TrendingMovies = ({
       <Head>
         <title>Trending Movies</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Trending page where movies that are currently trending are shown."
+        />
       </Head>
       <Heading>Trending Movies</Heading>
       <MovieContainer>

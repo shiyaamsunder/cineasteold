@@ -17,5 +17,7 @@ const StyledIconButton = styled.button`
   }
 `;
 export const IconButton = ({ children, ...rest }: IIconButton) => (
-  <StyledIconButton {...rest}>{children}</StyledIconButton>
+  <StyledIconButton type="button" {...rest}>
+    {children}
+  </StyledIconButton>
 );

@@ -51,20 +51,30 @@ export const getTrendingMovies = async (pageRange: number | number[]) => {
   return data;
 };
 
-export const getSingleMovie = async (
-  movieId: string | string[] | undefined
-) => {
+export const getSingleMovie = async (movieId: string | undefined) => {
   if (movieId === undefined) {
     throw new Error("No movie ID was provided");
   }
-  const data = await typedFetch<IMovieFromServer>(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${TMDB_API_KEY}`
-  );
+  const urls = [
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${TMDB_API_KEY}`,
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${TMDB_API_KEY}`,
+  ];
+  const requests = urls.map((url) => fetch(url));
+
+  const responses = await Promise.all(requests);
+  const json = responses.map((res) => res.json());
+  const rawData = await Promise.all(json);
+  const data = Object.assign({}, ...rawData);
+
   const newData = {
     ...data,
     poster: data.poster_path,
     backdrop: data.backdrop_path,
     desc: data.overview,
   };
+
+  delete newData.backdrop_path;
+  delete newData.poster_path;
+
   return newData as IMovie;
 };

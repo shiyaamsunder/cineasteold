@@ -28,3 +28,6 @@
 *.tsbuildinfo
 
 .idea
+
+# vim session
+.session

@@ -9,6 +9,22 @@ export type ILang = {
   name: string;
 };
 
+export interface ICastMember {
+  gender: 0 | 1 | 2;
+  id: number;
+  known_for_department: string; //  TODO: find all the enums for this
+  name: string;
+  popularity: number;
+  profile_path: string;
+  character: string;
+  credit_id: string;
+  order: number;
+}
+export interface ICrewMember extends ICastMember {
+  job: string;
+  department: string;
+}
+
 export interface IMovie {
   id: string;
   imdb_id: string;
@@ -22,6 +38,8 @@ export interface IMovie {
   runtime: number;
   vote_average: number;
   vote_count: number;
+  cast: ICastMember[];
+  crew: ICrewMember[];
 }
 
 export interface IMovieFromServer {

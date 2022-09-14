@@ -31,7 +31,9 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
+
   background-color: ${color("gray.500")};
+
   width: 450px;
   height: auto;
   margin: 1rem 0;

@@ -47,7 +47,10 @@ export const Navbar = () => {
     <Wrapper>
       <Container>
         <Left>
-          <IconButton onClick={() => setShowSideBar(!showSideBar)}>
+          <IconButton
+            aria-label="Menu"
+            onClick={() => setShowSideBar(!showSideBar)}
+          >
             <BurgerIcon />
           </IconButton>
 
@@ -65,7 +68,10 @@ export const Navbar = () => {
       <SideNavbarWrapper show={showSideBar}>
         <SideBarHeader>
           <Heading textColor="gray.100">Cineaste</Heading>
-          <IconButton onClick={() => setShowSideBar(!showSideBar)}>
+          <IconButton
+            aria-label="Close"
+            onClick={() => setShowSideBar(!showSideBar)}
+          >
             <CloseIcon />
           </IconButton>
         </SideBarHeader>
