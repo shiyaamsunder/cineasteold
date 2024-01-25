@@ -12,7 +12,7 @@ import { db } from "../../../firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../../components/UI/Toast/toast.css";
-import { FieldValue, arrayUnion, collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { arrayUnion, doc, onSnapshot, updateDoc } from "firebase/firestore";
 
 const FullMovie = () => {
 	const { movieId } = useParams();
