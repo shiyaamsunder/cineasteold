@@ -1,7 +1,14 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/storage'
-import 'firebase/auth'
+// import firebase from 'firebase/app'
+// import 'firebase/firestore'
+// import 'firebase/storage'
+// import 'firebase/auth'
+
+
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
+
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -13,11 +20,19 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig)
+// const firebaseApp = firebase.initializeApp(firebaseConfig)
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-const db = firebaseApp.firestore()
-const auth = firebaseApp.auth()
-const provider = new firebase.auth.GoogleAuthProvider();
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+// const db = firebaseApp.firestore()
+// const auth = firebaseApp.auth()
+// const provider = new firebase.auth.GoogleAuthProvider();
 
 
-export { db, auth, provider, firebase }
+// export { db, auth, provider, firebase }
+export { db, auth, provider }

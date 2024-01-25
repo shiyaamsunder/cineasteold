@@ -8,15 +8,16 @@ import { useAuth } from "../../../context/AuthContext";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import { useHistory } from "react-router-dom";
-import { db, firebase } from "../../../firebase";
+import { db } from "../../../firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../../components/UI/Toast/toast.css";
+import { FieldValue, arrayUnion, collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
 
 const FullMovie = () => {
 	const { movieId } = useParams();
 	const [movie, setMovie] = useState({});
-	const { watchList } = useMovList();
+	const { watchList, setWatchList } = useMovList();
 	const history = useHistory();
 	const { currentUser } = useAuth();
 	const [addedToWatchList, setAddedToWatchList] = useState(false);
@@ -34,6 +35,20 @@ const FullMovie = () => {
 			fetchMovie();
 		}
 	}, [movieId, Furl]);
+
+
+	useEffect(() => {
+		if (currentUser) {
+			onSnapshot(doc(db, "users", currentUser.displayName), (doc)=> {
+				let wl = doc.data().bucket
+				let movieexists = wl.find(m=> m.id==movieId) ? true : false
+				setAddedToWatchList(movieexists)
+			})
+
+		}
+	}, [currentUser, setWatchList]);
+
+
 	const imgUrl = movie && `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 	const backdrop =
 		movie && `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`;
@@ -57,11 +72,12 @@ const FullMovie = () => {
 	};
 
 	const RemoveFromWatchList = (id) => {
-		db.collection("users")
-			.doc(currentUser.displayName)
-			.update({
-				bucket: watchList.filter((movie) => movie.id !== id),
-			});
+		updateDoc(doc(db, "users", currentUser.displayName), {bucket: watchList.filter((movie) => movie.id !== id)})
+		// db.collection("users")
+		// 	.doc(currentUser.displayName)
+		// 	.update({
+		// 		bucket: watchList.filter((movie) => movie.id !== id),
+		// 	});
 		setAddedToWatchList(!addedToWatchList);
 		toast.error("Removed from watchlist", {
 			position: "bottom-left",
@@ -79,16 +95,22 @@ const FullMovie = () => {
 	};
 
 	const AddtoWatchlist = (id, title, url, rating) => {
-		db.collection("users")
-			.doc(currentUser.displayName)
-			.update({
-				bucket: firebase.firestore.FieldValue.arrayUnion({
-					id: id,
-					title: title,
-					url: url,
-					rating: rating,
-				}),
-			});
+		updateDoc(doc(db, "users", currentUser.displayName), {bucket: arrayUnion({
+			id: id,
+			title: title,
+			url: url,
+			rating: rating,
+		})})
+		// db.collection("users")
+		// 	.doc(currentUser.displayName)
+		// 	.update({
+		// 		bucket: FieldValue.arrayUnion({
+		// 			id: id,
+		// 			title: title,
+		// 			url: url,
+		// 			rating: rating,
+		// 		}),
+		// 	});
 		setAddedToWatchList(!addedToWatchList);
 		toast.success("Added to watchlist", {
 			position: "bottom-left",
@@ -135,7 +157,7 @@ const FullMovie = () => {
 					<h1>{movie.original_title}</h1>
 					<h3>Released: {movie.release_date}</h3>
 					<p>{movie.overview}</p>
-					<p>Rating: {movie.vote_average}</p>
+					<p>Rating: {Number(movie.vote_average).toFixed(1)}</p>
 
 					<div className={classes.AddtoWatchlist}>
 						<Button

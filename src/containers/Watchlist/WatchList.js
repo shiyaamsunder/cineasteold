@@ -9,6 +9,7 @@ import Button from "../../components/UI/Button/Button";
 import Modal from "../../components/UI/Modal/Modal";
 import Backdrop from "../../components/UI/Backdrop/Backdrop";
 import { useHistory } from "react-router";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 
 const WatchList = () => {
 	const { watchList, setWatchList } = useMovList();
@@ -19,9 +20,10 @@ const WatchList = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		if (currentUser) {
-			db.collection("users")
-				.doc(currentUser.displayName)
-				.onSnapshot((snapshot) => setWatchList(snapshot.data().bucket));
+			onSnapshot(doc(db, "users", currentUser.displayName), (doc)=> setWatchList(doc.data().bucket))
+			// db.collection("users")
+			// 	.doc(currentUser.displayName)
+			// 	.onSnapshot((snapshot) => setWatchList(snapshot.data().bucket));
 		}
 	}, [currentUser, setWatchList]);
 
@@ -31,17 +33,24 @@ const WatchList = () => {
 	}
 
 	const handleClear = () => {
-		db.collection("users")
-			.doc(currentUser.displayName)
-			.update({
-				bucket: [],
-			})
-			.then((data) => {
-				setWatchList([]);
-				console.log(data);
-				toggleModal();
-				history.push("/");
-			});
+
+		updateDoc(doc(db, "users", currentUser.displayName), {bucket: []}).then((data) => {
+			setWatchList([]);
+			console.log(data);
+			toggleModal();
+			history.push("/");
+		})
+		// db.collection("users")
+		// 	.doc(currentUser.displayName)
+		// 	.update({
+		// 		bucket: [],
+		// 	})
+		// 	.then((data) => {
+		// 		setWatchList([]);
+		// 		console.log(data);
+		// 		toggleModal();
+		// 		history.push("/");
+		// 	});
 	};
 
 	const toggleModal = () => {
@@ -88,7 +97,7 @@ const WatchList = () => {
 								<MovieCard
 									url={movie.url}
 									title={movie.title}
-									rating={movie.rating}
+									rating={Number(movie.rating).toFixed(1)}
 									key={movie.id}
 									id={movie.id}
 									onHomepage={false}

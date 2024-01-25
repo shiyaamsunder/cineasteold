@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Footer.module.css";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import { version } from "../../../package.json";
+// import { version } from "../../../package.json";	
 
 const Footer = () => {
 	return (
@@ -16,7 +16,7 @@ const Footer = () => {
 				</a>
 
 				<div className={classes.footer__info}>
-					<p>v{version}</p>
+					{/* <p>v{version}</p> */}
 				</div>
 			</div>
 		</footer>

@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db, provider } from '../firebase'
+import { collection, doc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 
 
 export const AuthContext = createContext()
@@ -23,8 +25,13 @@ export const AuthProvider = ({ children }) => {
     }
     const signUp = (email, password, redirect, name) => {
         clearErrors()
-        auth.createUserWithEmailAndPassword(email, password).then(u => {
-            db.collection('users').doc(name).set({
+        createUserWithEmailAndPassword(auth, email, password).then(u => {
+            // db.collection('users').doc(name).set({
+            //     name: name,
+            //     bucket: []
+            // })
+
+            setDoc(doc(db, "users", name), {
                 name: name,
                 bucket: []
             })
@@ -49,7 +56,7 @@ export const AuthProvider = ({ children }) => {
 
     async function login(email, password, redirect) {
         clearErrors()
-        return auth.signInWithEmailAndPassword(email, password).then(u => {
+        return signInWithEmailAndPassword(auth, email, password).then(u => {
             redirect()
         }).catch(err => {
             switch (err.code) {
@@ -73,15 +80,20 @@ export const AuthProvider = ({ children }) => {
     }
 
     const googleSignUp = async (redirect) => {
-        const snapshot = await db.collection('users').get()
+        // const snapshot = await db.collection('users').get()
+        const snapshot = await getDocs(collection(db, "users"))
         const docIds = snapshot.docs.map(doc => doc.id)
 
-        auth.signInWithPopup(provider).then(u => {
+        signInWithPopup(auth, provider).then(u => {
             if (docIds.filter(id => (u.user.displayName === id)).length < 1) {
-                db.collection('users').doc(u.user.displayName).set({
+                 setDoc(doc(db, "users", u.user.displayName),{
                     name: u.user.displayName,
                     bucket: []
                 })
+                // db.collection('users').doc(u.user.displayName).set({
+                //     name: u.user.displayName,
+                //     bucket: []
+                // })
             }
 
             redirect()
@@ -91,9 +103,9 @@ export const AuthProvider = ({ children }) => {
 
     function setUserName(name) {
 
-        auth.onAuthStateChanged(user => {
+        onAuthStateChanged(auth, (user) => {
             if (user) {
-                user.updateProfile({
+                updateProfile(user, {
                     displayName: name
                 })
 
@@ -107,11 +119,11 @@ export const AuthProvider = ({ children }) => {
     }
 
     function logout() {
-        return auth.signOut()
+        return signOut(auth)
     }
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
+        const unsubscribe = onAuthStateChanged(auth, user => {
             setCurrentUser(user)
             setLoading(false)
         })

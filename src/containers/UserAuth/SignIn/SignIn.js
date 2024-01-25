@@ -39,7 +39,8 @@ const SignIn = () => {
             setError('')
             setLoading(true)
             await googleSignUp(redirect)
-        } catch {
+        } catch(error) {
+            console.log(error)
             setError("Trouble logging in")
         }
         setLoading(false)
@@ -71,7 +72,7 @@ const SignIn = () => {
                 <div className={classes.OtherSignIn}>
                     <h4>Or, Sign in using</h4>
 
-                    <button className={classes.Google} onClick={handleGoogleSignIn} ><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="" />Google</button>
+                    <button className={classes.Google} onClick={handleGoogleSignIn} ><img src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA" alt="" />Google</button>
 
                 </div>
             </div>

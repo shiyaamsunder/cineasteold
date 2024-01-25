@@ -34,7 +34,7 @@ const MovieCards = ({ fetchUrl }) => {
 
         <div className={classes.MovieCards}>
             {movies && movies.map(el => (
-                <MovieCard title={el.title} key={el.id} url={el.poster_path} rating={el.vote_average} id={el.id} onHomepage={true} />
+                <MovieCard title={el.title} key={el.id} url={el.poster_path} rating={Number(el.vote_average).toFixed(1)} id={el.id} onHomepage={true} />
             ))}
 
             {!movies && arr.map(el=> <SkeletonComponent key={el}/>)}
